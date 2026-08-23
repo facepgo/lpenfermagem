@@ -167,33 +167,35 @@
         .diferenciais-badge-bite { position:absolute; width:38px; height:38px; border-radius:50%; background:#fff; top:-5px; right:-5px; z-index:2; }
         .diferenciais-badge-inner { position:absolute; width:50px; height:50px; border-radius:50%; background:#fff; top:52%; left:46%; transform:translate(-50%,-50%); z-index:3; display:flex; align-items:center; justify-content:center; }
 
-        /* curso — detalhes (clone Einstein: menu lateral de abas + painel), conteúdo placeholder */
+        /* curso — detalhes: clone real do menu lateral + painel da Einstein (cores/layout
+           extraídos do CSS computado deles: ativo #004F92, borda #004F92, radius 8px,
+           hover #E1E1E2, corpo de texto #626466) — fonte mantida Inter (padrão do site) */
         .curso-grid { display:grid; gap:1.75rem; align-items:start; grid-template-columns:1fr; }
-        @media (min-width:1024px) { .curso-grid { grid-template-columns:320px 1fr; } }
-        .curso-tabs { display:flex; flex-direction:column; gap:10px; }
-        .curso-tab { width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; text-align:left; padding:14px 20px; border-radius:999px; border:1.5px solid rgba(10,15,46,0.22); background:#fff; color:#0A0F2E; font-weight:800; font-size:13.5px; cursor:pointer; transition:.2s; }
-        .curso-tab .curso-tab-chevron { flex-shrink:0; transition:transform .2s; opacity:.55; }
-        .curso-tab.active { background:#0A0F2E; border-color:#0A0F2E; color:#fff; }
-        .curso-tab.active .curso-tab-chevron { opacity:1; transform:translateX(2px); }
-        .curso-panel { background:#fff; border-radius:20px; padding:32px 28px; border:1px solid rgba(26,26,26,0.08); min-height:340px; }
-        @media (min-width:768px) { .curso-panel { padding:44px 44px; } }
-        .curso-panel h3 { font-weight:900; color:#0A0F2E; font-size:clamp(20px,2.4vw,26px); line-height:1.2; margin-bottom:14px; }
-        .curso-panel p { color:#3a352c; font-size:15px; line-height:1.7; }
+        @media (min-width:1024px) { .curso-grid { grid-template-columns:280px 1fr; } }
+        .curso-tabs { display:flex; flex-direction:column; gap:8px; }
+        .curso-tab { width:100%; min-height:35px; display:flex; align-items:center; justify-content:space-between; gap:10px; text-align:left; padding:8px 16px; border-radius:8px; border:1px solid #004F92; background:#fff; color:#004F92; font-weight:500; font-size:16px; line-height:16px; cursor:pointer; transition:background .2s ease, border-color .2s ease; }
+        .curso-tab:hover:not(.active) { background:#E1E1E2; border-color:#E1E1E2; }
+        .curso-tab .curso-tab-chevron { flex-shrink:0; }
+        .curso-tab.active { background:#004F92; border-color:#004F92; color:#fff; }
+        .curso-panel { background:#fff; border-radius:12px; padding:32px 28px; border:1px solid #e1e1e2; min-height:340px; }
+        @media (min-width:768px) { .curso-panel { padding:40px 44px; } }
+        .curso-panel h3 { font-weight:900; color:#004F92; font-size:24px; line-height:1.2; margin-bottom:16px; }
+        .curso-panel p { color:#626466; font-size:16px; line-height:24px; letter-spacing:.02em; }
         .curso-panel p + p { margin-top:12px; }
         .curso-panel ul { list-style:none; display:flex; flex-direction:column; gap:10px; margin:16px 0; padding:0; }
-        .curso-panel ul li { display:flex; gap:10px; align-items:flex-start; font-size:15px; line-height:1.6; color:#3a352c; }
-        .curso-panel ul li::before { content:'•'; color:#E8821E; font-weight:900; line-height:1.6; }
-        .curso-panel h4 { font-weight:900; color:#0A0F2E; font-size:15px; margin-top:24px; margin-bottom:4px; }
-        .curso-highlight { display:flex; gap:14px; align-items:flex-start; background:rgba(232,130,30,0.08); border:1px solid rgba(232,130,30,0.25); border-radius:14px; padding:18px 20px; margin-top:22px; }
-        .curso-highlight svg { flex-shrink:0; color:#E8821E; margin-top:2px; }
-        .curso-highlight p { color:#1a1a1a; font-weight:700; font-size:14px; line-height:1.6; margin:0; }
-        .curso-faq { border-bottom:1px solid rgba(26,26,26,0.1); padding:14px 0; }
-        .curso-faq summary { cursor:pointer; font-weight:800; color:#0A0F2E; font-size:15px; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+        .curso-panel ul li { display:flex; gap:10px; align-items:flex-start; font-size:16px; line-height:24px; color:#626466; }
+        .curso-panel ul li::before { content:'•'; color:#004F92; font-weight:900; line-height:24px; }
+        .curso-panel h4 { font-weight:700; color:#626466; font-size:16px; margin-top:24px; margin-bottom:4px; letter-spacing:.02em; }
+        .curso-highlight { display:flex; gap:14px; align-items:flex-start; background:#F4F8FB; border:1px solid #004F92; border-radius:8px; padding:18px 20px; margin-top:22px; }
+        .curso-highlight svg { flex-shrink:0; color:#004F92; margin-top:2px; }
+        .curso-highlight p { color:#003050; font-weight:700; font-size:15px; line-height:1.6; margin:0; }
+        .curso-faq { border-bottom:1px solid #e1e1e2; padding:14px 0; }
+        .curso-faq summary { cursor:pointer; font-weight:700; color:#004F92; font-size:16px; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; }
         .curso-faq summary::-webkit-details-marker { display:none; }
-        .curso-faq summary::after { content:'+'; font-weight:900; font-size:20px; color:#E8821E; flex-shrink:0; }
+        .curso-faq summary::after { content:'+'; font-weight:900; font-size:20px; color:#004F92; flex-shrink:0; }
         .curso-faq[open] summary::after { content:'−'; }
         .curso-faq p { margin-top:10px; }
-        .curso-cta-fixed { position:fixed; bottom:20px; right:92px; z-index:99; background:#0A0F2E; color:#fff; font-weight:900; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; padding:14px 20px; border-radius:999px; text-decoration:none; box-shadow:0 8px 24px rgba(10,15,46,0.35); white-space:nowrap; }
+        .curso-cta-fixed { position:fixed; bottom:20px; right:92px; z-index:99; background:#004F92; color:#fff; font-weight:900; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; padding:14px 20px; border-radius:999px; text-decoration:none; box-shadow:0 8px 24px rgba(0,79,146,0.35); white-space:nowrap; }
 
         /* galeria — placeholders das cerimônias (fotos reais pendentes) */
         .galeria-ph { width:100%; height:200px; border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:rgba(255,255,255,0.92); text-align:center; padding:0 14px; flex-shrink:0; }
@@ -882,97 +884,94 @@ const CURSO_DETALHES = [
     {
         label: 'Programa e Metodologia',
         html: '<h3>Programa e Metodologia</h3>'
-            + '<p>O curso combina aulas teóricas, práticas em simulação realística e estudo de casos clínicos, com foco na aplicação imediata do conhecimento na rotina da terapia intensiva.</p>'
+            + '<p>Com duração prevista de [X meses], o curso é dividido em aulas teóricas e estágio observacional monitorado.</p>'
+            + '<p>O curso utiliza estratégias no Centro de Simulação Realística, discussão de casos clínicos e simulações em sala de aula, com o intuito de vivenciar situações similares às da vida real.</p>'
+            + '<h4>Carga horária total</h4>'
+            + '<p>[XX horas]</p>'
+            + '<h4>Sobre o estágio</h4>'
+            + '<p>O estágio curricular é observacional e ocorre em unidade parceira, fora do período de aulas teóricas. Os alunos são divididos em grupos pequenos e acompanhados por um enfermeiro da instituição.</p>',
+    },
+    {
+        label: 'Corpo Docente',
+        html: '<h3>Corpo Docente</h3>'
+            + '<p><b>Fale com a coordenação</b><br>Clique e copie o e-mail: [e-mail do coordenador]</p>'
+            + '<h4>Coordenador(a)</h4>'
             + '<ul>'
-            + '<li>Aulas expositivas e discussão de casos clínicos.</li>'
-            + '<li>Práticas em Centro de Simulação Realística.</li>'
-            + '<li>Mentoria com profissionais atuantes em UTI.</li>'
+            + '<li>[Nome do coordenador] — [titulação e especialidade]. Mini Currículo · Currículo Lattes</li>'
             + '</ul>'
-            + '<h4>Carga horária</h4>'
-            + '<p>[Total de horas do curso] — [modalidade: presencial / híbrida].</p>',
+            + '<h4>Professores</h4>'
+            + '<ul>'
+            + '<li>[Nome do professor 1] — Mini Currículo · Currículo Lattes</li>'
+            + '<li>[Nome do professor 2] — Mini Currículo · Currículo Lattes</li>'
+            + '</ul>',
+    },
+    {
+        label: 'Local e Horário',
+        html: '<h3>Local e Horário</h3>'
+            + '<h4>Horário das aulas</h4>'
+            + '<p>[ex.: Mensal — Sexta, das 13h30 às 22h30, e Sábado, das 08h às 17h]</p>'
+            + '<h4>Endereço</h4>'
+            + '<p>[Endereço completo da unidade FACEP]</p>'
+            + '<h4>Estacionamento</h4>'
+            + '<p>[Informações de estacionamento]</p>'
+            + '<h4>Dúvidas</h4>'
+            + '<p>[Telefone de contato]</p>'
+            + '<a href="#" class="font-black text-xs uppercase tracking-wider" style="display:inline-block;margin-top:12px;background:#004F92;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">Ver no mapa</a>',
+    },
+    {
+        label: 'Perfil do Aluno',
+        html: '<h3>Perfil do Aluno</h3>'
+            + '<p>Enfermeiros que tenham interesse em atuar no atendimento de pacientes em Terapia Intensiva.</p>'
+            + '<p>Conforme regulamentação do MEC, a data de conclusão do curso de Graduação, indicada no Diploma ou na Declaração de Conclusão de Curso, deve ser anterior à data de início do curso de Pós-graduação.</p>',
     },
     {
         label: 'Objetivos e Qualificações',
         html: '<h3>Objetivos e Qualificações</h3>'
             + '<p>Ao final do curso, o aluno deverá ser capaz de:</p>'
             + '<ul>'
-            + '<li>Compreender as bases fisiopatológicas das principais doenças críticas.</li>'
-            + '<li>Prestar assistência de enfermagem ao paciente em terapia intensiva com embasamento teórico-científico.</li>'
-            + '<li>Desenvolver raciocínio clínico e crítico nos processos de gerenciamento da assistência ao paciente grave.</li>'
+            + '<li>Compreender as bases das principais doenças.</li>'
+            + '<li>Prestar assistência ao paciente em terapia intensiva com embasamento teórico-científico.</li>'
+            + '<li>Desenvolver raciocínio crítico nos processos clínico e administrativo no gerenciamento da assistência ao paciente grave.</li>'
             + '</ul>'
             + '<div class="curso-highlight">' + ICONE_DIPLOMA + '<p>Ao final do curso, o aluno receberá o certificado de Pós-graduação <i>lato sensu</i> em Enfermagem em Terapia Intensiva.</p></div>'
             + '<h4>Diferenciais</h4>'
             + '<ul>'
-            + '<li>Atividades práticas em Centro de Simulação Realística.</li>'
-            + '<li>Corpo docente multiprofissional, com experiência na área de terapia intensiva.</li>'
-            + '<li>Metodologia alinhada a protocolos e diretrizes internacionais.</li>'
+            + '<li>Atividade de telessimulação no Centro de Simulação Realística.</li>'
+            + '<li>Corpo docente multiprofissional e com especialização e experiência na área de terapia intensiva.</li>'
+            + '<li>Método de aprendizado que considera protocolos e padronizações internacionais cientificamente comprovados.</li>'
+            + '<li>Comunidade de ex-alunos (Alumni FACEP), com acesso a benefícios exclusivos após a formação.</li>'
             + '</ul>',
-    },
-    {
-        label: 'Corpo Docente',
-        html: '<h3>Corpo Docente</h3>'
-            + '<p><b>Coordenação:</b> [Nome do coordenador] — [titulação e especialidade].</p>'
-            + '<h4>Professores</h4>'
-            + '<ul>'
-            + '<li>[Nome do professor 1] — [especialidade].</li>'
-            + '<li>[Nome do professor 2] — [especialidade].</li>'
-            + '<li>[Nome do professor 3] — [especialidade].</li>'
-            + '</ul>'
-            + '<p>Currículos completos disponíveis mediante solicitação à secretaria acadêmica.</p>',
-    },
-    {
-        label: 'Benefícios',
-        html: '<h3>Benefícios</h3>'
-            + '<ul>'
-            + '<li>Acesso à biblioteca digital da instituição.</li>'
-            + '<li>Descontos para egressos em novas pós-graduações.</li>'
-            + '<li>Comunidade de ex-alunos (Alumni), com oportunidades de networking.</li>'
-            + '<li>Suporte acadêmico via WhatsApp.</li>'
-            + '</ul>',
-    },
-    {
-        label: 'Cronograma de Aulas',
-        html: '<h3>Cronograma de Aulas</h3>'
-            + '<p>As aulas acontecem no formato [presencial / híbrido], com periodicidade [ex.: quinzenal, aos sábados], totalizando [X horas] de carga horária.</p>'
-            + '<a href="#" class="font-black text-xs uppercase tracking-wider" style="display:inline-block;margin-top:20px;background:linear-gradient(135deg, #060918, #0A0F2E);color:#fff;padding:12px 26px;border-radius:999px;text-decoration:none;">Baixar cronograma completo</a>',
-    },
-    {
-        label: 'Local e Horário',
-        html: '<h3>Local e Horário</h3>'
-            + '<p><b>Unidade:</b> [Nome da unidade FACEP]</p>'
-            + '<p><b>Endereço:</b> [Endereço completo]</p>'
-            + '<p><b>Horário das aulas:</b> [dia da semana e horário]</p>'
-            + '<p><b>Estacionamento:</b> [informações de estacionamento]</p>'
-            + '<a href="#" class="font-black text-xs uppercase tracking-wider" style="display:inline-block;margin-top:20px;background:linear-gradient(135deg, #060918, #0A0F2E);color:#fff;padding:12px 26px;border-radius:999px;text-decoration:none;">Ver no mapa</a>',
     },
     {
         label: 'Valor do Curso',
         html: '<h3>Valor do Curso</h3>'
-            + '<p><b>Investimento total:</b> R$ [valor]</p>'
-            + '<p><b>Taxa de inscrição:</b> [gratuita / valor]</p>'
+            + '<p><b>Taxa de inscrição no processo seletivo:</b> [valor]</p>'
+            + '<p><b>Valor total do curso:</b> R$ [valor]</p>'
             + '<p><b>Parcelamento:</b> em até [X] vezes de R$ [valor]</p>'
-            + '<p>Condições especiais para ex-alunos e grupos. Consulte a secretaria acadêmica.</p>',
-    },
-    {
-        label: 'Perfil do Aluno',
-        html: '<h3>Perfil do Aluno</h3>'
-            + '<p>Curso direcionado a enfermeiros graduados que atuam ou desejam atuar em unidades de terapia intensiva, emergência e urgência, buscando aprofundamento técnico-científico na área.</p>',
+            + '<p>Condições especiais para matrículas antecipadas. Consulte a secretaria acadêmica para detalhes de descontos e prazos.</p>',
     },
     {
         label: 'Processo Seletivo',
         html: '<h3>Processo Seletivo</h3>'
+            + '<p>O processo seletivo será composto por diversas etapas, todas eliminatórias.</p>'
             + '<ul>'
-            + '<li>1. Inscrição online.</li>'
-            + '<li>2. Análise curricular.</li>'
-            + '<li>3. Entrevista (quando aplicável).</li>'
-            + '<li>4. Matrícula.</li>'
+            + '<li>1. Inscrição</li>'
+            + '<li>2. Processo seletivo</li>'
+            + '<li>3. Divulgação do resultado</li>'
+            + '<li>4. Matrícula</li>'
             + '</ul>'
-            + '<h4>Documentos necessários</h4>'
+            + '<a href="#" class="font-black text-xs uppercase tracking-wider" style="display:inline-block;margin-top:12px;background:#004F92;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">Download Manual</a>',
+    },
+    {
+        label: 'Cronograma de Aulas',
+        html: '<h3>Cronograma de Aulas</h3>'
+            + '<h4>Sobre os formatos de aula</h4>'
             + '<ul>'
-            + '<li>Diploma de graduação em Enfermagem.</li>'
-            + '<li>RG e CPF.</li>'
-            + '<li>Comprovante de residência.</li>'
-            + '</ul>',
+            + '<li><b>Presencial:</b> a aula será realizada exclusivamente no formato presencial, na unidade física destinada ao curso.</li>'
+            + '<li><b>Síncrono Online:</b> aula transmitida exclusivamente ao vivo e 100% online via plataforma de videoconferência, sem possibilidade de participação presencial.</li>'
+            + '<li><b>Síncrono Flexível:</b> o aluno poderá escolher entre participar presencialmente ou assistir ao vivo, 100% online via plataforma de videoconferência.</li>'
+            + '</ul>'
+            + '<a href="#" class="font-black text-xs uppercase tracking-wider" style="display:inline-block;margin-top:12px;background:#004F92;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">Baixar Cronograma</a>',
     },
     {
         label: 'Perguntas frequentes (FAQ)',
@@ -981,6 +980,19 @@ const CURSO_DETALHES = [
             + '<details class="curso-faq"><summary>Preciso ter registro no COREN ativo?</summary><p>[Resposta a ser definida.]</p></details>'
             + '<details class="curso-faq"><summary>O certificado é reconhecido pelo MEC?</summary><p>[Resposta a ser definida.]</p></details>'
             + '<details class="curso-faq"><summary>Existe possibilidade de bolsa ou desconto?</summary><p>[Resposta a ser definida.]</p></details>',
+    },
+    {
+        label: 'Benefícios',
+        html: '<h3>Benefícios</h3>'
+            + '<p>Conheça oportunidades exclusivas que a FACEP oferece para você:</p>'
+            + '<h4>Parcerias educacionais</h4>'
+            + '<p>[Empresas parceiras com condições especiais para alunos FACEP].</p>'
+            + '<h4>Descontos</h4>'
+            + '<p>Alunos e ex-alunos possuem descontos diferenciados em novas pós-graduações.</p>'
+            + '<h4>Alumni FACEP</h4>'
+            + '<p>Comunidade exclusiva para ex-alunos, com oportunidades de networking e atualização profissional.</p>'
+            + '<h4>Suporte digital</h4>'
+            + '<p>Canal de atendimento via WhatsApp para dúvidas sobre acesso ou questões acadêmicas: [número de WhatsApp].</p>',
     },
 ];
 
