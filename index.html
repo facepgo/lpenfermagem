@@ -167,36 +167,6 @@
         .diferenciais-badge-bite { position:absolute; width:38px; height:38px; border-radius:50%; background:#fff; top:-5px; right:-5px; z-index:2; }
         .diferenciais-badge-inner { position:absolute; width:50px; height:50px; border-radius:50%; background:#fff; top:52%; left:46%; transform:translate(-50%,-50%); z-index:3; display:flex; align-items:center; justify-content:center; }
 
-        /* curso — detalhes: clone real do menu lateral + painel da Einstein (cores/layout
-           extraídos do CSS computado deles: ativo #004F92, borda #004F92, radius 8px,
-           hover #E1E1E2, corpo de texto #626466) — fonte mantida Inter (padrão do site) */
-        .curso-grid { display:grid; gap:1.75rem; align-items:start; grid-template-columns:1fr; }
-        @media (min-width:1024px) { .curso-grid { grid-template-columns:280px 1fr; } }
-        .curso-tabs { display:flex; flex-direction:column; gap:8px; }
-        .curso-tab { width:100%; min-height:35px; display:flex; align-items:center; justify-content:space-between; gap:10px; text-align:left; padding:8px 16px; border-radius:8px; border:1px solid #004F92; background:#fff; color:#004F92; font-weight:500; font-size:16px; line-height:16px; cursor:pointer; transition:background .2s ease, border-color .2s ease; }
-        .curso-tab:hover:not(.active) { background:#E1E1E2; border-color:#E1E1E2; }
-        .curso-tab .curso-tab-chevron { flex-shrink:0; }
-        .curso-tab.active { background:#004F92; border-color:#004F92; color:#fff; }
-        .curso-panel { background:#fff; border-radius:12px; padding:32px 28px; border:1px solid #e1e1e2; min-height:340px; }
-        @media (min-width:768px) { .curso-panel { padding:40px 44px; } }
-        .curso-panel h3 { font-weight:900; color:#004F92; font-size:24px; line-height:1.2; margin-bottom:16px; }
-        .curso-panel p { color:#626466; font-size:16px; line-height:24px; letter-spacing:.02em; }
-        .curso-panel p + p { margin-top:12px; }
-        .curso-panel ul { list-style:none; display:flex; flex-direction:column; gap:10px; margin:16px 0; padding:0; }
-        .curso-panel ul li { display:flex; gap:10px; align-items:flex-start; font-size:16px; line-height:24px; color:#626466; }
-        .curso-panel ul li::before { content:'•'; color:#004F92; font-weight:900; line-height:24px; }
-        .curso-panel h4 { font-weight:700; color:#626466; font-size:16px; margin-top:24px; margin-bottom:4px; letter-spacing:.02em; }
-        .curso-highlight { display:flex; gap:14px; align-items:flex-start; background:#F4F8FB; border:1px solid #004F92; border-radius:8px; padding:18px 20px; margin-top:22px; }
-        .curso-highlight svg { flex-shrink:0; color:#004F92; margin-top:2px; }
-        .curso-highlight p { color:#003050; font-weight:700; font-size:15px; line-height:1.6; margin:0; }
-        .curso-faq { border-bottom:1px solid #e1e1e2; padding:14px 0; }
-        .curso-faq summary { cursor:pointer; font-weight:700; color:#004F92; font-size:16px; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; }
-        .curso-faq summary::-webkit-details-marker { display:none; }
-        .curso-faq summary::after { content:'+'; font-weight:900; font-size:20px; color:#004F92; flex-shrink:0; }
-        .curso-faq[open] summary::after { content:'−'; }
-        .curso-faq p { margin-top:10px; }
-        .curso-cta-fixed { position:fixed; bottom:20px; right:92px; z-index:99; background:#004F92; color:#fff; font-weight:900; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; padding:14px 20px; border-radius:999px; text-decoration:none; box-shadow:0 8px 24px rgba(0,79,146,0.35); white-space:nowrap; }
-
         /* galeria — placeholders das cerimônias (fotos reais pendentes) */
         .galeria-ph { width:100%; height:200px; border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:rgba(255,255,255,0.92); text-align:center; padding:0 14px; flex-shrink:0; }
         .galeria-ph-jaleco  { background:linear-gradient(135deg, #0A0F2E, #1c2856); }
@@ -575,25 +545,6 @@
     </div>
 </section>
 
-<!-- ── CURSO — DETALHES (clone Einstein: abas laterais + painel) ───── -->
-<section id="curso-detalhes" class="py-24" style="background:#F5EFE7;">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="text-center mb-14">
-            <p class="text-el-orange text-xs font-black uppercase tracking-[0.35em] mb-4">Pós-Graduação</p>
-            <h2 class="font-bold uppercase tracking-normal" style="color:#1a1a1a;font-size:clamp(28px,4vw,44px);line-height:1.1;">
-                Enfermagem em Terapia Intensiva
-            </h2>
-        </div>
-
-        <div class="curso-grid">
-            <div class="curso-tabs" id="curso-tabs"></div>
-            <div class="curso-panel" id="curso-panel"></div>
-        </div>
-
-    </div>
-</section>
-
 <!-- ── CAPTAÇÃO (formulário multi-step) ───────────────────────────── -->
 <section id="captacao" class="py-24" style="background:#F5EFE7;">
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -671,11 +622,6 @@
 
 </main>
 
-
-<!-- ── CTA FIXO (data-limite de inscrição, clone Einstein) ─────────── -->
-<a id="curso-cta-fixed" href="#captacao" class="curso-cta-fixed hidden sm:inline-flex">
-    Inscreva-se até <span id="curso-cta-data" style="margin-left:4px;">27/08</span>
-</a>
 
 <!-- ── BOTÃO FLUTUANTE (leva pro formulário) ────────────────────── -->
 <a id="wa-btn" href="#captacao"
@@ -876,146 +822,6 @@ function pilaresGo(i) {
     pilaresRenderTabs();
 }
 pilaresGo(0);
-
-// ── Curso — Detalhes (abas laterais + painel, clone Einstein) ───────
-const ICONE_DIPLOMA = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>';
-
-const CURSO_DETALHES = [
-    {
-        label: 'Programa e Metodologia',
-        html: '<h3>Programa e Metodologia</h3>'
-            + '<p>Com duração prevista de [X meses], o curso é dividido em aulas teóricas e estágio observacional monitorado.</p>'
-            + '<p>O curso utiliza estratégias no Centro de Simulação Realística, discussão de casos clínicos e simulações em sala de aula, com o intuito de vivenciar situações similares às da vida real.</p>'
-            + '<h4>Carga horária total</h4>'
-            + '<p>[XX horas]</p>'
-            + '<h4>Sobre o estágio</h4>'
-            + '<p>O estágio curricular é observacional e ocorre em unidade parceira, fora do período de aulas teóricas. Os alunos são divididos em grupos pequenos e acompanhados por um enfermeiro da instituição.</p>',
-    },
-    {
-        label: 'Corpo Docente',
-        html: '<h3>Corpo Docente</h3>'
-            + '<p><b>Fale com a coordenação</b><br>Clique e copie o e-mail: [e-mail do coordenador]</p>'
-            + '<h4>Coordenador(a)</h4>'
-            + '<ul>'
-            + '<li>[Nome do coordenador] — [titulação e especialidade]. Mini Currículo · Currículo Lattes</li>'
-            + '</ul>'
-            + '<h4>Professores</h4>'
-            + '<ul>'
-            + '<li>[Nome do professor 1] — Mini Currículo · Currículo Lattes</li>'
-            + '<li>[Nome do professor 2] — Mini Currículo · Currículo Lattes</li>'
-            + '</ul>',
-    },
-    {
-        label: 'Local e Horário',
-        html: '<h3>Local e Horário</h3>'
-            + '<h4>Horário das aulas</h4>'
-            + '<p>[ex.: Mensal — Sexta, das 13h30 às 22h30, e Sábado, das 08h às 17h]</p>'
-            + '<h4>Endereço</h4>'
-            + '<p>[Endereço completo da unidade FACEP]</p>'
-            + '<h4>Estacionamento</h4>'
-            + '<p>[Informações de estacionamento]</p>'
-            + '<h4>Dúvidas</h4>'
-            + '<p>[Telefone de contato]</p>'
-            + '<a href="#" class="font-black text-xs uppercase tracking-wider" style="display:inline-block;margin-top:12px;background:#004F92;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">Ver no mapa</a>',
-    },
-    {
-        label: 'Perfil do Aluno',
-        html: '<h3>Perfil do Aluno</h3>'
-            + '<p>Enfermeiros que tenham interesse em atuar no atendimento de pacientes em Terapia Intensiva.</p>'
-            + '<p>Conforme regulamentação do MEC, a data de conclusão do curso de Graduação, indicada no Diploma ou na Declaração de Conclusão de Curso, deve ser anterior à data de início do curso de Pós-graduação.</p>',
-    },
-    {
-        label: 'Objetivos e Qualificações',
-        html: '<h3>Objetivos e Qualificações</h3>'
-            + '<p>Ao final do curso, o aluno deverá ser capaz de:</p>'
-            + '<ul>'
-            + '<li>Compreender as bases das principais doenças.</li>'
-            + '<li>Prestar assistência ao paciente em terapia intensiva com embasamento teórico-científico.</li>'
-            + '<li>Desenvolver raciocínio crítico nos processos clínico e administrativo no gerenciamento da assistência ao paciente grave.</li>'
-            + '</ul>'
-            + '<div class="curso-highlight">' + ICONE_DIPLOMA + '<p>Ao final do curso, o aluno receberá o certificado de Pós-graduação <i>lato sensu</i> em Enfermagem em Terapia Intensiva.</p></div>'
-            + '<h4>Diferenciais</h4>'
-            + '<ul>'
-            + '<li>Atividade de telessimulação no Centro de Simulação Realística.</li>'
-            + '<li>Corpo docente multiprofissional e com especialização e experiência na área de terapia intensiva.</li>'
-            + '<li>Método de aprendizado que considera protocolos e padronizações internacionais cientificamente comprovados.</li>'
-            + '<li>Comunidade de ex-alunos (Alumni FACEP), com acesso a benefícios exclusivos após a formação.</li>'
-            + '</ul>',
-    },
-    {
-        label: 'Valor do Curso',
-        html: '<h3>Valor do Curso</h3>'
-            + '<p><b>Taxa de inscrição no processo seletivo:</b> [valor]</p>'
-            + '<p><b>Valor total do curso:</b> R$ [valor]</p>'
-            + '<p><b>Parcelamento:</b> em até [X] vezes de R$ [valor]</p>'
-            + '<p>Condições especiais para matrículas antecipadas. Consulte a secretaria acadêmica para detalhes de descontos e prazos.</p>',
-    },
-    {
-        label: 'Processo Seletivo',
-        html: '<h3>Processo Seletivo</h3>'
-            + '<p>O processo seletivo será composto por diversas etapas, todas eliminatórias.</p>'
-            + '<ul>'
-            + '<li>1. Inscrição</li>'
-            + '<li>2. Processo seletivo</li>'
-            + '<li>3. Divulgação do resultado</li>'
-            + '<li>4. Matrícula</li>'
-            + '</ul>'
-            + '<a href="#" class="font-black text-xs uppercase tracking-wider" style="display:inline-block;margin-top:12px;background:#004F92;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">Download Manual</a>',
-    },
-    {
-        label: 'Cronograma de Aulas',
-        html: '<h3>Cronograma de Aulas</h3>'
-            + '<h4>Sobre os formatos de aula</h4>'
-            + '<ul>'
-            + '<li><b>Presencial:</b> a aula será realizada exclusivamente no formato presencial, na unidade física destinada ao curso.</li>'
-            + '<li><b>Síncrono Online:</b> aula transmitida exclusivamente ao vivo e 100% online via plataforma de videoconferência, sem possibilidade de participação presencial.</li>'
-            + '<li><b>Síncrono Flexível:</b> o aluno poderá escolher entre participar presencialmente ou assistir ao vivo, 100% online via plataforma de videoconferência.</li>'
-            + '</ul>'
-            + '<a href="#" class="font-black text-xs uppercase tracking-wider" style="display:inline-block;margin-top:12px;background:#004F92;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">Baixar Cronograma</a>',
-    },
-    {
-        label: 'Perguntas frequentes (FAQ)',
-        html: '<h3>Perguntas frequentes</h3>'
-            + '<details class="curso-faq"><summary>O curso é presencial ou EAD?</summary><p>[Resposta a ser definida.]</p></details>'
-            + '<details class="curso-faq"><summary>Preciso ter registro no COREN ativo?</summary><p>[Resposta a ser definida.]</p></details>'
-            + '<details class="curso-faq"><summary>O certificado é reconhecido pelo MEC?</summary><p>[Resposta a ser definida.]</p></details>'
-            + '<details class="curso-faq"><summary>Existe possibilidade de bolsa ou desconto?</summary><p>[Resposta a ser definida.]</p></details>',
-    },
-    {
-        label: 'Benefícios',
-        html: '<h3>Benefícios</h3>'
-            + '<p>Conheça oportunidades exclusivas que a FACEP oferece para você:</p>'
-            + '<h4>Parcerias educacionais</h4>'
-            + '<p>[Empresas parceiras com condições especiais para alunos FACEP].</p>'
-            + '<h4>Descontos</h4>'
-            + '<p>Alunos e ex-alunos possuem descontos diferenciados em novas pós-graduações.</p>'
-            + '<h4>Alumni FACEP</h4>'
-            + '<p>Comunidade exclusiva para ex-alunos, com oportunidades de networking e atualização profissional.</p>'
-            + '<h4>Suporte digital</h4>'
-            + '<p>Canal de atendimento via WhatsApp para dúvidas sobre acesso ou questões acadêmicas: [número de WhatsApp].</p>',
-    },
-];
-
-let cursoTabIdx = 0;
-function cursoRenderTabs() {
-    const wrap = document.getElementById('curso-tabs');
-    if (!wrap) return;
-    wrap.innerHTML = '';
-    CURSO_DETALHES.forEach((item, i) => {
-        const b = document.createElement('button');
-        b.className = 'curso-tab' + (i === cursoTabIdx ? ' active' : '');
-        b.innerHTML = '<span>' + item.label + '</span>'
-            + '<svg class="curso-tab-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>';
-        b.onclick = () => cursoGo(i);
-        wrap.appendChild(b);
-    });
-}
-function cursoGo(i) {
-    cursoTabIdx = i;
-    document.getElementById('curso-panel').innerHTML = CURSO_DETALHES[i].html;
-    cursoRenderTabs();
-}
-cursoGo(0);
 
 // ── Destaques (carrossel hero) ──────────────────────────────────────
 let destaquesIdx = 0;
