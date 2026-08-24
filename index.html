@@ -197,6 +197,16 @@
         .curso-faq p { margin-top:10px; }
         .curso-cta-fixed { position:fixed; bottom:20px; right:92px; z-index:99; background:#004F92; color:#fff; font-weight:900; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; padding:14px 20px; border-radius:999px; text-decoration:none; box-shadow:0 8px 24px rgba(0,79,146,0.35); white-space:nowrap; }
 
+        /* ticker de destaques do curso (scroll infinito) */
+        .factsticker { background:#003050; overflow:hidden; padding:22px 0; }
+        .factsticker-track { display:flex; align-items:center; width:max-content; animation: factstickerScroll 26s linear infinite; }
+        .factsticker:hover .factsticker-track { animation-play-state: paused; }
+        @keyframes factstickerScroll { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+        .factsticker-item { display:flex; align-items:center; gap:14px; white-space:nowrap; padding:0 28px; }
+        .factsticker-num { display:flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:7px; background:#004F92; color:#fff; font-weight:900; font-size:13px; flex-shrink:0; }
+        .factsticker-item span.label { color:#fff; font-weight:800; font-size:15px; }
+        .factsticker-dot { color:rgba(255,255,255,0.3); font-size:18px; margin-left:28px; }
+
         /* galeria — placeholders das cerimônias (fotos reais pendentes) */
         .galeria-ph { width:100%; height:200px; border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:rgba(255,255,255,0.92); text-align:center; padding:0 14px; flex-shrink:0; }
         .galeria-ph-jaleco  { background:linear-gradient(135deg, #003050, #004F92); }
@@ -351,6 +361,13 @@
     </div>
 </section>
 
+<!-- ── TICKER DE DESTAQUES (scroll infinito) ────────────────────── -->
+<section id="fatos-curso">
+    <div class="factsticker">
+        <div class="factsticker-track" id="factsticker-track"></div>
+    </div>
+</section>
+
 <!-- ── SEIS PILARES PEDAGÓGICOS (clone RED HOUSE) ───────────────── -->
 <section id="pilares" class="py-24" style="background:#F5EFE7;">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -397,15 +414,15 @@
     <div class="relative overflow-hidden destaques-frame">
         <div id="destaques-track" class="flex h-full transition-transform duration-700 ease-out" style="width:300%;">
             <div class="h-full relative" style="width:33.3334%;">
-                <img src="Slide 01.webp" class="w-full h-full object-cover object-left md:object-center" alt="Colégio Uno Sales" loading="lazy">
+                <img src="snapinsta-1787535993885.webp" class="w-full h-full object-cover object-top md:object-center" alt="Cerimônia da Lâmpada FACEP" loading="lazy">
                 <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.1) 55%, rgba(10,10,10,0.3) 100%);"></div>
             </div>
             <div class="h-full relative" style="width:33.3334%;">
-                <img src="Slide 02.webp" class="w-full h-full object-cover object-left md:object-center" alt="Colégio Uno Sales" loading="lazy">
+                <img src="snapinsta-1787536069094.webp" class="w-full h-full object-cover object-top md:object-center" alt="Laboratório de Necropsia FACEP" loading="lazy">
                 <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.1) 55%, rgba(10,10,10,0.3) 100%);"></div>
             </div>
             <div class="h-full relative" style="width:33.3334%;">
-                <img src="Slide 3.webp" class="w-full h-full object-cover object-left md:object-center" alt="Colégio Uno Sales" loading="lazy">
+                <img src="snapinsta-1787536072212.webp" class="w-full h-full object-cover object-top md:object-center" alt="Alunos no laboratório de Necropsia FACEP" loading="lazy">
                 <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.1) 55%, rgba(10,10,10,0.3) 100%);"></div>
             </div>
         </div>
@@ -428,26 +445,25 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative" style="margin-top:-36px;z-index:20;">
         <div class="grid grid-cols-1 sm:grid-cols-3 rounded-2xl overflow-hidden" style="background:#F5EFE7;border:1px solid rgba(26,26,26,0.1);">
             <div class="py-7 px-6 text-center border-b sm:border-b-0 sm:border-r border-black/10">
-                <div class="flex items-center justify-center mb-1" style="color:#E8821E;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                <div class="flex items-center justify-center mb-1" style="color:#004F92;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
                 </div>
-                <p class="font-black text-el-orange" style="font-size:22px;line-height:1.2;">Nº1</p>
-                <p class="text-black/60 text-xs mt-2 leading-relaxed">Colégio mais bem avaliado da região Leste de Goiânia</p>
+                <p class="font-black" style="font-size:16px;line-height:1.3;color:#004F92;">Laboratório Próprio</p>
+                <p class="text-black/60 text-xs mt-2 leading-relaxed">Equipamentos profissionais desde o primeiro período</p>
             </div>
             <div class="py-7 px-6 text-center border-b sm:border-b-0 sm:border-r border-black/10">
-                <p class="font-black text-el-orange" style="font-size:22px;line-height:1.2;">4.9★</p>
-                <p class="text-black/60 text-xs mt-2 leading-relaxed">Avaliação média dos pais</p>
+                <div class="flex items-center justify-center mb-1" style="color:#004F92;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M1 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+                </div>
+                <p class="font-black" style="font-size:16px;line-height:1.3;color:#004F92;">Corpo Docente Qualificado</p>
+                <p class="text-black/60 text-xs mt-2 leading-relaxed">Professores com experiência na área técnica</p>
             </div>
             <div class="py-7 px-6 text-center">
-                <div class="flex items-center justify-center mb-1" style="color:#E8821E;">
-                    <svg width="24" height="17" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="0.75" y="0.75" width="22.5" height="15.5" rx="2"/>
-                        <polygon points="12,2.2 21.3,8.5 12,14.8 2.7,8.5"/>
-                        <circle cx="12" cy="8.5" r="3.4"/>
-                    </svg>
+                <div class="flex items-center justify-center mb-1" style="color:#004F92;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
                 </div>
-                <p class="font-black text-el-orange" style="font-size:22px;line-height:1.2;">Nacional</p>
-                <p class="text-black/60 text-xs mt-2 leading-relaxed">Destaque em olimpíadas estudantis</p>
+                <p class="font-black" style="font-size:16px;line-height:1.3;color:#004F92;">Prática Real</p>
+                <p class="text-black/60 text-xs mt-2 leading-relaxed">Simulações e estágio supervisionado</p>
             </div>
         </div>
     </div>
@@ -503,36 +519,36 @@
 
             <div class="rounded-2xl overflow-hidden" style="background:#fff;box-shadow:0 10px 30px rgba(0,0,0,0.06);">
                 <div class="relative" style="aspect-ratio:4/3;">
-                    <img src="Ensino Medio.webp" class="absolute inset-0 w-full h-full object-cover" alt="" loading="lazy">
+                    <img src="snapinsta-1787535993885.webp" class="absolute inset-0 w-full h-full object-cover" alt="Cerimônia da Lâmpada FACEP" loading="lazy">
                 </div>
                 <div style="padding:24px;">
                     <p class="text-el-orange text-xs font-black uppercase tracking-widest mb-2">Eventos</p>
-                    <h3 class="font-black" style="font-size:18px;line-height:1.3;">Colégio Uno Sales realiza Torneio Interclasses 2026</h3>
-                    <p class="text-black/60 font-light mt-3" style="font-size:14px;line-height:1.6;">Alunos de todas as turmas participaram de uma manhã de integração e esporte, com arquibancada lotada de pais e responsáveis.</p>
+                    <h3 class="font-black" style="font-size:18px;line-height:1.3;">FACEP celebra a Cerimônia da Lâmpada</h3>
+                    <p class="text-black/60 font-light mt-3" style="font-size:14px;line-height:1.6;">Alunos de Enfermagem marcaram o compromisso com a profissão em uma das tradições mais simbólicas da área.</p>
                     <span class="inline-block mt-4 font-black text-xs uppercase tracking-wider" style="color:#004F92;">Ler mais →</span>
                 </div>
             </div>
 
             <div class="rounded-2xl overflow-hidden" style="background:#fff;box-shadow:0 10px 30px rgba(0,0,0,0.06);">
                 <div class="relative" style="aspect-ratio:4/3;">
-                    <img src="Ensino Fundamental 2.webp" class="absolute inset-0 w-full h-full object-cover" alt="" loading="lazy">
+                    <img src="snapinsta-1787536069094.webp" class="absolute inset-0 w-full h-full object-cover" alt="Aula prática de Necropsia na FACEP" loading="lazy">
                 </div>
                 <div style="padding:24px;">
-                    <p class="text-el-orange text-xs font-black uppercase tracking-widest mb-2">Comunidade</p>
-                    <h3 class="font-black" style="font-size:18px;line-height:1.3;">Estudantes do Uno Sales conquistam medalhas em olimpíada de matemática</h3>
-                    <p class="text-black/60 font-light mt-3" style="font-size:14px;line-height:1.6;">A equipe da escola se destacou na fase estadual da competição e já se prepara para a próxima etapa.</p>
+                    <p class="text-el-orange text-xs font-black uppercase tracking-widest mb-2">Prática</p>
+                    <h3 class="font-black" style="font-size:18px;line-height:1.3;">Aulas práticas no laboratório próprio</h3>
+                    <p class="text-black/60 font-light mt-3" style="font-size:14px;line-height:1.6;">Alunos aplicam o conteúdo teórico em procedimentos técnicos, sob supervisão de professores da área.</p>
                     <span class="inline-block mt-4 font-black text-xs uppercase tracking-wider" style="color:#004F92;">Ler mais →</span>
                 </div>
             </div>
 
             <div class="rounded-2xl overflow-hidden" style="background:#fff;box-shadow:0 10px 30px rgba(0,0,0,0.06);">
                 <div class="relative" style="aspect-ratio:4/3;">
-                    <img src="Ensino Fundamental 1.webp" class="absolute inset-0 w-full h-full object-cover" alt="" loading="lazy">
+                    <img src="snapinsta-1787536468915.webp" class="absolute inset-0 w-full h-full object-cover" alt="Formanda FACEP" loading="lazy">
                 </div>
                 <div style="padding:24px;">
                     <p class="text-el-orange text-xs font-black uppercase tracking-widest mb-2">Matrículas</p>
-                    <h3 class="font-black" style="font-size:18px;line-height:1.3;">Matrículas abertas para o ano letivo de 2027</h3>
-                    <p class="text-black/60 font-light mt-3" style="font-size:14px;line-height:1.6;">Garanta a vaga do seu filho com condições especiais para quem se matricular até o fim do semestre.</p>
+                    <h3 class="font-black" style="font-size:18px;line-height:1.3;">Matrículas abertas para o curso técnico em Enfermagem</h3>
+                    <p class="text-black/60 font-light mt-3" style="font-size:14px;line-height:1.6;">Garanta sua vaga e comece a construir uma carreira sólida na área da saúde.</p>
                     <span class="inline-block mt-4 font-black text-xs uppercase tracking-wider" style="color:#004F92;">Ler mais →</span>
                 </div>
             </div>
@@ -700,27 +716,27 @@ const ICONE_GOIANA   = '<svg width="22" height="22" viewBox="0 0 24 24" fill="no
 
 const IDENTIDADE = [
     {
-        label: 'Tradicional', icone: ICONE_TRADICAO,
+        label: 'Tradição', icone: ICONE_TRADICAO,
         itens: [
-            { titulo: 'Décadas de experiência', texto: 'Uma trajetória consolidada na educação, construída com seriedade, compromisso e resultados consistentes ao longo dos anos.', img: 'Tradicional.webp' },
-            { titulo: 'Valores sólidos', texto: 'Formamos alunos com base em princípios éticos, respeito e responsabilidade, preparando-os para a vida em sociedade.', img: 'Tradicional.webp' },
-            { titulo: 'Relação próxima com as famílias', texto: 'Uma escola que conhece cada aluno pelo nome e constrói uma parceria de confiança com pais e responsáveis.', img: 'Tradicional.webp' },
+            { titulo: 'Cerimônia da Lâmpada', texto: 'Uma tradição centenária da Enfermagem, celebrada na FACEP para marcar o compromisso dos alunos com a profissão.', img: 'snapinsta-1787535993885.webp' },
+            { titulo: 'Valores sólidos', texto: 'Formamos profissionais com base em ética, responsabilidade e compromisso com a vida.', img: 'snapinsta-1787535993885.webp' },
+            { titulo: 'Compromisso com a excelência', texto: 'Uma trajetória construída com seriedade e rigor técnico-científico.', img: 'snapinsta-1787535993885.webp' },
         ]
     },
     {
-        label: 'Inovadora', icone: ICONE_INOVACAO,
+        label: 'Prática', icone: ICONE_INOVACAO,
         itens: [
-            { titulo: 'Metodologia atualizada', texto: 'Práticas pedagógicas modernas que unem tecnologia e ensino por competências, preparando o aluno para os desafios do futuro.', img: 'Inovadora.webp' },
-            { titulo: 'Ferramentas digitais', texto: 'Uso de plataformas educacionais e dispositivos como iPads para tornar o aprendizado mais dinâmico e interativo.', img: 'Inovadora.webp' },
-            { titulo: 'Educação em constante evolução', texto: 'Buscamos continuamente novas formas de ensinar, atualizando nossa proposta pedagógica junto com o mundo.', img: 'Inovadora.webp' },
+            { titulo: 'Laboratório próprio', texto: 'Prática real em ambiente controlado, com equipamentos profissionais desde o primeiro período.', img: 'snapinsta-1787536067158.webp' },
+            { titulo: 'Aulas práticas supervisionadas', texto: 'Simulações e procedimentos técnicos acompanhados por professores da área.', img: 'snapinsta-1787536069094.webp' },
+            { titulo: 'Aprender fazendo', texto: 'Metodologia que une teoria e prática em toda a formação técnica.', img: 'snapinsta-1787536072212.webp' },
         ]
     },
     {
         label: 'Goiana', icone: ICONE_GOIANA,
         itens: [
-            { titulo: 'Raízes em Goiânia', texto: 'Uma escola local, que entende as necessidades da nossa comunidade e das famílias do Setor Leste Vila Nova.', img: 'Goiania.webp' },
-            { titulo: 'Compromisso com a região', texto: 'Contribuímos para a formação de cidadãos que valorizam e transformam positivamente a nossa cidade.', img: 'Goiania.webp' },
-            { titulo: 'Identidade goiana', texto: 'Valorizamos a cultura e as tradições de Goiás, integrando essa identidade à vivência escolar dos nossos alunos.', img: 'Goiania.webp' },
+            { titulo: 'Raízes em Goiânia', texto: 'Uma instituição goiana, que entende as necessidades da nossa região e do mercado local.', img: 'snapinsta-1787534988832.webp' },
+            { titulo: 'Compromisso com a região', texto: 'Contribuímos para a formação de profissionais que impulsionam o desenvolvimento de Goiás.', img: 'snapinsta-1787534988832.webp' },
+            { titulo: 'Identidade goiana', texto: 'Valorizamos a cultura de Goiás, integrando essa identidade à formação dos nossos alunos.', img: 'snapinsta-1787534988832.webp' },
         ]
     },
 ];
@@ -852,6 +868,28 @@ function diferenciaisRender() {
     track.innerHTML = DIFERENCIAIS.map(cardHtml).join('') + DIFERENCIAIS.map(cardHtml).join('');
 }
 diferenciaisRender();
+
+// ── Ticker de destaques do curso (scroll infinito) ───────────────────
+const FACTSTICKER = [
+    'Duração de 2 anos',
+    'Curso com disciplinas presenciais e on-line',
+    'Estágio supervisionado',
+    'Laboratório equipado',
+    'Módulos práticos e teóricos',
+];
+function factstickerRender() {
+    const track = document.getElementById('factsticker-track');
+    if (!track) return;
+    const itemHtml = (f, i) =>
+        '<div class="factsticker-item">'
+      +   '<span class="factsticker-num">' + String(i + 1).padStart(2, '0') + '</span>'
+      +   '<span class="label">' + f + '</span>'
+      + '</div>'
+      + '<span class="factsticker-dot">•</span>';
+    const html = FACTSTICKER.map(itemHtml).join('');
+    track.innerHTML = html + html;
+}
+factstickerRender();
 
 // ── Pilares Pedagógicos (tabs, clone RED HOUSE) ─────────────────────
 const PILARES = [
