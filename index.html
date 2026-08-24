@@ -319,43 +319,34 @@
     </div>
 </section>
 
-<!-- ── MATRÍCULAS (etapas) ─────────────────────────────────────── -->
+<!-- ── LABORATÓRIO PRÓPRIO (abas + foto, mesmo mecanismo dos Pilares) ── -->
 <section id="matriculas" class="py-24" style="background:#EFE6D8;">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="mb-14 text-center">
-            <p class="text-el-orange text-xs font-black uppercase tracking-[0.35em] mb-4">Matrículas Abertas</p>
+            <p class="text-el-orange text-xs font-black uppercase tracking-[0.35em] mb-4">Diferencial FACEP</p>
             <h2 class="font-bold uppercase tracking-normal mb-4" style="font-size:clamp(32px,4.5vw,52px);line-height:1.05;">
-                Níveis de Ensino
+                Laboratório Próprio
             </h2>
-            <p class="text-black/65 font-light" style="font-size:18px;">Anos iniciais ao Ensino Médio</p>
+            <p class="text-black/65 font-light" style="font-size:18px;">Prática real, com equipamentos profissionais, desde o primeiro período</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="pilares-grid" style="display:grid;gap:2rem;align-items:start;">
 
-            <div class="relative rounded-2xl overflow-hidden" style="aspect-ratio:3/4;">
-                <img src="Ensino Fundamental 1.webp"
-                     class="absolute inset-0 w-full h-full object-cover" alt="Ensino Fundamental I" loading="lazy">
-                <div class="absolute left-4 right-4 bottom-4 rounded-xl px-5 py-4" style="background:rgba(10,10,10,0.88);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.08);">
-                    <h3 class="font-black text-white text-sm uppercase tracking-tight whitespace-nowrap">Ensino Fundamental I</h3>                </div>
-            </div>
+            <!-- tabs -->
+            <div id="lab-tabs" style="display:flex;flex-direction:column;gap:12px;"></div>
 
-            <div class="relative rounded-2xl overflow-hidden" style="aspect-ratio:3/4;">
-                <img src="Ensino Fundamental 2.webp"
-                     class="absolute inset-0 w-full h-full object-cover" alt="Ensino Fundamental II" loading="lazy">
-                <div class="absolute left-4 right-4 bottom-4 rounded-xl px-5 py-4" style="background:rgba(10,10,10,0.88);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.08);">
-                    <h3 class="font-black text-white text-sm uppercase tracking-tight whitespace-nowrap">Ensino Fundamental II</h3>                </div>
-            </div>
-
-            <div class="relative rounded-2xl overflow-hidden" style="aspect-ratio:3/4;">
-                <img src="Ensino Medio.webp"
-                     class="absolute inset-0 w-full h-full object-cover" alt="Ensino Médio" loading="lazy">
-                <div class="absolute left-4 right-4 bottom-4 rounded-xl px-5 py-4" style="background:rgba(10,10,10,0.88);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.08);">
-                    <h3 class="font-black text-white text-sm uppercase tracking-tight">Ensino Médio</h3>                </div>
+            <!-- foto + descrição -->
+            <div class="relative rounded-2xl overflow-hidden" style="aspect-ratio:4/3;">
+                <img id="lab-img" class="absolute inset-0 w-full h-full object-cover" alt="" loading="lazy">
+                <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(10,10,10,0.88) 0%, transparent 55%);"></div>
+                <div class="absolute left-0 right-0 bottom-0 p-6 md:p-8">
+                    <h3 id="lab-titulo" class="font-black text-white" style="font-size:clamp(18px,2.2vw,24px);"></h3>
+                    <p id="lab-texto" class="text-white/85 mt-2" style="font-size:14px;line-height:1.6;max-width:480px;"></p>
+                </div>
             </div>
 
         </div>
-
 
     </div>
 </section>
@@ -891,6 +882,36 @@ function pilaresGo(i) {
     pilaresRenderTabs();
 }
 pilaresGo(0);
+
+// ── Laboratório Próprio (abas + foto, mesmo mecanismo dos Pilares) ──
+const LABORATORIOS = [
+    { label: 'Enfermagem', titulo: 'Laboratório de Enfermagem', texto: 'Equipamentos profissionais para simulação de procedimentos, do primeiro ao último período do curso.', img: 'lab-enfermagem.jpg' },
+    { label: 'Segurança do Trabalho', titulo: 'Laboratório de Segurança do Trabalho', texto: 'Treinamento prático em EPIs, normas regulamentadoras e prevenção de acidentes em ambiente controlado.', img: 'lab-seguranca.jpg' },
+    { label: 'Necropsia e Agente Funerário', titulo: 'Laboratório de Necropsia e Agente Funerário', texto: 'Estrutura técnica para prática de procedimentos, com foco em ética, biossegurança e legislação.', img: 'lab-necropsia.jpg' },
+];
+let labIdx = 0;
+function laboratoriosRenderTabs() {
+    const wrap = document.getElementById('lab-tabs');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    LABORATORIOS.forEach((l, i) => {
+        const b = document.createElement('button');
+        b.className = 'pilar-tab' + (i === labIdx ? ' active' : '');
+        b.textContent = l.label;
+        b.onclick = () => laboratoriosGo(i);
+        wrap.appendChild(b);
+    });
+}
+function laboratoriosGo(i) {
+    labIdx = i;
+    const l = LABORATORIOS[i];
+    document.getElementById('lab-img').src = l.img;
+    document.getElementById('lab-img').alt = l.titulo;
+    document.getElementById('lab-titulo').textContent = l.titulo;
+    document.getElementById('lab-texto').textContent = l.texto;
+    laboratoriosRenderTabs();
+}
+laboratoriosGo(0);
 
 // ── Curso — Detalhes (abas laterais + painel, clone Einstein) ───────
 const ICONE_DIPLOMA = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>';
