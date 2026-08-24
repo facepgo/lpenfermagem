@@ -573,7 +573,6 @@
                     <circle cx="100" cy="174" r="12" fill="#004F92"/>
                 </svg>
                 <h2 class="font-bold uppercase tracking-normal mb-3" style="font-size:clamp(24px,3.5vw,32px);line-height:1.1;color:#004F92;">Agende sua visita</h2>
-                <p class="text-black/60 font-light" style="font-size:15px;">Venha conhecer nossa estrutura e conversar sobre a educação do seu filho.</p>
             </div>
 
             <!-- stepper -->
@@ -595,7 +594,7 @@
                         <input type="text" id="cap-nome" class="captacao-field" placeholder="Nome do responsável" required>
                         <input type="text" id="cap-sobrenome" class="captacao-field" placeholder="Sobrenome do responsável" required>
                     </div>
-                    <label for="cap-whatsapp" class="font-bold text-black/70" style="font-size:13px;margin-bottom:-8px;">WhatsApp do responsável</label>
+                    <label for="cap-whatsapp" class="font-bold text-black/70" style="font-size:13px;margin-bottom:-8px;">Whatsapp</label>
                     <input type="tel" id="cap-whatsapp" class="captacao-field" placeholder="(xx) xxxxx-xxxx" required>
 
                     <button type="button" onclick="captacaoIrPara(2)"
@@ -611,7 +610,7 @@
 
                     <label class="captacao-check-row text-black/65 mt-2" style="font-size:13px;line-height:1.5;">
                         <input type="checkbox" id="cap-consentimento" required>
-                        <span>Aceito comunicar meus dados neste formulário e receber contato para agendamento da visita no Colégio.</span>
+                        <span>Aceito comunicar meus dados neste formulário e receber contato para agendamento da visita na FACEP.</span>
                     </label>
 
                     <div class="flex gap-3 mt-2">
@@ -1042,16 +1041,8 @@ let captacaoEstudanteCount = 0;
 function captacaoEstudanteBlockHtml(i) {
     return '<div class="captacao-student-block flex flex-col gap-4" data-estudante="' + i + '">'
         + (i > 0 ? '<button type="button" onclick="captacaoRemoverEstudante(' + i + ')" class="self-end text-black/45 text-xs font-black uppercase tracking-wider hover:text-black/80">Remover</button>' : '')
-        + '<input type="text" id="cap-est-nome-' + i + '" class="captacao-field" placeholder="Nome do estudante" required>'
-        + '<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">'
-        + captacaoSelectHtml('cap-est-ano-' + i, 'Ano letivo', [2026,2027,2028,2029,2030,2031])
-        + captacaoSelectHtml('cap-est-nivel-' + i, 'Nível pretendido', ['Educação Infantil','Ensino Fundamental I','Ensino Fundamental II','Ensino Médio'])
-        + captacaoSelectHtml('cap-est-turno-' + i, 'Turno', ['Manhã','Tarde'])
-        + '</div>'
-        + '<label class="captacao-check-row text-black/65" style="font-size:13px;line-height:1.5;">'
-        + '<input type="checkbox" id="cap-est-acomp-' + i + '">'
-        + '<span>Meu filho(a) realiza algum acompanhamento especializado externo (fonoaudiólogo, psicopedagogo, terapeuta ocupacional etc.)?</span>'
-        + '</label>'
+        + '<label class="font-bold text-black/70" style="font-size:13px;margin-bottom:-8px;">Em qual turma deseja estudar?</label>'
+        + captacaoSelectHtml('cap-est-turma-' + i, 'Turma', ['Manhã','Noite','Sábados'])
         + '</div>';
 }
 
@@ -1107,11 +1098,7 @@ document.getElementById('captacao-form').addEventListener('submit', function (e)
     const estudantes = Array.from(document.querySelectorAll('.captacao-student-block')).map(block => {
         const i = block.dataset.estudante;
         return {
-            nome: document.getElementById('cap-est-nome-' + i).value,
-            anoLetivo: document.getElementById('cap-est-ano-' + i).value,
-            nivel: document.getElementById('cap-est-nivel-' + i).value,
-            turno: document.getElementById('cap-est-turno-' + i).value,
-            acompanhamentoExterno: document.getElementById('cap-est-acomp-' + i).checked,
+            turma: document.getElementById('cap-est-turma-' + i).value,
         };
     });
 
