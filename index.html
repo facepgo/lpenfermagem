@@ -81,6 +81,10 @@
         /* pilares pedagógicos (clone RED HOUSE) */
         .pilar-tab { text-align:left; font-weight:900; font-size:14px; padding:16px 24px; border-radius:999px; border:1.5px solid #A98F5C; background:#fff; color:#2a2a2a; cursor:pointer; transition:.2s; }
         .pilar-tab.active { background:rgba(232,130,30,0.08); border-color:#E8821E; color:#1a1a1a; }
+        .pilar-conteudo p + p { margin-top:12px; }
+        .pilar-conteudo ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+        .pilar-conteudo ul li { display:flex; gap:10px; align-items:flex-start; }
+        .pilar-conteudo ul li::before { content:'•'; color:#004F92; font-weight:900; }
         .pilares-grid { grid-template-columns: 1fr; }
         @media (min-width:1024px) { .pilares-grid { grid-template-columns: 300px 1fr; } }
 
@@ -327,11 +331,8 @@
 
         <div class="text-center mb-14">
             <h2 class="font-bold uppercase tracking-normal" style="color:#1a1a1a;font-size:clamp(28px,4vw,44px);line-height:1.1;">
-                Os Seis Pilares Pedagógicos
+                Sobre o Curso Técnico em Enfermagem
             </h2>
-            <p class="mt-4 max-w-2xl mx-auto" style="color:#5a5248;font-size:16px;line-height:1.6;">
-                Os pilares pedagógicos constituem a base de nossas Metodologias de Ensino e Aprendizagem.
-            </p>
         </div>
 
         <div class="pilares-grid" style="display:grid;gap:2rem;align-items:start;">
@@ -347,7 +348,7 @@
                 </svg>
                 <div style="position:relative;z-index:10;padding:44px 40px 44px 68px;">
                     <h3 id="pilar-titulo" class="font-black" style="color:#004F92;font-size:clamp(22px,2.6vw,30px);line-height:1.15;"></h3>
-                    <p id="pilar-texto" class="mt-4" style="color:#3a352c;font-size:15px;line-height:1.7;max-width:520px;"></p>
+                    <div id="pilar-texto" class="mt-4 pilar-conteudo" style="color:#3a352c;font-size:15px;line-height:1.7;max-width:520px;"></div>
                     <a href="#captacao"
                        class="font-black text-xs uppercase tracking-wider"
                        style="display:inline-block;margin-top:32px;background:linear-gradient(135deg, #003050, #004F92);color:#fff;padding:12px 26px;border-radius:999px;text-decoration:none;">
@@ -803,14 +804,29 @@ function factstickerRender() {
 }
 factstickerRender();
 
-// ── Pilares Pedagógicos (tabs, clone RED HOUSE) ─────────────────────
+// ── Sobre o Curso (tabs) ──────────────────────────────────────────
 const PILARES = [
-    { titulo: 'Metodologia por Competências', texto: 'Desenvolvemos habilidades cognitivas, sociais e emocionais que vão além do conteúdo das provas, preparando o aluno pra situações reais da vida.' },
-    { titulo: 'Protagonismo do Aluno', texto: 'O aluno é estimulado a tomar decisões, resolver problemas e agir com autonomia, sendo o protagonista do próprio aprendizado.' },
-    { titulo: 'Testes de Aptidão Nacional', texto: 'Participação real em provas de olimpíadas e competições nacionais dentro da jornada de ensino, desenvolvendo o raciocínio lógico e a resolução de problemas para uma preparação antecipada para o Enem e Vestibulares.' },
-    { titulo: 'Aprendizagem na Prática', texto: 'Metodologias com resultado comprovado, que conectam o conteúdo das aulas a situações reais, com atividades práticas e significativas.' },
-    { titulo: 'Avaliação Contínua', texto: 'Acompanhamos o desenvolvimento do aluno de forma constante, não só em provas pontuais, permitindo ajustar o ensino no momento certo.' },
-    { titulo: 'Pedagogia Integrada', texto: 'Diferentes áreas do conhecimento trabalhadas de forma conectada, com o aluno participando ativamente da construção do próprio aprendizado.' },
+    {
+        titulo: 'Para quem é esse curso?',
+        html: '<p>O curso Técnico em Enfermagem é destinado a qualquer pessoa que busca rápida inserção no mercado de trabalho, com foco em aprendizado prático, que prepara o estudante para os desafios reais da profissão.</p>'
+            + '<p>Profissionais formados no curso Técnico em Enfermagem podem atuar em diversos locais, como hospitais, clínicas, asilos, laboratórios e no atendimento domiciliar, ampliando suas oportunidades de emprego.</p>',
+    },
+    {
+        titulo: 'O que você vai aprender',
+        html: '<ul>'
+            + '<li>Competências e responsabilidades do técnico de enfermagem no cuidado aos pacientes.</li>'
+            + '<li>Técnicas e protocolos para atuar em diferentes contextos clínicos, garantindo segurança e qualidade no atendimento.</li>'
+            + '<li>Abordagens éticas e práticas para trabalhar em equipes multidisciplinares e lidar com desafios do dia a dia na área da saúde.</li>'
+            + '</ul>',
+    },
+    {
+        titulo: 'O que você será capaz de fazer',
+        html: '<ul>'
+            + '<li>Prestar assistência integral ao paciente em diversas etapas do cuidado.</li>'
+            + '<li>Aplicar técnicas de enfermagem com precisão, seguindo protocolos e garantindo segurança e conforto ao paciente.</li>'
+            + '<li>Gerenciar insumos, registrar informações e monitorar sinais vitais com ética e profissionalismo.</li>'
+            + '</ul>',
+    },
 ];
 let pilarIdx = 0;
 function pilaresRenderTabs() {
@@ -828,7 +844,7 @@ function pilaresRenderTabs() {
 function pilaresGo(i) {
     pilarIdx = i;
     document.getElementById('pilar-titulo').textContent = PILARES[i].titulo;
-    document.getElementById('pilar-texto').textContent  = PILARES[i].texto;
+    document.getElementById('pilar-texto').innerHTML     = PILARES[i].html;
     pilaresRenderTabs();
 }
 pilaresGo(0);
