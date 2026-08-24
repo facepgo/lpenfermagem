@@ -151,21 +151,6 @@
         .captacao-select-option { padding:9px 14px; font-size:12.5px; white-space:nowrap; cursor:pointer; color:#1a1a1a; }
         .captacao-select-option:hover, .captacao-select-option.active { background:#004F92; color:#fff; }
 
-        /* diferenciais — badge recortado + flip no hover (inspirado em SOMOS Educação) */
-        /* scroll/marquee (mesma técnica da seção 7 do doc de referência) */
-        @keyframes diferenciaisScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        .diferenciais-track-anim { animation: diferenciaisScroll 38s linear infinite; }
-        #diferenciais:hover #diferenciais-track { animation-play-state: paused; }
-        .diferenciais-flip { perspective:1200px; height:260px; width:280px; flex-shrink:0; }
-        .diferenciais-flip-inner { position:relative; width:100%; height:100%; transition:transform .6s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; }
-        .diferenciais-flip:hover .diferenciais-flip-inner { transform:rotateY(180deg); }
-        .diferenciais-card, .diferenciais-card-back { position:absolute; inset:0; border-radius:18px; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
-        .diferenciais-card { background:#fff; padding:32px 20px 28px; text-align:center; }
-        .diferenciais-card-back { transform:rotateY(180deg); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:28px 24px; text-align:center; }
-        .diferenciais-badge { position:relative; width:92px; height:92px; margin:0 auto; }
-        .diferenciais-badge-main { position:absolute; inset:0; border-radius:50%; }
-        .diferenciais-badge-bite { position:absolute; width:38px; height:38px; border-radius:50%; background:#fff; top:-5px; right:-5px; z-index:2; }
-        .diferenciais-badge-inner { position:absolute; width:50px; height:50px; border-radius:50%; background:#fff; top:52%; left:46%; transform:translate(-50%,-50%); z-index:3; display:flex; align-items:center; justify-content:center; }
 
         /* curso — detalhes: clone real do menu lateral + painel da Einstein (cores/layout
            extraídos do CSS computado deles: ativo #004F92, borda #004F92, radius 8px,
@@ -437,11 +422,6 @@
     </div>
 
     <div class="pb-16"></div>
-</section>
-
-<!-- ── DIFERENCIAIS (badges inspirados em SOMOS Educação) ───────── -->
-<section id="diferenciais" class="py-20 overflow-hidden" style="background:#F5EFE7;">
-    <div id="diferenciais-track" class="flex items-stretch gap-6 diferenciais-track-anim" style="width:max-content;"></div>
 </section>
 
 <!-- ── NOSSA IDENTIDADE (clone RED HOUSE) ───────────────────────── -->
@@ -800,42 +780,6 @@ function identidadeRenderAccordion() {
 identidadeRenderShields();
 identidadeRenderDesktop();
 identidadeRenderAccordion();
-
-// ── Diferenciais (badges recortados, inspirado em SOMOS Educação) ───
-const DIFERENCIAIS = [
-    { cor: '#E8821E', icone: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>', titulo: 'Formação Integral', texto: 'Desenvolvemos o potencial acadêmico, emocional e social do estudante.' },
-    { cor: '#0baef8', icone: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M1 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>', titulo: 'Acompanhamento próximo', texto: 'Atenção individualizada para valorizar a trajetória do seu filho.' },
-    { cor: '#C21233', icone: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.11"/></svg>', titulo: 'Excelência com valores', texto: 'Ensino forte que inspira escolhas éticas e cidadania.' },
-    { cor: '#A98F5C', icone: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>', titulo: 'Ambiente acolhedor', texto: 'Respeito, solidariedade e fé em uma comunidade que acolhe de verdade.' },
-];
-function diferenciaisRender() {
-    const track = document.getElementById('diferenciais-track');
-    if (!track) return;
-    const cardHtml = d =>
-        '<div class="diferenciais-flip">'
-      + '<div class="diferenciais-flip-inner">'
-
-      +   '<div class="diferenciais-card" style="border:1.5px solid ' + d.cor + ';">'
-      +     '<div class="diferenciais-badge">'
-      +       '<div class="diferenciais-badge-main" style="background:' + d.cor + ';"></div>'
-      +       '<div class="diferenciais-badge-bite"></div>'
-      +       '<div class="diferenciais-badge-inner" style="color:' + d.cor + ';">' + d.icone + '</div>'
-      +     '</div>'
-      +     '<h3 class="font-black mt-4" style="font-size:16px;">' + d.titulo + '</h3>'
-      +   '</div>'
-
-      +   '<div class="diferenciais-card-back" style="background:' + d.cor + ';">'
-      +     '<h3 class="font-black text-white" style="font-size:17px;">' + d.titulo + '</h3>'
-      +     '<p class="text-white/85 font-light mt-3" style="font-size:14px;line-height:1.6;">' + d.texto + '</p>'
-      +   '</div>'
-
-      + '</div>'
-      + '</div>';
-
-    // conteúdo duplicado 2x pra loop infinito sem salto (translateX -50%)
-    track.innerHTML = DIFERENCIAIS.map(cardHtml).join('') + DIFERENCIAIS.map(cardHtml).join('');
-}
-diferenciaisRender();
 
 // ── Ticker de destaques do curso (scroll infinito) ───────────────────
 const FACTSTICKER = [
