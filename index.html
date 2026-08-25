@@ -276,18 +276,8 @@
                 <h2 class="font-bold uppercase tracking-normal mb-6" style="font-size:clamp(32px,4vw,48px);line-height:1.1;color:#004F92;">
                     Um novo conceito<br>em ensino.
                 </h2>
-                <p class="text-black/65 font-light leading-relaxed mb-4" style="font-size:18px;">
-                    Idealizada por experientes educadores e profissionais da área técnica, e contando com uma equipe multidisciplinar de especialistas, a FACEP surge como oportuna resposta aos anseios e necessidades de qualificação profissional da sociedade.
-                </p>
-                <p class="text-black/65 font-light leading-relaxed mb-4" style="font-size:18px;">
-                    O mercado de trabalho apresenta desafios cada vez mais complexos, que exigem profissionais qualificados e preparados para atuar com responsabilidade técnica e ética. Nesse contexto, oferecemos uma formação técnica sólida, prática e alinhada às demandas reais do mercado.
-                </p>
-                <p class="text-black/65 font-light leading-relaxed mb-8" style="font-size:18px;">
-                    Nossos cursos técnicos abrem caminho para uma carreira consolidada em áreas essenciais:
-                </p>
-                <ul class="text-black/65 font-light leading-relaxed mb-8" style="font-size:18px;list-style:none;display:flex;flex-direction:column;gap:10px;">
-                    <li style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#004F92;font-weight:900;">•</span> Curso Técnico em Enfermagem</li>
-                </ul>
+                <div id="quemsomos-tabs" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;"></div>
+                <div class="curso-panel" id="quemsomos-panel" style="min-height:180px;padding:28px;"></div>
             </div>
 
             <div class="rounded-2xl overflow-hidden" style="border:1px solid rgba(26,26,26,0.12);">
@@ -629,6 +619,43 @@
 </a>
 
 <script>
+// ── Quem Somos (mecanismo de abas, foco em Técnico em Enfermagem) ───
+const QUEMSOMOS = [
+    {
+        titulo: 'Quem Somos',
+        texto: 'Idealizada por experientes educadores e profissionais da área técnica, e contando com uma equipe multidisciplinar de especialistas, a FACEP surge como oportuna resposta aos anseios e necessidades de qualificação profissional da sociedade.',
+    },
+    {
+        titulo: 'O Mercado Exige Mais',
+        texto: 'O mercado de trabalho apresenta desafios cada vez mais complexos, que exigem profissionais qualificados e preparados para atuar com responsabilidade técnica e ética. Nesse contexto, oferecemos uma formação técnica sólida, prática e alinhada às demandas reais do mercado.',
+    },
+    {
+        titulo: 'Foco em Enfermagem',
+        texto: 'Nosso curso técnico abre caminho para uma carreira consolidada em uma área essencial: o Curso Técnico em Enfermagem, formando profissionais prontos para atuar com prática real desde o primeiro período.',
+    },
+];
+let quemSomosIdx = 0;
+function quemSomosRenderTabs() {
+    const wrap = document.getElementById('quemsomos-tabs');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    QUEMSOMOS.forEach((q, i) => {
+        const b = document.createElement('button');
+        b.className = 'pilar-tab' + (i === quemSomosIdx ? ' active' : '');
+        b.textContent = q.titulo;
+        b.style.flex = '1 1 auto';
+        b.style.textAlign = 'center';
+        b.onclick = () => quemSomosGo(i);
+        wrap.appendChild(b);
+    });
+}
+function quemSomosGo(i) {
+    quemSomosIdx = i;
+    document.getElementById('quemsomos-panel').innerHTML = '<h3>' + QUEMSOMOS[i].titulo + '</h3><p>' + QUEMSOMOS[i].texto + '</p>';
+    quemSomosRenderTabs();
+}
+quemSomosGo(0);
+
 // ── Nossa Identidade (shields + acordeão, clone RED HOUSE) ──────────
 const ICONE_TRADICAO = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>';
 const ICONE_INOVACAO = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.6.65 1.15 1.34 1.4 2.5"/></svg>';
