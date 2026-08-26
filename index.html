@@ -137,6 +137,13 @@
         .captacao-check-row { display:flex; align-items:flex-start; gap:10px; cursor:pointer; }
         .captacao-check-row input { margin-top:3px; width:16px; height:16px; flex-shrink:0; accent-color:#004F92; }
 
+        /* popup do WhatsApp */
+        .wa-popup-overlay { position:fixed; inset:0; z-index:200; background:rgba(10,10,10,0.6); display:none; align-items:center; justify-content:center; padding:20px; }
+        .wa-popup-overlay.open { display:flex; }
+        .wa-popup { position:relative; background:#fff; border-radius:20px; padding:36px 28px 28px; max-width:400px; width:100%; }
+        .wa-popup-close { position:absolute; top:14px; right:14px; width:30px; height:30px; border-radius:50%; background:rgba(26,26,26,0.06); border:none; color:#1a1a1a; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+        .wa-popup-icon { width:56px; height:56px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+
         /* captação — dropdown customizado (substitui <select> nativo pra controlar cor de seleção) */
         .captacao-select-wrap { position:relative; }
         .captacao-select-trigger { display:flex; align-items:center; justify-content:space-between; gap:8px; cursor:pointer; text-align:left; font-family:Inter,sans-serif; color:rgba(26,26,26,0.45); font-size:13px; padding-left:14px; padding-right:10px; }
@@ -338,7 +345,7 @@
                 <div style="position:relative;z-index:10;padding:44px 40px 44px 68px;">
                     <h3 id="pilar-titulo" class="font-black" style="color:#004F92;font-size:clamp(22px,2.6vw,30px);line-height:1.15;"></h3>
                     <div id="pilar-texto" class="mt-4 pilar-conteudo" style="color:#3a352c;font-size:15px;line-height:1.7;max-width:520px;"></div>
-                    <a href="#captacao"
+                    <a href="#" onclick="openWaPopup(); return false;"
                        class="font-black text-xs uppercase tracking-wider"
                        style="display:inline-flex;align-items:center;gap:8px;margin-top:32px;background:#25D366;color:#fff;padding:12px 26px;border-radius:999px;text-decoration:none;">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.534 5.845L.054 23.25a.75.75 0 0 0 .917.94l5.562-1.461A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.218-1.444l-.374-.224-3.876 1.018 1.037-3.78-.245-.39A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -610,7 +617,7 @@
 </a>
 
 <!-- ── BOTÃO FLUTUANTE (leva pro formulário) ────────────────────── -->
-<a id="wa-btn" href="#captacao"
+<a id="wa-btn" href="#" onclick="openWaPopup(); return false;"
     class="fixed bottom-5 right-5 z-[100] w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110 active:scale-95"
     style="background:#25D366;box-shadow:0 4px 20px rgba(37,211,102,0.5);">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 fill-white">
@@ -618,8 +625,47 @@
     </svg>
 </a>
 
+<!-- ── POPUP WHATSAPP ────────────────────────────────────────────── -->
+<div id="wa-popup-overlay" class="wa-popup-overlay" onclick="if(event.target===this) closeWaPopup()">
+    <div class="wa-popup">
+        <button type="button" onclick="closeWaPopup()" aria-label="Fechar" class="wa-popup-close">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <div class="wa-popup-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 fill-white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.534 5.845L.054 23.25a.75.75 0 0 0 .917.94l5.562-1.461A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.218-1.444l-.374-.224-3.876 1.018 1.037-3.78-.245-.39A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+        </div>
+        <h3 class="font-black text-center uppercase" style="font-size:20px;color:#004F92;margin-bottom:6px;">Falar no WhatsApp</h3>
+        <p class="text-center text-black/60" style="font-size:14px;margin-bottom:20px;">Preencha seus dados e inicie a conversa direto com a FACEP.</p>
+        <form id="wa-popup-form" class="flex flex-col gap-3">
+            <input type="text" id="wa-nome" class="captacao-field" placeholder="Nome" required>
+            <input type="text" id="wa-sobrenome" class="captacao-field" placeholder="Sobrenome" required>
+            <input type="tel" id="wa-whatsapp" class="captacao-field" placeholder="(xx) xxxxx-xxxx" required>
+            <button type="submit" class="font-black text-sm uppercase tracking-wider px-7 py-3.5 rounded-lg transition-all hover:opacity-90 mt-1" style="background:#25D366;color:#fff;">
+                Enviar mensagem no WhatsApp
+            </button>
+        </form>
+    </div>
+</div>
+
 <script>
 // ── Quem Somos (mecanismo de abas, foco em Técnico em Enfermagem) ───
+// ── Popup do WhatsApp ────────────────────────────────────────────
+const WA_NUMERO = '5562982871553';
+function openWaPopup() { document.getElementById('wa-popup-overlay').classList.add('open'); }
+function closeWaPopup() { document.getElementById('wa-popup-overlay').classList.remove('open'); }
+document.getElementById('wa-popup-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const nome = document.getElementById('wa-nome').value;
+    const sobrenome = document.getElementById('wa-sobrenome').value;
+    const whatsapp = document.getElementById('wa-whatsapp').value;
+    const mensagem = 'Olá! Meu nome é ' + nome + ' ' + sobrenome + ' (WhatsApp: ' + whatsapp + '). Quero saber mais sobre o curso Técnico em Enfermagem da FACEP.';
+    window.open('https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(mensagem), '_blank');
+    closeWaPopup();
+    this.reset();
+});
+
 const QUEMSOMOS = [
     {
         titulo: 'Quem Somos',
@@ -986,7 +1032,7 @@ const CURSO_DETALHES = [
         label: 'Valor do Curso',
         html: '<h3>Valor do Curso</h3>'
             + '<p>Condições especiais para matrículas antecipadas. Consulte a secretaria acadêmica para detalhes de valores, parcelamento e descontos.</p>'
-            + '<a href="#captacao" class="font-black text-xs uppercase tracking-wider" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#25D366;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">'
+            + '<a href="#" onclick="openWaPopup(); return false;" class="font-black text-xs uppercase tracking-wider" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#25D366;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">'
             + '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.534 5.845L.054 23.25a.75.75 0 0 0 .917.94l5.562-1.461A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.218-1.444l-.374-.224-3.876 1.018 1.037-3.78-.245-.39A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>'
             + 'Consultar valores pelo WhatsApp'
             + '</a>',
@@ -1000,7 +1046,7 @@ const CURSO_DETALHES = [
             + '<li><b>2. Faça sua matrícula online</b> — em poucos minutos, sem sair de casa.</li>'
             + '<li><b>3. Comece a estudar</b> — garanta sua vaga na próxima turma.</li>'
             + '</ul>'
-            + '<a href="#captacao" class="font-black text-xs uppercase tracking-wider" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#25D366;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">'
+            + '<a href="#" onclick="openWaPopup(); return false;" class="font-black text-xs uppercase tracking-wider" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#25D366;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">'
             + '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.534 5.845L.054 23.25a.75.75 0 0 0 .917.94l5.562-1.461A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.218-1.444l-.374-.224-3.876 1.018 1.037-3.78-.245-.39A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>'
             + 'Falar com o time da FACEP'
             + '</a>',
@@ -1027,7 +1073,7 @@ const CURSO_DETALHES = [
             + '<details class="curso-faq"><summary>O curso é presencial ou EAD?</summary><p>O curso é 100% presencial.</p></details>'
             + '<details class="curso-faq"><summary>O certificado é reconhecido pelo MEC?</summary><p>Sim! O certificado de Técnico em Enfermagem da FACEP é reconhecido pelo MEC e válido em todo o território nacional, dando a você respaldo total para atuar profissionalmente e seguir carreira na área da saúde.</p></details>'
             + '<details class="curso-faq"><summary>Existe possibilidade de bolsa ou desconto?</summary><p>Sim, temos condições especiais e datas com desconto para matrículas antecipadas. Fale com o time da FACEP pelo WhatsApp e saiba o cronograma de datas e as condições disponíveis no momento.</p>'
-            + '<a href="#captacao" class="font-black text-xs uppercase tracking-wider" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#25D366;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">'
+            + '<a href="#" onclick="openWaPopup(); return false;" class="font-black text-xs uppercase tracking-wider" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#25D366;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;">'
             + '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.534 5.845L.054 23.25a.75.75 0 0 0 .917.94l5.562-1.461A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.218-1.444l-.374-.224-3.876 1.018 1.037-3.78-.245-.39A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>'
             + 'Falar com o time da FACEP'
             + '</a></details>',
