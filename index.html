@@ -443,8 +443,9 @@
         <div class="hidden lg:block">
             <div class="flex items-center justify-center gap-4 mb-16" id="identidade-shields"></div>
             <div class="grid grid-cols-2 gap-12 items-stretch">
-                <div class="rounded-2xl overflow-hidden" style="aspect-ratio:4/3;">
-                    <img id="identidade-img" class="w-full h-full object-cover" alt="" loading="lazy">
+                <div class="rounded-2xl overflow-hidden relative" style="aspect-ratio:4/3;">
+                    <img id="identidade-img-bg" class="absolute inset-0 w-full h-full object-cover" style="filter:blur(26px) brightness(0.55);transform:scale(1.2);" alt="" aria-hidden="true">
+                    <img id="identidade-img" class="absolute inset-0 w-full h-full object-contain" alt="" loading="lazy">
                 </div>
                 <div class="flex flex-col justify-center gap-2" id="identidade-itens"></div>
             </div>
@@ -787,6 +788,7 @@ function icone_wrap(svg) { return '<div style="display:flex;justify-content:cent
 function identidadeRenderDesktop() {
     const cat = IDENTIDADE[identCatIdx];
     document.getElementById('identidade-img').src = cat.itens[identSubIdx].img;
+    document.getElementById('identidade-img-bg').src = cat.itens[identSubIdx].img;
     const wrap = document.getElementById('identidade-itens');
     wrap.innerHTML = '';
     cat.itens.forEach((it, i) => {
@@ -829,12 +831,14 @@ function identidadeRenderAccordion() {
             panel.style.marginTop = '16px';
             cat.itens.forEach(it => {
                 const card = document.createElement('div');
-                card.className = 'relative rounded-2xl overflow-hidden';
-                card.style.aspectRatio = '4/3';
+                card.className = 'rounded-2xl overflow-hidden';
+                card.style.background = '#14140f';
                 card.innerHTML =
-                    '<img src="' + it.img + '" class="absolute inset-0 w-full h-full object-cover" alt="" loading="lazy">' +
-                    '<div class="absolute inset-0" style="background:linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 55%);"></div>' +
-                    '<div class="absolute left-0 right-0 bottom-0 p-5">' +
+                    '<div class="relative" style="aspect-ratio:4/3;">' +
+                        '<img src="' + it.img + '" class="absolute inset-0 w-full h-full object-cover" style="filter:blur(22px) brightness(0.55);transform:scale(1.2);" alt="" aria-hidden="true">' +
+                        '<img src="' + it.img + '" class="absolute inset-0 w-full h-full object-contain" alt="" loading="lazy">' +
+                    '</div>' +
+                    '<div class="p-5">' +
                         '<h4 class="font-black text-white" style="font-size:17px;">' + it.titulo + '</h4>' +
                         '<p class="text-white/80" style="font-size:13px;line-height:1.5;margin-top:6px;">' + it.texto + '</p>' +
                     '</div>';
