@@ -651,6 +651,20 @@
 <script>
 // ── Quem Somos (mecanismo de abas, foco em Técnico em Enfermagem) ───
 // ── Popup do WhatsApp ────────────────────────────────────────────
+// ── Hero — vídeo começa em 0:15, autoplay em todos os dispositivos ──
+(function () {
+    const heroVideo = document.querySelector('.hero-video');
+    if (!heroVideo) return;
+    const irParaInicio = () => { heroVideo.currentTime = 15; };
+    if (heroVideo.readyState >= 1) {
+        irParaInicio();
+    } else {
+        heroVideo.addEventListener('loadedmetadata', irParaInicio, { once: true });
+    }
+    const tentativaPlay = heroVideo.play();
+    if (tentativaPlay !== undefined) tentativaPlay.catch(() => {});
+})();
+
 const WA_NUMERO = '5562982871553';
 function openWaPopup() { document.getElementById('wa-popup-overlay').classList.add('open'); }
 function closeWaPopup() { document.getElementById('wa-popup-overlay').classList.remove('open'); }
