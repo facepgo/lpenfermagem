@@ -27,10 +27,12 @@
         ::-webkit-scrollbar-track { background: #F5EFE7; }
         ::-webkit-scrollbar-thumb { background: #004F92; border-radius: 10px; }
 
-        .nav-link { color: #004F92; transition: color 0.2s; text-decoration: none; }
-        .nav-link:hover { color: #003050; }
+        .nav-link { color: #1a1a1a; transition: color 0.2s; text-decoration: none; font-weight:600; }
+        .nav-link:hover { color: #004F92; }
 
-        .site-header { background:#F5EFE7; border-bottom:1px solid rgba(26,26,26,0.08); }
+        .site-logo { font-weight:900; font-size:20px; letter-spacing:.02em; color:#004F92; text-decoration:none; }
+
+        .site-header { background:#fff; border-bottom:1px solid rgba(26,26,26,0.08); }
         .site-header.menu-open .mobile-menu-btn { display:none; }
         .mobile-menu-panel { max-height:0; overflow:hidden; opacity:0; transition:max-height .8s ease, opacity .5s ease; }
         .mobile-menu-panel.open { max-height:600px; opacity:1; }
@@ -42,31 +44,36 @@
         .mobile-menu-panel.open .mobile-menu-item:nth-child(4) { transition-delay: .54s; }
         .mobile-menu-panel.open .mobile-menu-item:nth-child(5) { transition-delay: .68s; }
 
-        /* hero */
-        #hero { min-height:92vh; position:relative; display:flex; align-items:flex-end; }
-        .hero-bg { position:absolute; inset:0; }
-        .hero-bg img { width:100%; height:100%; object-fit:cover; }
-        .hero-bg::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,20,40,0.92) 10%, rgba(0,20,40,0.55) 55%, rgba(0,20,40,0.25) 100%); }
+        /* hero — duas colunas: texto à esquerda, foto à direita */
+        #hero { padding-top:64px; background:#F5EFE7; }
+        .hero-photo { border-radius:8px; overflow:hidden; aspect-ratio:1.2/1; }
+        .hero-photo img { width:100%; height:100%; object-fit:cover; }
 
-        .badge-pill { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); color:#fff; font-weight:800; font-size:12.5px; padding:8px 16px; border-radius:999px; }
+        .badge-pill { display:inline-flex; align-items:center; gap:8px; background:rgba(0,79,146,0.08); border:1px solid rgba(0,79,146,0.2); color:#004F92; font-weight:700; font-size:12px; padding:7px 14px; border-radius:6px; }
 
-        .feature-card { border: 1px solid rgba(26,26,26,0.1); background: #FFFFFF; border-radius: 16px; padding: 32px 24px; transition: all 0.3s ease; }
-        .feature-card:hover { border-color: rgba(0,79,146,0.3); transform: translateY(-3px); }
+        .feature-card { border: 1px solid #E0E0E0; background: #FFFFFF; border-radius: 8px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 0.2s ease; }
+        .feature-card:hover { border-color: rgba(0,79,146,0.3); }
 
-        .format-card { border:2px solid rgba(0,79,146,0.15); background:#fff; border-radius:16px; padding:28px 24px; text-align:center; transition:.2s; }
-        .format-card.destaque { border-color:#004F92; background:#F4F8FB; }
+        .format-card { border:1px solid #E0E0E0; border-left:3px solid rgba(0,79,146,0.25); background:#fff; border-radius:8px; padding:24px; transition:.2s; }
+        .format-card.destaque { border-left-color:#004F92; background:#F4F8FB; }
+        .format-card ul { list-style:none; margin:12px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; }
+        .format-card ul li { font-size:13px; color:#5a5248; display:flex; gap:8px; align-items:flex-start; }
+        .format-card ul li::before { content:'✓'; color:#004F92; font-weight:900; }
 
         .stat-strip { background:#003050; }
         .stat-item { text-align:center; padding:28px 16px; }
         .stat-item .num { font-weight:900; font-size:clamp(24px,3vw,34px); color:#fff; }
         .stat-item .label { color:rgba(255,255,255,0.7); font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; margin-top:6px; }
 
-        .gallery-grid img { width:100%; height:100%; object-fit:cover; border-radius:16px; }
+        .gallery-grid img { width:100%; height:100%; object-fit:cover; border-radius:8px; }
 
-        .invest-card { background:#fff; border:2px solid #004F92; border-radius:20px; padding:40px 32px; text-align:center; max-width:480px; margin:0 auto; }
+        .invest-card { background:#fff; border:1px solid #E0E0E0; border-radius:8px; padding:36px 32px; text-align:center; max-width:420px; margin:0 auto; box-shadow:0 1px 3px rgba(0,0,0,0.04); }
+        .invest-card ul { list-style:none; margin:20px 0; padding:0; display:flex; flex-direction:column; gap:10px; text-align:left; }
+        .invest-card ul li { font-size:14px; color:#5a5248; display:flex; gap:8px; align-items:flex-start; }
+        .invest-card ul li::before { content:'✓'; color:#004F92; font-weight:900; }
 
-        .unit-card { display:flex; gap:20px; align-items:flex-start; background:#fff; border-radius:16px; padding:28px; border:1px solid rgba(26,26,26,0.1); }
-        .unit-icon { flex-shrink:0; width:52px; height:52px; border-radius:12px; background:#004F92; color:#fff; display:flex; align-items:center; justify-content:center; }
+        .unit-card { display:flex; flex-direction:column; gap:14px; background:#fff; border-radius:8px; padding:28px; border:1px solid #E0E0E0; max-width:340px; margin:0 auto; box-shadow:0 1px 3px rgba(0,0,0,0.04); }
+        .unit-icon { flex-shrink:0; width:44px; height:44px; border-radius:8px; background:#004F92; color:#fff; display:flex; align-items:center; justify-content:center; }
 
         /* popup do WhatsApp */
         .wa-popup-overlay { position:fixed; inset:0; z-index:200; background:rgba(10,10,10,0.6); display:none; align-items:center; justify-content:center; padding:20px; }
@@ -83,14 +90,15 @@
 <!-- ── HEADER ────────────────────────────────────────────────── -->
 <header id="site-header" class="site-header fixed top-0 w-full z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between md:justify-center h-18" style="height:72px;">
-            <nav class="hidden md:flex items-center gap-8 text-xs font-black">
-                <a href="#hero" class="nav-link">Início</a>
+        <div class="flex items-center justify-between h-18" style="height:64px;">
+            <a href="#hero" class="site-logo">FACEP</a>
+            <nav class="hidden md:flex items-center gap-7 text-sm">
                 <a href="#publico" class="nav-link">Pra Quem É</a>
                 <a href="#formato" class="nav-link">Formato</a>
                 <a href="#galeria" class="nav-link">Fotos</a>
                 <a href="#investimento" class="nav-link">Investimento</a>
                 <a href="#unidade" class="nav-link">Unidade</a>
+                <button onclick="openWaPopup()" class="font-black text-xs uppercase tracking-wider px-5 py-2.5 rounded-md" style="background:#004F92;color:#fff;">Matricule-se</button>
             </nav>
             <button class="mobile-menu-btn md:hidden text-[#1a1a1a]" onclick="toggleMobileMenu()">
                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -118,25 +126,27 @@
 
 <main class="flex-grow">
 
-<!-- ── HERO ──────────────────────────────────────────────────── -->
-<section id="hero">
-    <div class="hero-bg">
-        <img src="acao_02.webp" alt="Aula prática de Enfermagem na FACEP" loading="eager">
-    </div>
-    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-40 text-center">
-        <div class="flex flex-wrap justify-center gap-3 mb-6">
-            <span class="badge-pill">Certificado reconhecido pelo MEC</span>
-            <span class="badge-pill">Início Imediato</span>
+<!-- ── HERO (duas colunas) ──────────────────────────────────────── -->
+<section id="hero" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+            <div class="flex flex-wrap gap-3 mb-6">
+                <span class="badge-pill">Certificado reconhecido pelo MEC</span>
+                <span class="badge-pill">Início Imediato</span>
+            </div>
+            <h1 class="font-black uppercase" style="color:#1a1a1a;font-size:clamp(30px,4.2vw,48px);line-height:1.08;">
+                Técnico em Enfermagem
+            </h1>
+            <p class="mt-5" style="color:#5a5248;font-size:17px;line-height:1.6;">
+                Em 18 meses você conquista uma profissão de verdade: prática desde o primeiro módulo, estágio em unidades reais de saúde e certificado nacional reconhecido pelo MEC.
+            </p>
+            <button onclick="openWaPopup()" class="mt-8 inline-flex items-center gap-2 font-black text-sm uppercase tracking-wider px-8 py-4 rounded-md transition-all hover:opacity-90" style="background:#25D366;color:#fff;">
+                Quero me matricular
+            </button>
         </div>
-        <h1 class="font-black uppercase text-white" style="font-size:clamp(32px,6vw,58px);line-height:1.05;">
-            Técnico em Enfermagem
-        </h1>
-        <p class="mt-5 text-white/85" style="font-size:clamp(16px,2vw,20px);line-height:1.5;max-width:640px;margin-left:auto;margin-right:auto;">
-            Em 18 meses você conquista uma profissão de verdade: prática desde o primeiro módulo, estágio em unidades reais de saúde e certificado nacional reconhecido pelo MEC.
-        </p>
-        <button onclick="openWaPopup()" class="mt-8 inline-flex items-center gap-2 font-black text-sm uppercase tracking-wider px-9 py-4 rounded-xl transition-all hover:opacity-90" style="background:#25D366;color:#fff;">
-            Quero me matricular
-        </button>
+        <div class="hero-photo">
+            <img src="acao_02.webp" alt="Aula prática de Enfermagem na FACEP" loading="eager">
+        </div>
     </div>
 </section>
 
@@ -180,18 +190,27 @@
             <h2 class="font-bold uppercase tracking-normal" style="color:#004F92;font-size:clamp(28px,4vw,44px);line-height:1.1;">Escolha o turno que cabe na sua rotina</h2>
             <p class="mt-4" style="color:#5a5248;font-size:16px;">Curso presencial, com laboratório próprio e estágio supervisionado em unidades reais de saúde.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div class="format-card">
                 <p class="font-black uppercase" style="color:#004F92;font-size:15px;letter-spacing:.03em;">Matutino</p>
-                <p class="text-black/60 mt-2" style="font-size:14px;">Aulas pela manhã</p>
+                <ul>
+                    <li>Aulas pela manhã, de segunda a sexta</li>
+                    <li>Duração total: 18 meses</li>
+                </ul>
             </div>
             <div class="format-card destaque">
                 <p class="font-black uppercase" style="color:#004F92;font-size:15px;letter-spacing:.03em;">Noturno</p>
-                <p class="text-black/60 mt-2" style="font-size:14px;">Aulas à noite — ideal pra quem trabalha</p>
+                <ul>
+                    <li>Aulas à noite — ideal pra quem trabalha</li>
+                    <li>Duração total: 18 meses</li>
+                </ul>
             </div>
             <div class="format-card">
                 <p class="font-black uppercase" style="color:#004F92;font-size:15px;letter-spacing:.03em;">Sábados</p>
-                <p class="text-black/60 mt-2" style="font-size:14px;">Curso concentrado aos sábados</p>
+                <ul>
+                    <li>Curso concentrado aos sábados</li>
+                    <li>Duração total: 24 meses</li>
+                </ul>
             </div>
         </div>
         <p class="text-center text-black/50 mt-8" style="font-size:13px;">Duração: 18 meses (turmas de semana) ou 24 meses (turma de sábado). Consulte a secretaria acadêmica pra horários específicos de cada turno.</p>
@@ -227,12 +246,13 @@
             <h2 class="font-bold uppercase tracking-normal" style="color:#004F92;font-size:clamp(28px,4vw,44px);line-height:1.1;">Nossa estrutura</h2>
             <p class="mt-4" style="color:#5a5248;font-size:16px;">Laboratório próprio e prática real, desde o primeiro módulo.</p>
         </div>
-        <div class="gallery-grid grid grid-cols-2 md:grid-cols-4 gap-4" style="height:520px;">
-            <div style="grid-column:span 2;grid-row:span 2;"><img src="acao_02.webp" alt="Aula prática de laboratório FACEP" loading="lazy"></div>
-            <div><img src="acao_03.webp" alt="Prática de procedimentos FACEP" loading="lazy"></div>
-            <div><img src="carrossel_09.webp" alt="Formandos FACEP" loading="lazy"></div>
-            <div><img src="carrossel_05.webp" alt="Cerimônia do Jaleco FACEP" loading="lazy"></div>
-            <div><img src="carrossel_11.webp" alt="Formanda FACEP" loading="lazy"></div>
+        <div class="gallery-grid grid grid-cols-2 md:grid-cols-3 gap-3">
+            <div style="aspect-ratio:1/1;"><img src="acao_02.webp" alt="Aula prática de laboratório FACEP" loading="lazy"></div>
+            <div style="aspect-ratio:1/1;"><img src="acao_03.webp" alt="Prática de procedimentos FACEP" loading="lazy"></div>
+            <div style="aspect-ratio:1/1;"><img src="carrossel_09.webp" alt="Formandos FACEP" loading="lazy"></div>
+            <div style="aspect-ratio:1/1;"><img src="carrossel_05.webp" alt="Cerimônia do Jaleco FACEP" loading="lazy"></div>
+            <div style="aspect-ratio:1/1;"><img src="carrossel_11.webp" alt="Formanda FACEP" loading="lazy"></div>
+            <div style="aspect-ratio:1/1;"><img src="acao_01.webp" alt="Aula prática FACEP" loading="lazy"></div>
         </div>
     </div>
 </section>
@@ -243,12 +263,17 @@
         <h2 class="font-bold uppercase tracking-normal mb-4" style="color:#004F92;font-size:clamp(28px,4vw,44px);line-height:1.1;">Investimento</h2>
         <p class="mb-12" style="color:#5a5248;font-size:16px;">Condições especiais pra quem se matricula agora. Fale com a gente pelo WhatsApp e receba os valores e formas de pagamento sem compromisso.</p>
         <div class="invest-card">
-            <p class="font-black uppercase" style="color:#5a5248;font-size:13px;letter-spacing:.05em;">Matrícula + Mensalidades</p>
-            <p class="font-black mt-3" style="color:#004F92;font-size:32px;">Consulte condições</p>
-            <p class="text-black/50 mt-2" style="font-size:13px;">Parcelamos no cartão e temos desconto pra matrícula antecipada.</p>
-            <button onclick="openWaPopup()" class="mt-6 w-full font-black text-sm uppercase tracking-wider px-7 py-4 rounded-lg transition-all hover:opacity-90" style="background:#25D366;color:#fff;">
+            <p class="font-black uppercase" style="color:#5a5248;font-size:12px;letter-spacing:.05em;">Matrícula + Mensalidades</p>
+            <p class="font-black mt-3" style="color:#004F92;font-size:30px;">Consulte condições</p>
+            <ul>
+                <li>Parcelamento no cartão</li>
+                <li>Desconto pra matrícula antecipada</li>
+                <li>Turmas de manhã, noite e sábados</li>
+            </ul>
+            <button onclick="openWaPopup()" class="w-full font-black text-sm uppercase tracking-wider px-7 py-4 rounded-md transition-all hover:opacity-90" style="background:#25D366;color:#fff;">
                 Falar no WhatsApp
             </button>
+            <p class="text-black/40 mt-4" style="font-size:11px;">Valores e condições sujeitos a confirmação com a secretaria acadêmica.</p>
         </div>
     </div>
 </section>
@@ -261,24 +286,24 @@
         </div>
         <div class="unit-card">
             <div class="unit-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div>
-                <p class="font-black" style="font-size:18px;color:#1a1a1a;">FACEP Goiânia — Setor Central</p>
-                <p class="text-black/60 mt-2" style="font-size:14px;line-height:1.6;">Rua 03, Quadra 61, Lote 125, nº 170, Setor Central, Goiânia - GO, CEP 74030-071</p>
-                <p class="text-black/60 mt-1" style="font-size:14px;">WhatsApp: (62) 98287-1553</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Rua+03%2C+Quadra+61%2C+Lote+125%2C+170%2C+Setor+Central%2C+Goi%C3%A2nia+-+GO%2C+74030-071" target="_blank" rel="noopener" class="font-black text-xs uppercase tracking-wider" style="display:inline-block;margin-top:14px;background:#004F92;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;">Ver no mapa</a>
+                <p class="font-black" style="font-size:16px;color:#1a1a1a;">FACEP Goiânia — Setor Central</p>
+                <p class="text-black/60 mt-2" style="font-size:13.5px;line-height:1.6;">Rua 03, Quadra 61, Lote 125, nº 170, Setor Central, Goiânia - GO, CEP 74030-071</p>
+                <p class="text-black/60 mt-1" style="font-size:13.5px;">WhatsApp: (62) 98287-1553</p>
             </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Rua+03%2C+Quadra+61%2C+Lote+125%2C+170%2C+Setor+Central%2C+Goi%C3%A2nia+-+GO%2C+74030-071" target="_blank" rel="noopener" class="font-black text-xs uppercase tracking-wider text-center" style="background:#004F92;color:#fff;padding:12px 22px;border-radius:6px;text-decoration:none;">Ver no mapa</a>
         </div>
     </div>
 </section>
 
 <!-- ── CTA FINAL ─────────────────────────────────────────────────── -->
-<section class="py-24" style="background:linear-gradient(135deg, #003050, #004F92);">
+<section class="py-24" style="background:#fff;border-top:1px solid #E0E0E0;">
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="font-black uppercase text-white" style="font-size:clamp(26px,4vw,40px);line-height:1.15;">Sua nova profissão começa agora</h2>
-        <p class="mt-4 text-white/80" style="font-size:16px;">Matrículas abertas. Fale com a gente e garanta sua vaga no curso Técnico em Enfermagem da FACEP.</p>
-        <button onclick="openWaPopup()" class="mt-8 inline-flex items-center gap-2 font-black text-sm uppercase tracking-wider px-9 py-4 rounded-xl transition-all hover:opacity-90" style="background:#25D366;color:#fff;">
+        <h2 class="font-black uppercase" style="color:#1a1a1a;font-size:clamp(26px,4vw,40px);line-height:1.15;">Sua nova profissão começa agora</h2>
+        <p class="mt-4" style="color:#5a5248;font-size:16px;">Matrículas abertas. Fale com a gente e garanta sua vaga no curso Técnico em Enfermagem da FACEP.</p>
+        <button onclick="openWaPopup()" class="mt-8 inline-flex items-center gap-2 font-black text-sm uppercase tracking-wider px-9 py-4 rounded-md transition-all hover:opacity-90" style="background:#25D366;color:#fff;">
             Iniciar minha matrícula
         </button>
     </div>
