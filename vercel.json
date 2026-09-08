@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        { "source": "/enfermagem", "destination": "/index.html" },
+        { "source": "/enfermagem/(.*)", "destination": "/index.html" },
+        { "source": "/enfermagem02", "destination": "/enfermagem02.html" },
+        { "source": "/enfermagem02/(.*)", "destination": "/enfermagem02.html" }
+    ]
+}

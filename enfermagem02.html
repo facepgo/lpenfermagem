@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FACEP | Técnico em Enfermagem — Matrículas Abertas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Inter', 'sans-serif'],
+                        sans:    ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { scroll-behavior: smooth; }
+        ::selection { background: #004F92; color: #fff; }
+        body { font-family: 'Inter', sans-serif; background: #F5EFE7; color: #1a1a1a; margin: 0; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F5EFE7; }
+        ::-webkit-scrollbar-thumb { background: #004F92; border-radius: 10px; }
+
+        .nav-link { color: #004F92; transition: color 0.2s; text-decoration: none; }
+        .nav-link:hover { color: #003050; }
+
+        .site-header { background:#F5EFE7; border-bottom:1px solid rgba(26,26,26,0.08); }
+        .site-header.menu-open .mobile-menu-btn { display:none; }
+        .mobile-menu-panel { max-height:0; overflow:hidden; opacity:0; transition:max-height .8s ease, opacity .5s ease; }
+        .mobile-menu-panel.open { max-height:600px; opacity:1; }
+        .mobile-menu-item { opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease; }
+        .mobile-menu-panel.open .mobile-menu-item { opacity:1; transform:translateY(0); }
+        .mobile-menu-panel.open .mobile-menu-item:nth-child(1) { transition-delay: .12s; }
+        .mobile-menu-panel.open .mobile-menu-item:nth-child(2) { transition-delay: .26s; }
+        .mobile-menu-panel.open .mobile-menu-item:nth-child(3) { transition-delay: .40s; }
+        .mobile-menu-panel.open .mobile-menu-item:nth-child(4) { transition-delay: .54s; }
+        .mobile-menu-panel.open .mobile-menu-item:nth-child(5) { transition-delay: .68s; }
+
+        /* hero */
+        #hero { min-height:92vh; position:relative; display:flex; align-items:flex-end; }
+        .hero-bg { position:absolute; inset:0; }
+        .hero-bg img { width:100%; height:100%; object-fit:cover; }
+        .hero-bg::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,20,40,0.92) 10%, rgba(0,20,40,0.55) 55%, rgba(0,20,40,0.25) 100%); }
+
+        .badge-pill { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); color:#fff; font-weight:800; font-size:12.5px; padding:8px 16px; border-radius:999px; }
+
+        .feature-card { border: 1px solid rgba(26,26,26,0.1); background: #FFFFFF; border-radius: 16px; padding: 32px 24px; transition: all 0.3s ease; }
+        .feature-card:hover { border-color: rgba(0,79,146,0.3); transform: translateY(-3px); }
+
+        .format-card { border:2px solid rgba(0,79,146,0.15); background:#fff; border-radius:16px; padding:28px 24px; text-align:center; transition:.2s; }
+        .format-card.destaque { border-color:#004F92; background:#F4F8FB; }
+
+        .stat-strip { background:#003050; }
+        .stat-item { text-align:center; padding:28px 16px; }
+        .stat-item .num { font-weight:900; font-size:clamp(24px,3vw,34px); color:#fff; }
+        .stat-item .label { color:rgba(255,255,255,0.7); font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; margin-top:6px; }
+
+        .gallery-grid img { width:100%; height:100%; object-fit:cover; border-radius:16px; }
+
+        .invest-card { background:#fff; border:2px solid #004F92; border-radius:20px; padding:40px 32px; text-align:center; max-width:480px; margin:0 auto; }
+
+        .unit-card { display:flex; gap:20px; align-items:flex-start; background:#fff; border-radius:16px; padding:28px; border:1px solid rgba(26,26,26,0.1); }
+        .unit-icon { flex-shrink:0; width:52px; height:52px; border-radius:12px; background:#004F92; color:#fff; display:flex; align-items:center; justify-content:center; }
+
+        /* popup do WhatsApp */
+        .wa-popup-overlay { position:fixed; inset:0; z-index:200; background:rgba(10,10,10,0.6); display:none; align-items:center; justify-content:center; padding:20px; }
+        .wa-popup-overlay.open { display:flex; }
+        .wa-popup { position:relative; background:#fff; border-radius:20px; padding:36px 28px 28px; max-width:400px; width:100%; }
+        .wa-popup-close { position:absolute; top:14px; right:14px; width:30px; height:30px; border-radius:50%; background:rgba(26,26,26,0.06); border:none; color:#1a1a1a; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+        .wa-popup-icon { width:56px; height:56px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+        .wa-field { border-radius:10px; padding:13px 18px; border:1px solid rgba(26,26,26,0.15); background:rgba(26,26,26,0.04); font-size:15px; width:100%; color:#1a1a1a; font-family:Inter,sans-serif; outline:none; transition:border-color .2s; }
+        .wa-field:focus { border-color:#004F92; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+<!-- ── HEADER ────────────────────────────────────────────────── -->
+<header id="site-header" class="site-header fixed top-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between md:justify-center h-18" style="height:72px;">
+            <nav class="hidden md:flex items-center gap-8 text-xs font-black">
+                <a href="#hero" class="nav-link">Início</a>
+                <a href="#publico" class="nav-link">Pra Quem É</a>
+                <a href="#formato" class="nav-link">Formato</a>
+                <a href="#galeria" class="nav-link">Fotos</a>
+                <a href="#investimento" class="nav-link">Investimento</a>
+                <a href="#unidade" class="nav-link">Unidade</a>
+            </nav>
+            <button class="mobile-menu-btn md:hidden text-[#1a1a1a]" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu-panel md:hidden" style="background:#F5EFE7;">
+        <div class="relative pt-4 pb-2">
+            <button onclick="toggleMobileMenu()" aria-label="Fechar menu" class="absolute" style="right:20px;top:14px;color:#8a8378;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="px-6 pb-6 pt-2" style="display:flex;flex-direction:column;gap:22px;">
+            <a href="#hero"        class="mobile-menu-item font-bold" style="color:#004F92;font-size:18px;">Início</a>
+            <a href="#publico"     class="mobile-menu-item font-bold" style="color:#004F92;font-size:18px;">Pra Quem É</a>
+            <a href="#formato"     class="mobile-menu-item font-bold" style="color:#004F92;font-size:18px;">Formato</a>
+            <a href="#galeria"     class="mobile-menu-item font-bold" style="color:#004F92;font-size:18px;">Fotos</a>
+            <a href="#investimento" class="mobile-menu-item font-bold" style="color:#004F92;font-size:18px;">Investimento</a>
+            <a href="#unidade"     class="mobile-menu-item font-bold" style="color:#004F92;font-size:18px;">Unidade</a>
+        </div>
+    </div>
+</header>
+
+<main class="flex-grow">
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<section id="hero">
+    <div class="hero-bg">
+        <img src="acao_02.webp" alt="Aula prática de Enfermagem na FACEP" loading="eager">
+    </div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-40 text-center">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+            <span class="badge-pill">Certificado reconhecido pelo MEC</span>
+            <span class="badge-pill">Início Imediato</span>
+        </div>
+        <h1 class="font-black uppercase text-white" style="font-size:clamp(32px,6vw,58px);line-height:1.05;">
+            Técnico em Enfermagem
+        </h1>
+        <p class="mt-5 text-white/85" style="font-size:clamp(16px,2vw,20px);line-height:1.5;max-width:640px;margin-left:auto;margin-right:auto;">
+            Em 18 meses você conquista uma profissão de verdade: prática desde o primeiro módulo, estágio em unidades reais de saúde e certificado nacional reconhecido pelo MEC.
+        </p>
+        <button onclick="openWaPopup()" class="mt-8 inline-flex items-center gap-2 font-black text-sm uppercase tracking-wider px-9 py-4 rounded-xl transition-all hover:opacity-90" style="background:#25D366;color:#fff;">
+            Quero me matricular
+        </button>
+    </div>
+</section>
+
+<!-- ── PARA QUEM É ESSE CURSO ──────────────────────────────────── -->
+<section id="publico" class="py-24" style="background:#F5EFE7;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+            <h2 class="font-bold uppercase tracking-normal" style="color:#004F92;font-size:clamp(28px,4vw,44px);line-height:1.1;">Pra quem é esse curso</h2>
+            <p class="mt-4" style="color:#5a5248;font-size:16px;max-width:560px;margin-left:auto;margin-right:auto;">Não importa de onde você vem — se tem vontade de cuidar de pessoas, esse curso é pra você.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="feature-card">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(0,79,146,0.1);color:#004F92;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3 class="font-black" style="font-size:18px;color:#1a1a1a;">Quem quer trocar de carreira</h3>
+                <p class="text-black/60 mt-3" style="font-size:14px;line-height:1.6;">Turmas de manhã, à noite e aos sábados — dá pra estudar sem largar o emprego atual.</p>
+            </div>
+            <div class="feature-card">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(0,79,146,0.1);color:#004F92;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+                </div>
+                <h3 class="font-black" style="font-size:18px;color:#1a1a1a;">Quem está buscando o primeiro emprego</h3>
+                <p class="text-black/60 mt-3" style="font-size:14px;line-height:1.6;">Não precisa de experiência prévia — só ter concluído (ou estar no último ano) do Ensino Médio.</p>
+            </div>
+            <div class="feature-card">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(0,79,146,0.1);color:#004F92;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+                </div>
+                <h3 class="font-black" style="font-size:18px;color:#1a1a1a;">Quem quer cuidar de pessoas</h3>
+                <p class="text-black/60 mt-3" style="font-size:14px;line-height:1.6;">Enfermagem é pra quem quer fazer diferença de verdade na vida de alguém, todos os dias.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── FORMATO DO CURSO ─────────────────────────────────────────── -->
+<section id="formato" class="py-24" style="background:#fff;">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+            <h2 class="font-bold uppercase tracking-normal" style="color:#004F92;font-size:clamp(28px,4vw,44px);line-height:1.1;">Escolha o turno que cabe na sua rotina</h2>
+            <p class="mt-4" style="color:#5a5248;font-size:16px;">Curso presencial, com laboratório próprio e estágio supervisionado em unidades reais de saúde.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="format-card">
+                <p class="font-black uppercase" style="color:#004F92;font-size:15px;letter-spacing:.03em;">Matutino</p>
+                <p class="text-black/60 mt-2" style="font-size:14px;">Aulas pela manhã</p>
+            </div>
+            <div class="format-card destaque">
+                <p class="font-black uppercase" style="color:#004F92;font-size:15px;letter-spacing:.03em;">Noturno</p>
+                <p class="text-black/60 mt-2" style="font-size:14px;">Aulas à noite — ideal pra quem trabalha</p>
+            </div>
+            <div class="format-card">
+                <p class="font-black uppercase" style="color:#004F92;font-size:15px;letter-spacing:.03em;">Sábados</p>
+                <p class="text-black/60 mt-2" style="font-size:14px;">Curso concentrado aos sábados</p>
+            </div>
+        </div>
+        <p class="text-center text-black/50 mt-8" style="font-size:13px;">Duração: 18 meses (turmas de semana) ou 24 meses (turma de sábado). Consulte a secretaria acadêmica pra horários específicos de cada turno.</p>
+    </div>
+</section>
+
+<!-- ── NÚMEROS REAIS ────────────────────────────────────────────── -->
+<section class="stat-strip py-14">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="stat-item">
+            <p class="num">18</p>
+            <p class="label">Meses de curso</p>
+        </div>
+        <div class="stat-item">
+            <p class="num">400h</p>
+            <p class="label">De estágio supervisionado</p>
+        </div>
+        <div class="stat-item">
+            <p class="num">3</p>
+            <p class="label">Módulos presenciais</p>
+        </div>
+        <div class="stat-item">
+            <p class="num">MEC</p>
+            <p class="label">Certificado reconhecido</p>
+        </div>
+    </div>
+</section>
+
+<!-- ── GALERIA (fotos reais) ────────────────────────────────────── -->
+<section id="galeria" class="py-24" style="background:#F5EFE7;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+            <h2 class="font-bold uppercase tracking-normal" style="color:#004F92;font-size:clamp(28px,4vw,44px);line-height:1.1;">Nossa estrutura</h2>
+            <p class="mt-4" style="color:#5a5248;font-size:16px;">Laboratório próprio e prática real, desde o primeiro módulo.</p>
+        </div>
+        <div class="gallery-grid grid grid-cols-2 md:grid-cols-4 gap-4" style="height:520px;">
+            <div style="grid-column:span 2;grid-row:span 2;"><img src="acao_02.webp" alt="Aula prática de laboratório FACEP" loading="lazy"></div>
+            <div><img src="acao_03.webp" alt="Prática de procedimentos FACEP" loading="lazy"></div>
+            <div><img src="carrossel_09.webp" alt="Formandos FACEP" loading="lazy"></div>
+            <div><img src="carrossel_05.webp" alt="Cerimônia do Jaleco FACEP" loading="lazy"></div>
+            <div><img src="carrossel_11.webp" alt="Formanda FACEP" loading="lazy"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ── INVESTIMENTO ─────────────────────────────────────────────── -->
+<section id="investimento" class="py-24" style="background:#fff;">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-bold uppercase tracking-normal mb-4" style="color:#004F92;font-size:clamp(28px,4vw,44px);line-height:1.1;">Investimento</h2>
+        <p class="mb-12" style="color:#5a5248;font-size:16px;">Condições especiais pra quem se matricula agora. Fale com a gente pelo WhatsApp e receba os valores e formas de pagamento sem compromisso.</p>
+        <div class="invest-card">
+            <p class="font-black uppercase" style="color:#5a5248;font-size:13px;letter-spacing:.05em;">Matrícula + Mensalidades</p>
+            <p class="font-black mt-3" style="color:#004F92;font-size:32px;">Consulte condições</p>
+            <p class="text-black/50 mt-2" style="font-size:13px;">Parcelamos no cartão e temos desconto pra matrícula antecipada.</p>
+            <button onclick="openWaPopup()" class="mt-6 w-full font-black text-sm uppercase tracking-wider px-7 py-4 rounded-lg transition-all hover:opacity-90" style="background:#25D366;color:#fff;">
+                Falar no WhatsApp
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ── UNIDADE ───────────────────────────────────────────────────── -->
+<section id="unidade" class="py-24" style="background:#F5EFE7;">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+            <h2 class="font-bold uppercase tracking-normal" style="color:#004F92;font-size:clamp(28px,4vw,44px);line-height:1.1;">Nossa unidade</h2>
+        </div>
+        <div class="unit-card">
+            <div class="unit-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+                <p class="font-black" style="font-size:18px;color:#1a1a1a;">FACEP Goiânia — Setor Central</p>
+                <p class="text-black/60 mt-2" style="font-size:14px;line-height:1.6;">Rua 03, Quadra 61, Lote 125, nº 170, Setor Central, Goiânia - GO, CEP 74030-071</p>
+                <p class="text-black/60 mt-1" style="font-size:14px;">WhatsApp: (62) 98287-1553</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Rua+03%2C+Quadra+61%2C+Lote+125%2C+170%2C+Setor+Central%2C+Goi%C3%A2nia+-+GO%2C+74030-071" target="_blank" rel="noopener" class="font-black text-xs uppercase tracking-wider" style="display:inline-block;margin-top:14px;background:#004F92;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;">Ver no mapa</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CTA FINAL ─────────────────────────────────────────────────── -->
+<section class="py-24" style="background:linear-gradient(135deg, #003050, #004F92);">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-black uppercase text-white" style="font-size:clamp(26px,4vw,40px);line-height:1.15;">Sua nova profissão começa agora</h2>
+        <p class="mt-4 text-white/80" style="font-size:16px;">Matrículas abertas. Fale com a gente e garanta sua vaga no curso Técnico em Enfermagem da FACEP.</p>
+        <button onclick="openWaPopup()" class="mt-8 inline-flex items-center gap-2 font-black text-sm uppercase tracking-wider px-9 py-4 rounded-xl transition-all hover:opacity-90" style="background:#25D366;color:#fff;">
+            Iniciar minha matrícula
+        </button>
+    </div>
+</section>
+
+</main>
+
+<!-- ── BOTÃO FLUTUANTE ──────────────────────────────────────────── -->
+<a id="wa-btn" href="#" onclick="openWaPopup(); return false;"
+    class="fixed bottom-5 right-5 z-[100] w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110 active:scale-95"
+    style="background:#25D366;box-shadow:0 4px 20px rgba(37,211,102,0.5);">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 fill-white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.534 5.845L.054 23.25a.75.75 0 0 0 .917.94l5.562-1.461A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.218-1.444l-.374-.224-3.876 1.018 1.037-3.78-.245-.39A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+    </svg>
+</a>
+
+<!-- ── POPUP WHATSAPP ───────────────────────────────────────────── -->
+<div id="wa-popup-overlay" class="wa-popup-overlay" onclick="if(event.target===this) closeWaPopup()">
+    <div class="wa-popup">
+        <button type="button" onclick="closeWaPopup()" aria-label="Fechar" class="wa-popup-close">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <div class="wa-popup-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 fill-white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.534 5.845L.054 23.25a.75.75 0 0 0 .917.94l5.562-1.461A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.218-1.444l-.374-.224-3.876 1.018 1.037-3.78-.245-.39A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+        </div>
+        <h3 class="font-black text-center uppercase" style="font-size:20px;color:#004F92;margin-bottom:20px;">Falar no WhatsApp</h3>
+        <form id="wa-popup-form" class="flex flex-col gap-3">
+            <input type="text" id="wa-nome" class="wa-field" placeholder="Nome" required>
+            <input type="text" id="wa-sobrenome" class="wa-field" placeholder="Sobrenome" required>
+            <input type="tel" id="wa-whatsapp" class="wa-field" placeholder="(xx) xxxxx-xxxx" required>
+            <button type="submit" class="font-black text-sm uppercase tracking-wider px-7 py-3.5 rounded-lg transition-all hover:opacity-90 mt-1" style="background:#25D366;color:#fff;">
+                Enviar mensagem no WhatsApp
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+const WA_NUMERO = '5562982871553';
+function openWaPopup() { document.getElementById('wa-popup-overlay').classList.add('open'); }
+function closeWaPopup() { document.getElementById('wa-popup-overlay').classList.remove('open'); }
+document.getElementById('wa-popup-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const nome = document.getElementById('wa-nome').value;
+    const sobrenome = document.getElementById('wa-sobrenome').value;
+    const whatsapp = document.getElementById('wa-whatsapp').value;
+    const mensagem = 'Olá! Meu nome é ' + nome + ' ' + sobrenome + ' (WhatsApp: ' + whatsapp + '). Quero saber mais sobre o curso Técnico em Enfermagem da FACEP.';
+    window.open('https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(mensagem), '_blank');
+    closeWaPopup();
+    this.reset();
+});
+
+function toggleMobileMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+    document.getElementById('site-header').classList.toggle('menu-open');
+}
+</script>
+
+</body>
+</html>
