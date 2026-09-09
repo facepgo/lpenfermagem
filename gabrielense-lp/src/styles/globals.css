@@ -1,0 +1,230 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------ *
+ * Design tokens — expostos como variáveis CSS e como utilitários
+ * Tailwind (bg-deep, text-gold, rounded-card, shadow-elegant, ...).
+ * ------------------------------------------------------------------ */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --color-deep: #003050;
+  --color-deep-foreground: #eef6fd;
+  --color-brand: #004F92;
+  --color-brand-foreground: #ffffff;
+  --color-gold: #f6c919;
+  --color-gold-foreground: #0f1932;
+  --color-whatsapp: #3bca60;
+  --color-whatsapp-hover: #25b950;
+
+  --color-background: #ffffff;
+  --color-foreground: #071027;
+  --color-card: #ffffff;
+  --color-card-foreground: #071027;
+  --color-muted: #f0f6fc;
+  --color-muted-foreground: #5f6570;
+  --color-border: #e0e5eb;
+  --color-danger: #ea2126;
+
+  --radius-default: 14px;
+  --radius-card: 22px;
+  --radius-large: 24px;
+  --radius-hero: 28px;
+
+  --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, var(--color-brand) 35%, transparent);
+  --shadow-whatsapp: 0 14px 40px -10px color-mix(in oklab, var(--color-whatsapp) 65%, transparent);
+  --shadow-float: 0 18px 45px -12px color-mix(in oklab, var(--color-whatsapp) 70%, transparent);
+
+  --animate-float-pulse: floatPulse 3s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Cor do anel de foco: azul sobre fundo claro, dourado sobre azul-marinho. */
+  :root {
+    --focus-ring: var(--color-brand);
+  }
+
+  .bg-deep {
+    --focus-ring: var(--color-gold);
+  }
+
+  :where(a, button, input, textarea, select, [tabindex]:not([tabindex='-1'])):focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-brand) 85%, transparent);
+    color: #fff;
+  }
+
+  /* Títulos usam tracking levemente negativo, como a referência. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.02em;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Componentes utilitários
+ * ------------------------------------------------------------------ */
+@layer components {
+  /* Faixa útil de 1160px: a max-width soma os respiros laterais de
+     20 / 32 / 48px para que a coluna não encolha nos breakpoints maiores. */
+  .container-page {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  @media (min-width: 640px) {
+    .container-page {
+      max-width: 1224px;
+      padding-inline: 32px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-page {
+      max-width: 1256px;
+      padding-inline: 48px;
+    }
+  }
+
+  /* Botão principal de conversão. */
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    border-radius: 9999px;
+    padding: 1.05rem 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--color-whatsapp);
+    box-shadow: var(--shadow-whatsapp);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .btn-whatsapp:hover {
+    background: var(--color-whatsapp-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 50px -12px color-mix(in oklab, var(--color-whatsapp) 75%, transparent);
+  }
+
+  .btn-whatsapp:active {
+    transform: translateY(0);
+  }
+
+  /* Tipografia fluida das manchetes. */
+  .h1-hero {
+    font-size: clamp(2.375rem, 3.2vw + 1.6rem, 3.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  /* 30px/36px no mobile e 36px/40px no desktop, como a referência. */
+  .h2-section {
+    font-size: clamp(1.875rem, 1.5vw + 1.4rem, 2.25rem);
+    line-height: clamp(2.25rem, 1vw + 1.934rem, 2.5rem);
+    letter-spacing: -0.02em;
+  }
+
+  .h2-cta {
+    font-size: clamp(2.25rem, 3vw + 1.5rem, 3.75rem);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Animações
+ * ------------------------------------------------------------------ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+    box-shadow: var(--shadow-float);
+  }
+  50% {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 58px -12px color-mix(in oklab, var(--color-whatsapp) 85%, transparent);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal-in {
+  animation: fadeUp 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.float-wa {
+  animation: var(--animate-float-pulse);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal-in {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+
+  .float-wa {
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
