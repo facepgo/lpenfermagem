@@ -5,13 +5,14 @@ import { RevealOnScroll } from './RevealOnScroll';
 
 const { trustBar } = siteContent;
 
-/** Faixa azul-marinho com os quatro diferenciais logo abaixo do hero. */
+/** Faixa azul-marinho logo abaixo do hero: as três certificações na primeira
+ *  fileira, as três credenciais na segunda. */
 export function TrustBar() {
   return (
     <section id={trustBar.id} className="bg-deep py-16 text-deep-foreground sm:py-20">
       <div className="container-page">
         <h2 className="sr-only">Diferenciais da FACEP</h2>
-        <ul className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+        <ul className="grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-6">
           {trustBar.items.map((item, index) => {
             const Icon = getIcon(item.icon);
             return (

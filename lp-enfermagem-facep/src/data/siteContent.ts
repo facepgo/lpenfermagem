@@ -111,6 +111,23 @@ export const siteContent = {
   trustBar: {
     id: 'beneficios',
     items: [
+      // As três certificações vêm primeiro e em ordem: no desktop ocupam a
+      // primeira fileira inteira, lendo como a progressão 6 → 12 → 18 meses.
+      {
+        icon: 'hand-heart',
+        title: 'Cuidador de Idosos',
+        description: '1ª certificação — em 6 meses',
+      },
+      {
+        icon: 'syringe',
+        title: 'Auxiliar de Enfermagem',
+        description: '2ª certificação — em 12 meses',
+      },
+      {
+        icon: 'award',
+        title: 'Téc. em Enfermagem',
+        description: '3ª certificação — em 18 meses',
+      },
       {
         icon: 'graduation-cap',
         title: 'Diploma reconhecido',
@@ -120,12 +137,6 @@ export const siteContent = {
         icon: 'hospital',
         title: 'Estágio supervisionado',
         description: 'Nas melhores unidades de saúde de Goiânia',
-      },
-      {
-        icon: 'stethoscope',
-        title: 'Tripla certificação',
-        description:
-          'Cuidador de Idosos (6 meses) + Auxiliar de Enfermagem (12 meses) + Téc. em Enfermagem (18 meses)',
       },
       {
         icon: 'book-open',

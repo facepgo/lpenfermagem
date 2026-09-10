@@ -1,10 +1,12 @@
 import {
+  Award,
   BookOpen,
   CalendarDays,
   CircleCheck,
   ClipboardList,
   Clock,
   GraduationCap,
+  HandHeart,
   Heart,
   Hospital,
   MapPin,
@@ -12,6 +14,7 @@ import {
   Repeat,
   Star,
   Stethoscope,
+  Syringe,
   Timer,
   Zap,
   Flame,
@@ -23,6 +26,7 @@ import {
  * componentes de ícone, mantendo `siteContent.ts` livre de JSX.
  */
 export const iconMap = {
+  award: Award,
   'book-open': BookOpen,
   'calendar-days': CalendarDays,
   'circle-check': CircleCheck,
@@ -30,6 +34,7 @@ export const iconMap = {
   clock: Clock,
   flame: Flame,
   'graduation-cap': GraduationCap,
+  'hand-heart': HandHeart,
   heart: Heart,
   hospital: Hospital,
   'map-pin': MapPin,
@@ -37,6 +42,7 @@ export const iconMap = {
   repeat: Repeat,
   star: Star,
   stethoscope: Stethoscope,
+  syringe: Syringe,
   timer: Timer,
   zap: Zap,
 } satisfies Record<string, LucideIcon>;
