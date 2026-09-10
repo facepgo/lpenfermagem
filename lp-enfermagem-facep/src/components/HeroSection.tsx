@@ -52,10 +52,15 @@ export function HeroSection() {
             </p>
           </div>
 
-          <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium text-muted-foreground">
+          {/* Cada selo vira uma pastilha, para separarem-se entre si em vez de
+              lerem como uma linha corrida. */}
+          <ul className="mt-8 flex flex-wrap items-center gap-2.5 text-xs font-bold uppercase tracking-wider">
             {hero.seals.map((seal) => (
-              <li key={seal} className="inline-flex items-center gap-1.5">
-                <CircleCheck className="h-4 w-4 text-accent-strong" aria-hidden="true" />
+              <li
+                key={seal}
+                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-3 py-1.5 text-foreground"
+              >
+                <CircleCheck className="h-4 w-4 shrink-0 text-accent-strong" aria-hidden="true" />
                 {seal}
               </li>
             ))}
