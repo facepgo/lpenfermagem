@@ -9,7 +9,7 @@ const { finalCta } = siteContent;
 
 const GLOW =
   'radial-gradient(700px 380px at 50% 0%, color-mix(in oklab, var(--color-brand) 55%, transparent), transparent 65%),' +
-  'radial-gradient(600px 340px at 50% 100%, color-mix(in oklab, var(--color-gold) 18%, transparent), transparent 65%)';
+  'radial-gradient(600px 340px at 50% 100%, color-mix(in oklab, var(--color-accent) 18%, transparent), transparent 65%)';
 
 /** Fechamento azul-marinho com profundidade radial e o CTA final. */
 export function FinalCTA() {
@@ -34,7 +34,7 @@ export function FinalCTA() {
           ))}
         </RevealOnScroll>
 
-        <RevealOnScroll as="p" className="mt-5 text-lg font-semibold text-gold sm:text-xl">
+        <RevealOnScroll as="p" className="mt-5 text-lg font-semibold text-accent sm:text-xl">
           {finalCta.subtitle}
         </RevealOnScroll>
 
@@ -44,7 +44,7 @@ export function FinalCTA() {
             {finalCta.ctaLabel}
           </WhatsAppLink>
           <p className="inline-flex items-center gap-1.5 text-xs text-deep-foreground/70">
-            <Zap className="h-3.5 w-3.5 text-gold" aria-hidden="true" />
+            <Zap className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
             {finalCta.ctaHelper}
           </p>
         </RevealOnScroll>

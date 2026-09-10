@@ -42,10 +42,17 @@ Tokens visuais em `src/styles/globals.css`, bloco `@theme`:
 
 | Token             | Valor     | Uso                                  |
 | ----------------- | --------- | ------------------------------------ |
-| `--color-deep`    | `#003050` | Fundo das seções azul-marinho        |
-| `--color-brand`   | `#004F92` | Azul da Enfermagem — ícones, bordas  |
-| `--color-gold`    | `#f6c919` | Destaques, badges, selos             |
-| `--color-whatsapp`| `#3bca60` | Botões de conversão                  |
+| `--color-deep`             | `#060d49` | Fundo das seções escuras                        |
+| `--color-brand`            | `#004F92` | Azul da Enfermagem — ícones, bordas             |
+| `--color-accent`           | `#10B981` | Verde esmeralda claro — destaques sobre o escuro |
+| `--color-accent-strong`    | `#00674F` | Verde esmeralda da marca — badges preenchidos    |
+| `--color-accent-foreground`| `#ffffff` | Texto sobre os preenchimentos esmeralda          |
+| `--color-whatsapp`         | `#3bca60` | Botões de conversão                             |
+
+O esmeralda tem dois tons de propósito. `#00674F` é escuro: sobre o fundo
+`#060d49` ele fica em 2,63:1, abaixo do mínimo de 3:1. Por isso o texto de
+destaque usa `#10B981` (7,13:1) e o `#00674F` fica só nos preenchimentos, com
+texto branco (6,88:1). Trocar um pelo outro derruba a legibilidade.
 
 ## Dados: tudo verificável
 

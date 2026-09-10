@@ -10,7 +10,7 @@ const { pricing } = siteContent;
 export function PricingCard() {
   return (
     <RevealOnScroll className="mx-auto mt-12 max-w-2xl overflow-hidden rounded-large border-2 border-brand bg-card shadow-elegant">
-      <p className="flex items-center justify-center gap-2 bg-gold py-3 text-base font-black uppercase tracking-wider text-gold-foreground">
+      <p className="flex items-center justify-center gap-2 bg-accent-strong py-3 text-base font-black uppercase tracking-wider text-accent-foreground">
         {pricing.badge}
       </p>
 

@@ -25,7 +25,7 @@ export function Footer() {
           </div>
 
           <nav aria-label="Rodapé" className="text-sm">
-            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-gold">{footer.navTitle}</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-accent">{footer.navTitle}</p>
             <ul className="space-y-2">
               {footer.nav.map((item) => (
                 <li key={item.href}>
@@ -38,7 +38,7 @@ export function Footer() {
           </nav>
 
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-gold">{footer.socialTitle}</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-accent">{footer.socialTitle}</p>
             <div className="flex items-center gap-3">
               <WhatsAppLink
                 variant="plain"

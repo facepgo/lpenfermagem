@@ -18,9 +18,9 @@ export function TrustBar() {
                 key={item.title}
                 as="li"
                 delay={index * 80}
-                className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur transition duration-200 hover:border-gold/40 hover:bg-white/[0.07] sm:p-6"
+                className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur transition duration-200 hover:border-accent/40 hover:bg-white/[0.07] sm:p-6"
               >
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-gold text-gold-foreground">
+                <span className="grid h-12 w-12 place-items-center rounded-xl bg-accent-strong text-accent-foreground">
                   <Icon className="h-6 w-6" aria-hidden="true" />
                 </span>
                 <h3 className="mt-4 text-base font-bold sm:text-lg">{item.title}</h3>

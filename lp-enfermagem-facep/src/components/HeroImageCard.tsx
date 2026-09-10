@@ -13,7 +13,7 @@ export function HeroImageCard() {
       {/* Aura azul/dourada desfocada atrás do card. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-gold/30 via-brand/10 to-transparent blur-2xl"
+        className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-accent/30 via-brand/10 to-transparent blur-2xl"
       />
 
       <div className="relative overflow-hidden rounded-hero border border-white/10 bg-white/5 shadow-elegant">

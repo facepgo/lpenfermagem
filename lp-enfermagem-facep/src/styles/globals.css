@@ -2,7 +2,7 @@
 
 /* ------------------------------------------------------------------ *
  * Design tokens — expostos como variáveis CSS e como utilitários
- * Tailwind (bg-deep, text-gold, rounded-card, shadow-elegant, ...).
+ * Tailwind (bg-deep, text-accent, rounded-card, shadow-elegant, ...).
  * ------------------------------------------------------------------ */
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
@@ -12,8 +12,9 @@
   --color-deep-foreground: #eef6fd;
   --color-brand: #004F92;
   --color-brand-foreground: #ffffff;
-  --color-gold: #f6c919;
-  --color-gold-foreground: #0f1932;
+  --color-accent: #10B981;
+  --color-accent-strong: #00674F;
+  --color-accent-foreground: #ffffff;
   --color-whatsapp: #3bca60;
   --color-whatsapp-hover: #25b950;
 
@@ -61,7 +62,7 @@
   }
 
   .bg-deep {
-    --focus-ring: var(--color-gold);
+    --focus-ring: var(--color-accent);
   }
 
   :where(a, button, input, textarea, select, [tabindex]:not([tabindex='-1'])):focus-visible {

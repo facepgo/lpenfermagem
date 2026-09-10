@@ -28,7 +28,7 @@ export function SectionHeading({
       <span
         className={cx(
           'text-xs font-bold uppercase tracking-wider',
-          tone === 'deep' ? 'text-gold' : 'text-brand',
+          tone === 'deep' ? 'text-accent' : 'text-brand',
         )}
       >
         {eyebrow}

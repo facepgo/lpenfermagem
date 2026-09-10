@@ -13,7 +13,7 @@ export function ScheduleCard({ option, delay = 0 }: ScheduleCardProps) {
       delay={delay}
       className="rounded-large bg-card p-7 text-card-foreground shadow-elegant transition duration-200 hover:-translate-y-1 sm:p-9"
     >
-      <h3 className="inline-block rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wider text-gold-foreground">
+      <h3 className="inline-block rounded-full bg-accent-strong px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent-foreground">
         {option.badge}
       </h3>
 
