@@ -22,8 +22,8 @@ export type Feature = {
   icon: IconName;
   title: string;
   description: string;
-  /** Ocupa as duas colunas no mobile. Só vale a pena com 5 cards: com 4,
-   *  sobra um órfão sozinho na última fileira. */
+  /** Ocupa as duas colunas no mobile. Use no 3º card de um grupo de três:
+   *  em 2 colunas ele sobraria sozinho na última fileira. */
   wide?: boolean;
 };
 
@@ -111,23 +111,6 @@ export const siteContent = {
   trustBar: {
     id: 'beneficios',
     items: [
-      // As três certificações vêm primeiro e em ordem: no desktop ocupam a
-      // primeira fileira inteira, lendo como a progressão 6 → 12 → 18 meses.
-      {
-        icon: 'hand-heart',
-        title: 'Cuidador de Idosos',
-        description: '1ª certificação — em 6 meses',
-      },
-      {
-        icon: 'syringe',
-        title: 'Auxiliar de Enfermagem',
-        description: '2ª certificação — em 12 meses',
-      },
-      {
-        icon: 'award',
-        title: 'Téc. em Enfermagem',
-        description: '3ª certificação — em 18 meses',
-      },
       {
         icon: 'graduation-cap',
         title: 'Diploma reconhecido',
@@ -142,8 +125,32 @@ export const siteContent = {
         icon: 'book-open',
         title: '1.600 horas',
         description: '3 módulos de 400 horas + estágio',
+        wide: true,
       },
     ] as Feature[],
+    /** Grupo separado: o rótulo é o que amarra os três cursos numa trilha só. */
+    certification: {
+      label: 'Tripla certificação',
+      note: 'Três certificados ao longo do mesmo curso, um a cada etapa concluída:',
+      items: [
+        {
+          icon: 'hand-heart',
+          title: 'Cuidador de Idosos',
+          description: '1ª certificação — em 6 meses',
+        },
+        {
+          icon: 'syringe',
+          title: 'Auxiliar de Enfermagem',
+          description: '2ª certificação — em 12 meses',
+        },
+        {
+          icon: 'award',
+          title: 'Téc. em Enfermagem',
+          description: '3ª certificação — em 18 meses',
+          wide: true,
+        },
+      ] as Feature[],
+    },
   },
 
   audience: {
