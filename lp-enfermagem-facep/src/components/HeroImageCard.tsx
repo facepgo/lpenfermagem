@@ -30,7 +30,7 @@ export function HeroImageCard() {
 
         <div className="absolute inset-x-4 bottom-4 rounded-2xl bg-white/95 p-4 text-foreground shadow-xl backdrop-blur">
           <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand text-brand-foreground">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-accent-strong text-accent-foreground">
               <GraduationCap className="h-5 w-5" aria-hidden="true" />
             </span>
             <div className="min-w-0">
