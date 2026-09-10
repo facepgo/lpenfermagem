@@ -1,6 +1,6 @@
 # FACEP — Landing Page Técnico em Enfermagem
 
-Landing page publicada em **https://facep.com.br/enf**.
+Landing page publicada em **https://facep.com.br/tecnicoemenfermagem**.
 
 O layout é uma reprodução da estrutura de `gabrielense.online` (grid, tipografia,
 espaçamentos, animações), mas **todo o conteúdo, a marca, as cores, as fotos e os
@@ -8,19 +8,19 @@ contatos são da FACEP** — nada da escola de referência foi ao ar.
 
 > A pasta ainda se chama `gabrielense-lp` por causa de um lock de processo no
 > momento do deploy. Renomear para `lp-enfermagem-facep` não quebra nada: o
-> `vite.config.ts` usa caminho relativo (`../enf`).
+> `vite.config.ts` usa caminho relativo (`../tecnicoemenfermagem`).
 
 ## Como rodar
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173/enf/
-npm run build    # typecheck + build direto em ../enf (pasta servida pela Vercel)
+npm run dev      # http://localhost:5173/tecnicoemenfermagem/
+npm run build    # typecheck + build direto em ../tecnicoemenfermagem (pasta servida pela Vercel)
 npm run preview
 ```
 
-`base` é `/enf/` e `build.outDir` é `../enf`, então **o build já escreve na pasta
-que a Vercel publica**. Depois de buildar, basta commitar `enf/` e fazer o deploy.
+`base` é `/tecnicoemenfermagem/` e `build.outDir` é `../tecnicoemenfermagem`, então **o build já escreve na pasta
+que a Vercel publica**. Depois de buildar, basta commitar `tecnicoemenfermagem/` e fazer o deploy.
 
 ## Stack
 

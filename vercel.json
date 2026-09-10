@@ -1,10 +1,14 @@
 {
+    "redirects": [
+        { "source": "/enf", "destination": "/tecnicoemenfermagem", "permanent": true },
+        { "source": "/enf/(.*)", "destination": "/tecnicoemenfermagem/$1", "permanent": true }
+    ],
     "rewrites": [
         { "source": "/enfermagem", "destination": "/index.html" },
         { "source": "/enfermagem/(.*)", "destination": "/index.html" },
         { "source": "/enfermagem02", "destination": "/enfermagem02.html" },
         { "source": "/enfermagem02/(.*)", "destination": "/enfermagem02.html" },
-        { "source": "/enf", "destination": "/enf/index.html" },
-        { "source": "/enf/(.*)", "destination": "/enf/index.html" }
+        { "source": "/tecnicoemenfermagem", "destination": "/tecnicoemenfermagem/index.html" },
+        { "source": "/tecnicoemenfermagem/(.*)", "destination": "/tecnicoemenfermagem/index.html" }
     ]
 }
