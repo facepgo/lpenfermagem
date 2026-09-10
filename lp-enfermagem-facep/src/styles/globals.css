@@ -15,6 +15,11 @@
   --color-accent: #10B981;
   --color-accent-strong: #00674F;
   --color-accent-foreground: #ffffff;
+
+  /* Vermelho do logo. O tom `ink` existe porque o da marca rende 4,37:1
+     sobre branco — abaixo dos 4,5:1 exigidos para texto pequeno. */
+  --color-red-brand: #ED1D24;
+  --color-red-ink: #C41520;
   --color-whatsapp: #00674F;
   --color-whatsapp-hover: #00815F;
 
