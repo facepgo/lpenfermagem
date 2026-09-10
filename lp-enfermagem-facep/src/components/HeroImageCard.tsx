@@ -10,13 +10,13 @@ const { hero } = siteContent;
 export function HeroImageCard() {
   return (
     <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
-      {/* Aura azul/dourada desfocada atrás do card. */}
+      {/* Aura esmeralda desfocada atrás do card. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-accent/30 via-brand/10 to-transparent blur-2xl"
+        className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-accent/25 via-brand/10 to-transparent blur-2xl"
       />
 
-      <div className="relative overflow-hidden rounded-hero border border-white/10 bg-white/5 shadow-elegant">
+      <div className="relative overflow-hidden rounded-hero border border-border bg-muted shadow-elegant">
         <img
           src={hero.image.src}
           alt={hero.image.alt}
