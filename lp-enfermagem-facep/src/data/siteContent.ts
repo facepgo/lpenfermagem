@@ -92,7 +92,7 @@ export const siteContent = {
     subtitle: 'Aulas práticas desde o 1º Módulo',
     ctaLabel: 'QUERO GARANTIR MINHA VAGA',
     ctaHelper: 'Fale agora com a secretaria acadêmica',
-    seals: ['MEC', 'COAPES / SUS', '100% presencial'],
+    seals: ['MEC', 'COREN', 'SISTEC'],
     image: {
       src: asset('hero-aluna.webp'),
       alt: 'Três alunas da FACEP em frente à unidade: uma com material de estudo, uma de jaleco segurando um estetoscópio e uma formanda com beca e diploma',
