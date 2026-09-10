@@ -1,4 +1,5 @@
 import { siteContent } from '../data/siteContent';
+import { cx } from '../lib/cx';
 import { getIcon } from './icons/iconMap';
 import { RevealOnScroll } from './RevealOnScroll';
 
@@ -18,7 +19,10 @@ export function TrustBar() {
                 key={item.title}
                 as="li"
                 delay={index * 80}
-                className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur transition duration-200 hover:border-accent/40 hover:bg-white/[0.07] sm:p-6"
+                className={cx(
+                  'rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur transition duration-200 hover:border-accent/40 hover:bg-white/[0.07] sm:p-6',
+                  item.wide && 'col-span-2 lg:col-span-1',
+                )}
               >
                 <span className="grid h-12 w-12 place-items-center rounded-xl bg-accent-strong text-accent-foreground">
                   <Icon className="h-6 w-6" aria-hidden="true" />

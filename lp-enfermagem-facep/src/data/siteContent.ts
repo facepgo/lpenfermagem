@@ -22,6 +22,9 @@ export type Feature = {
   icon: IconName;
   title: string;
   description: string;
+  /** Ocupa as duas colunas no mobile. Só vale a pena com 5 cards: com 4,
+   *  sobra um órfão sozinho na última fileira. */
+  wide?: boolean;
 };
 
 export type ImageAsset = {
@@ -115,13 +118,14 @@ export const siteContent = {
       },
       {
         icon: 'hospital',
-        title: 'Estágio no SUS',
-        description: '400 horas em unidades reais de saúde',
+        title: 'Estágio supervisionado',
+        description: 'Nas melhores unidades de saúde de Goiânia',
       },
       {
         icon: 'stethoscope',
-        title: 'Dupla certificação',
-        description: 'Auxiliar de Enfermagem e depois Técnico',
+        title: 'Tripla certificação',
+        description:
+          'Cuidador de Idosos (6 meses) + Auxiliar de Enfermagem (12 meses) + Téc. em Enfermagem (18 meses)',
       },
       {
         icon: 'book-open',
