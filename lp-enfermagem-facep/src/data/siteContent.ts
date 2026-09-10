@@ -89,8 +89,7 @@ export const siteContent = {
       highlight: 'Técnico em Enfermagem',
       after: ' em Goiânia',
     },
-    subtitle:
-      'Diploma reconhecido pelo MEC • 1.600 horas em 3 módulos • 400 horas de estágio supervisionado em unidades reais do SUS.',
+    subtitle: 'Aulas práticas desde o 1º Módulo',
     ctaLabel: 'QUERO GARANTIR MINHA VAGA',
     ctaHelper: 'Fale agora com a secretaria acadêmica',
     seals: ['MEC', 'COAPES / SUS', '100% presencial'],
