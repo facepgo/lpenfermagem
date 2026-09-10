@@ -18,7 +18,7 @@ export function Footer() {
                 width={brand.logoLight.width}
                 height={brand.logoLight.height}
                 loading="lazy"
-                className="h-14 w-auto"
+                className="h-16 w-auto"
               />
             </div>
             <p className="mt-4 max-w-sm text-sm">{footer.about}</p>

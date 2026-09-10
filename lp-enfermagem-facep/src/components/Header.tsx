@@ -22,7 +22,7 @@ export function Header() {
             alt={brand.logo.alt}
             width={brand.logo.width}
             height={brand.logo.height}
-            className="h-10 w-auto sm:h-12"
+            className="h-11 w-auto sm:h-14"
           />
         </a>
 

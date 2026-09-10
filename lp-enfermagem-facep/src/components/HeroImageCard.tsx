@@ -17,12 +17,6 @@ export function HeroImageCard() {
       />
 
       <div className="relative overflow-hidden rounded-hero border border-white/10 bg-white/5 shadow-elegant">
-        {/* Gradiente azul + brilho sutil sob o recorte transparente da foto. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand/20 via-brand/5 to-transparent"
-        />
-
         <img
           src={hero.image.src}
           alt={hero.image.alt}
@@ -31,7 +25,7 @@ export function HeroImageCard() {
           loading="eager"
           fetchPriority="high"
           decoding="async"
-          className="relative aspect-[4/5] w-full object-cover object-bottom"
+          className="aspect-[4/5] w-full object-cover"
         />
 
         <div className="absolute inset-x-4 bottom-4 rounded-2xl bg-white/95 p-4 text-foreground shadow-xl backdrop-blur">

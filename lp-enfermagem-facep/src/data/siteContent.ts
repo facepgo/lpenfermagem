@@ -63,15 +63,15 @@ export const siteContent = {
     logo: {
       src: asset('logo-facep-h-dark.webp'),
       alt: 'FACEP — Faculdade Científica de Ensino e Pesquisa',
-      width: 820,
-      height: 300,
+      width: 900,
+      height: 347,
     },
     /** Versão branca, para o rodapé azul-marinho. */
     logoLight: {
       src: asset('logo-facep-h-light.webp'),
       alt: 'FACEP — Faculdade Científica de Ensino e Pesquisa',
-      width: 820,
-      height: 300,
+      width: 900,
+      height: 347,
     },
   },
 
@@ -96,7 +96,7 @@ export const siteContent = {
     seals: ['MEC', 'COAPES / SUS', '100% presencial'],
     image: {
       src: asset('hero-aluna.webp'),
-      alt: 'Aluna da FACEP de jaleco branco segurando um estetoscópio',
+      alt: 'Três alunas da FACEP em frente à unidade: uma com material de estudo, uma de jaleco segurando um estetoscópio e uma formanda com beca e diploma',
       width: 1080,
       height: 1350,
     },
