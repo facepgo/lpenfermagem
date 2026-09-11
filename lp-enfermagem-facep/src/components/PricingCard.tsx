@@ -24,7 +24,7 @@ export function PricingCard() {
               <dd
                 className={
                   highlight.tone === 'free'
-                    ? 'mt-1 text-4xl font-black leading-none text-accent-strong sm:text-[2.75rem]'
+                    ? 'mt-1 text-4xl font-black leading-none text-deep sm:text-[2.75rem]'
                     : 'mt-1 text-3xl font-black leading-none text-foreground sm:text-4xl'
                 }
               >
