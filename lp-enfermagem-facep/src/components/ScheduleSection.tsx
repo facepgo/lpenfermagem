@@ -1,5 +1,4 @@
 import { siteContent } from '../data/siteContent';
-import { RevealOnScroll } from './RevealOnScroll';
 import { ScheduleCard } from './ScheduleCard';
 import { SectionHeading } from './SectionHeading';
 
@@ -17,18 +16,6 @@ export function ScheduleSection() {
             <ScheduleCard key={option.badge} option={option} delay={index * 120} />
           ))}
         </div>
-
-        <RevealOnScroll
-          as="p"
-          className="mx-auto mt-10 max-w-2xl text-center text-sm text-deep-foreground/85 sm:text-base"
-        >
-          {schedule.footnote.map((line, index) => (
-            <span key={line}>
-              {index > 0 ? <br /> : null}
-              {line}
-            </span>
-          ))}
-        </RevealOnScroll>
       </div>
     </section>
   );

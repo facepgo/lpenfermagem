@@ -235,10 +235,6 @@ export const siteContent = {
         ],
       },
     ] as ScheduleOption[],
-    footnote: [
-      'Carga horária de 1.600 horas • 3 módulos de 400 horas',
-      '400 horas de estágio supervisionado em unidades reais do SUS',
-    ],
   },
 
   gallery: {
