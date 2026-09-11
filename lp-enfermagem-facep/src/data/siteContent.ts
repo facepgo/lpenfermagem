@@ -378,14 +378,18 @@ export const siteContent = {
     title: 'Condições especiais para matrículas antecipadas',
     badge: '🏷️ Matrículas abertas',
     benefits: [
+      'Matrícula grátis',
+      'Mensalidade a partir de R$ 279,90',
+      'Descontos de pontualidade',
+      'Desconto de até 30% para pagamento à vista',
       'Matrícula 100% online, em poucos minutos e sem burocracia',
-      'Parcelamento e descontos informados pela secretaria acadêmica',
-      'Condições especiais para matrículas antecipadas',
       'Processo seletivo em 3 passos: WhatsApp, matrícula online e início das aulas',
     ],
+    /** Sai a ressalva de que os valores ficam com a secretaria: a página passou
+     *  a publicá-los, e a frase antiga contradizia a lista logo acima. */
     disclaimer:
-      '* Valores, formas de parcelamento e descontos são informados pela secretaria acadêmica da FACEP.',
-    ctaLabel: 'CONSULTAR VALORES PELO WHATSAPP',
+      '* Condições confirmadas com a secretaria acadêmica no ato da matrícula.',
+    ctaLabel: 'FALAR COM A SECRETARIA PELO WHATSAPP',
     warning: '⚠️ Garanta sua vaga na próxima turma',
   },
 

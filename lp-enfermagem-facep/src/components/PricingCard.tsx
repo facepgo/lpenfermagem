@@ -6,7 +6,7 @@ import { WhatsAppLink } from './WhatsAppLink';
 
 const { pricing } = siteContent;
 
-/** Card central da oferta. Os valores ficam com a secretaria — nada é fixado aqui. */
+/** Card central da oferta, com os valores que a FACEP publica. */
 export function PricingCard() {
   return (
     <RevealOnScroll className="mx-auto mt-12 max-w-2xl overflow-hidden rounded-large border-2 border-brand bg-card shadow-elegant">
