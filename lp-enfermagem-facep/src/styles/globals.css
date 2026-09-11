@@ -20,7 +20,10 @@
      sobre branco — abaixo dos 4,5:1 exigidos para texto pequeno.
      `on-deep` é o caminho inverso: sobre o navy o vermelho da marca cai para
      4,13:1, então texto pequeno ali pede um tom mais claro (5,46:1). Mesma
-     lógica dos dois esmeraldas — a marca preenche, o tom claro escreve. */
+     lógica dos dois esmeraldas — a marca preenche, o tom claro escreve.
+     Hoje sem uso: o rótulo que o usava foi para dentro de um card branco.
+     Fica porque a conta de contraste vale para qualquer vermelho sobre o
+     navy, e refazê-la depois é trabalho repetido. */
   --color-red-brand: #ED1D24;
   --color-red-ink: #C41520;
   --color-red-on-deep: #FF4A4F;

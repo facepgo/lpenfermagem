@@ -68,7 +68,7 @@ export function TrustBar() {
               className="text-2xl font-black tabular-nums"
             />
           </span>
-          <h3 className="mt-5 text-xl font-bold text-red-ink">{certification.label}</h3>
+          <h3 className="mt-5 text-xl font-bold text-deep">{certification.label}</h3>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{certification.note}</p>
         </RevealOnScroll>
 
