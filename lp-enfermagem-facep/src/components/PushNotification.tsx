@@ -7,7 +7,7 @@ import { getIcon } from './icons/iconMap';
 const { pushNotifications } = siteContent;
 
 /** Respiro depois de o áudio destravar, antes do primeiro aviso. */
-const FIRST_DELAY_MS = 1500;
+const FIRST_DELAY_MS = 1200;
 /** Quanto cada aviso fica na tela. */
 const VISIBLE_MS = 6000;
 /** Silêncio entre um aviso e o próximo. */
@@ -18,10 +18,13 @@ const EXIT_MS = 400;
 const PEAK_GAIN = 0.38;
 /**
  * Até quanto tempo a fila espera por um gesto antes de começar mesmo assim.
- * Sem isso, quem nunca clica — comum no desktop, onde rolar com a roda não
- * conta como gesto — nunca veria aviso nenhum.
+ *
+ * Curto de propósito. Esperar o gesto é o que dá som ao primeiro aviso, mas
+ * esperar demais é pior que o silêncio: com 6s aqui o aviso só aparecia aos
+ * 7,5s para quem não clica, e na prática parecia que tinha sumido da página.
+ * Com 2,5s o pior caso fica em 3,7s — perto do que era antes do áudio entrar.
  */
-const UNLOCK_WAIT_MS = 6000;
+const UNLOCK_WAIT_MS = 2500;
 
 /**
  * Um AudioContext só para a página inteira.
