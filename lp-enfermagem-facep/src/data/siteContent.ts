@@ -208,21 +208,31 @@ export const siteContent = {
     title: 'Escolha o horário ideal para você',
     options: [
       {
-        badge: 'Opção 1 — Durante a semana',
+        badge: 'Opção 1 — Manhã',
         items: [
-          { icon: 'calendar-days', label: 'Turmas em dias de semana' },
-          { icon: 'clock', label: 'Modalidade 100% presencial' },
+          { icon: 'calendar-days', label: 'Segunda a Quinta' },
+          { icon: 'clock', label: '8h às 11h' },
           { icon: 'timer', label: 'Duração: 18 meses' },
+          { icon: 'hospital', label: 'Estágio incluso' },
         ],
       },
       {
-        badge: 'Opção 2 — Finais de semana',
+        badge: 'Opção 2 — Noite',
         items: [
-          { icon: 'calendar-days', label: 'Turmas aos finais de semana' },
-          { icon: 'clock', label: 'Modalidade 100% presencial' },
-          { icon: 'timer', label: 'Duração: 24 meses' },
+          { icon: 'calendar-days', label: 'Segunda a Quinta' },
+          { icon: 'clock', label: '19h às 22h' },
+          { icon: 'timer', label: 'Duração: 18 meses' },
+          { icon: 'hospital', label: 'Estágio incluso' },
         ],
-        note: 'Horários de cada turno: consulte a secretaria acadêmica.',
+      },
+      {
+        badge: 'Opção 3 — Sábado',
+        items: [
+          { icon: 'calendar-days', label: 'Sábado' },
+          { icon: 'clock', label: '8h às 16h' },
+          { icon: 'timer', label: 'Duração: 24 meses' },
+          { icon: 'hospital', label: 'Estágio incluso' },
+        ],
       },
     ] as ScheduleOption[],
     footnote: [
