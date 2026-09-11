@@ -1,6 +1,5 @@
 import { siteContent } from '../data/siteContent';
 import { PricingCard } from './PricingCard';
-import { RevealOnScroll } from './RevealOnScroll';
 import { SectionHeading } from './SectionHeading';
 
 const { pricing } = siteContent;
@@ -13,10 +12,6 @@ export function PricingSection() {
         <SectionHeading eyebrow={pricing.eyebrow} title={pricing.title} />
 
         <PricingCard />
-
-        <RevealOnScroll as="p" className="mt-5 text-center text-sm font-semibold text-danger">
-          {pricing.warning}
-        </RevealOnScroll>
       </div>
     </section>
   );

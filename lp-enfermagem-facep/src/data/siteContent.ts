@@ -409,7 +409,6 @@ export const siteContent = {
     disclaimer:
       '* Condições confirmadas com a secretaria acadêmica no ato da matrícula.',
     ctaLabel: 'FALAR COM A SECRETARIA PELO WHATSAPP',
-    warning: '⚠️ Garanta sua vaga na próxima turma',
   },
 
   units: {
