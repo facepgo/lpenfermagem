@@ -53,30 +53,40 @@ export function TrustBar() {
           ))}
         </ul>
 
-        {/* Mesmo shell dos cards de "Para você": card branco, ícone em quadrado
-            esmeralda, título e apoio. Sobre o navy ele salta, que é o ponto. */}
+        {/* Mesmo molde do card de investimento: tarja esmeralda no topo e, no
+            corpo branco, pares rótulo/valor. A etapa é o rótulo e o curso é o
+            valor, porque é o nome do certificado que a pessoa quer ler grande. */}
         <RevealOnScroll
           as="article"
-          className="group mx-auto mt-12 max-w-2xl rounded-card border-2 border-brand/15 bg-card p-6 text-card-foreground transition duration-200 hover:-translate-y-1 hover:border-brand hover:shadow-elegant sm:p-7"
+          className="mx-auto mt-12 max-w-3xl overflow-hidden rounded-large border-2 border-brand bg-card text-card-foreground shadow-elegant"
         >
-          <span className="grid h-14 w-14 place-items-center rounded-2xl bg-accent-strong text-accent-foreground transition duration-200 group-hover:scale-110">
-            <AnimatedCounter
-              value={3}
-              from={1}
-              ease="linear"
-              duration={1800}
-              className="text-2xl font-black tabular-nums"
-            />
-          </span>
-          <h3 className="mt-5 text-xl font-bold text-deep">{certification.label}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{certification.note}</p>
-        </RevealOnScroll>
+          <p className="flex items-center justify-center gap-2.5 bg-accent-strong py-3 text-base font-black uppercase tracking-wider text-accent-foreground">
+            <span className="grid h-7 w-7 place-items-center rounded-lg bg-white/20 text-sm tabular-nums">
+              <AnimatedCounter value={3} from={1} ease="linear" duration={1800} />
+            </span>
+            {certification.label}
+          </p>
 
-        <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-6">
-          {certification.items.map((item, index) => (
-            <TrustCard key={item.title} item={item} delay={index * 80} />
-          ))}
-        </ul>
+          <div className="p-7 sm:p-9">
+            <p className="text-sm leading-relaxed text-muted-foreground">{certification.note}</p>
+
+            <dl className="mt-6 grid gap-6 sm:grid-cols-3 sm:gap-5 sm:divide-x sm:divide-border">
+              {certification.items.map((item, index) => (
+                <div key={item.title} className={index > 0 ? 'sm:pl-5' : undefined}>
+                  {/* Caixa baixa e sem tracking, como no card de investimento:
+                      em versalete "2ª certificação — em 12 meses" não cabe na
+                      coluna, quebra em duas linhas e desalinha os três nomes. */}
+                  <dt className="text-xs font-semibold text-muted-foreground">
+                    {item.description}
+                  </dt>
+                  <dd className="mt-1.5 text-lg font-black leading-tight text-deep">
+                    {item.title}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   );
