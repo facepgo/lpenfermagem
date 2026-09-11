@@ -122,15 +122,6 @@ export const siteContent = {
         description: 'Nas melhores unidades de saúde de Goiânia',
       },
       {
-        icon: 'book-open',
-        title: '1.600 horas',
-        description: '3 módulos de 400 horas + estágio',
-        wide: true,
-      },
-    ] as Feature[],
-    /** Segunda fileira da faixa: vantagens do dia a dia de quem estuda aqui. */
-    extras: [
-      {
         icon: 'map-pin',
         title: 'Localização privilegiada',
         description: 'No centro de Goiânia',

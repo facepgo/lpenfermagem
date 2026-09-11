@@ -28,8 +28,9 @@ function TrustCard({ item, delay }: { item: Feature; delay: number }) {
 }
 
 /**
- * Faixa azul-marinho logo abaixo do hero: primeiro as credenciais, depois a
- * trilha de certificações sob um rótulo que as amarra como um conjunto só.
+ * Faixa azul-marinho logo abaixo do hero: primeiro os seis diferenciais em
+ * duas fileiras de três, depois a trilha de certificações sob um rótulo que
+ * as amarra como um conjunto só.
  */
 export function TrustBar() {
   const { certification } = trustBar;
@@ -41,12 +42,6 @@ export function TrustBar() {
 
         <ul className="grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-6">
           {trustBar.items.map((item, index) => (
-            <TrustCard key={item.title} item={item} delay={index * 80} />
-          ))}
-        </ul>
-
-        <ul className="mt-4 grid grid-cols-2 gap-4 lg:mt-6 lg:grid-cols-4 lg:gap-6">
-          {trustBar.extras.map((item, index) => (
             <TrustCard key={item.title} item={item} delay={index * 80} />
           ))}
         </ul>
