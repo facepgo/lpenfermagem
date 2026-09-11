@@ -116,7 +116,7 @@ export function PushNotification() {
       )}
     >
       <div className="flex items-start gap-3">
-        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-accent-strong text-accent-foreground">
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-promo text-white">
           <Icon className="h-6 w-6" aria-hidden="true" />
         </span>
 

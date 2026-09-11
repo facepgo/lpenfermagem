@@ -24,6 +24,11 @@
   --color-red-brand: #ED1D24;
   --color-red-ink: #C41520;
   --color-red-on-deep: #FF4A4F;
+
+  /* Bordô dos avisos de push. Fica longe do vermelho da marca de propósito:
+     o `red-brand` é identidade, este é oferta, e os dois lado a lado só
+     confundem de qual FACEP é a cor. Rende 8,96:1 com o ícone branco. */
+  --color-promo: #8E1B2E;
   --color-whatsapp: #00674F;
   --color-whatsapp-hover: #00815F;
 
