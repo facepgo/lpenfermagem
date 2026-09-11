@@ -6,38 +6,53 @@ import { getIcon } from './icons/iconMap';
 
 const { pushNotifications } = siteContent;
 
-/** Espera depois de a pessoa chegar, antes do primeiro aviso. */
-const FIRST_DELAY_MS = 2500;
+/** Respiro depois de o áudio destravar, antes do primeiro aviso. */
+const FIRST_DELAY_MS = 1500;
 /** Quanto cada aviso fica na tela. */
 const VISIBLE_MS = 6000;
 /** Silêncio entre um aviso e o próximo. */
 const GAP_MS = 4000;
 /** Precisa casar com a duração da transição de saída. */
 const EXIT_MS = 400;
+/** Volume de pico do "ding". */
+const PEAK_GAIN = 0.38;
+/**
+ * Até quanto tempo a fila espera por um gesto antes de começar mesmo assim.
+ * Sem isso, quem nunca clica — comum no desktop, onde rolar com a roda não
+ * conta como gesto — nunca veria aviso nenhum.
+ */
+const UNLOCK_WAIT_MS = 6000;
 
 /**
- * Toca um "ding" curto de duas notas pelo Web Audio, sem arquivo de áudio.
+ * Um AudioContext só para a página inteira.
  *
- * Navegador nenhum deixa tocar som antes de a pessoa interagir com a página:
- * até o primeiro clique ou toque o AudioContext nasce suspenso. Isso não tem
- * contorno — é política de autoplay do Chrome, Safari e Firefox. Então a
- * chamada falha em silêncio no primeiro aviso de quem acabou de chegar, e
- * passa a funcionar depois do primeiro toque.
+ * Antes havia um novo a cada aviso, e cada um nascia suspenso: mesmo depois de
+ * a pessoa já ter tocado na tela, o contexto recém-criado continuava travado.
+ * Com um só, destravado no primeiro gesto, todos os avisos seguintes tocam.
  */
+let audioCtx: AudioContext | null = null;
+
+function getAudioContext(): AudioContext | null {
+  if (audioCtx) return audioCtx;
+  const Ctor =
+    window.AudioContext ??
+    (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  if (!Ctor) return null;
+  audioCtx = new Ctor();
+  return audioCtx;
+}
+
+/** Toca um "ding" curto de duas notas pelo Web Audio, sem arquivo de áudio. */
 function playChime() {
   try {
-    const Ctor = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!Ctor) return;
-
-    const ctx = new Ctor();
-    if (ctx.state === 'suspended') {
-      void ctx.resume().catch(() => undefined);
-    }
+    const ctx = getAudioContext();
+    // Suspenso quer dizer que o navegador ainda não liberou áudio nesta aba.
+    if (!ctx || ctx.state !== 'running') return;
 
     const gain = ctx.createGain();
     gain.connect(ctx.destination);
     gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.02);
+    gain.gain.exponentialRampToValueAtTime(PEAK_GAIN, ctx.currentTime + 0.02);
     gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.45);
 
     [880, 1320].forEach((freq, i) => {
@@ -49,7 +64,8 @@ function playChime() {
       osc.stop(ctx.currentTime + 0.5);
     });
 
-    setTimeout(() => void ctx.close().catch(() => undefined), 900);
+    // O contexto não é fechado: ele é compartilhado e precisa seguir destravado
+    // para o próximo aviso.
   } catch {
     // Sem áudio disponível: o aviso continua aparecendo normalmente.
   }
@@ -65,15 +81,55 @@ function playChime() {
  *
  * O X fecha a fila inteira — é o que atende o critério 2.2.2 da WCAG, que
  * exige poder esconder conteúdo que se move ou troca sozinho.
+ *
+ * A fila só começa depois que o áudio destrava, para o primeiro aviso também
+ * sair com som. No celular isso é quase imediato: o toque que inicia a rolagem
+ * já dispara `touchstart`, que conta como gesto. No desktop, rolar com a roda
+ * não conta, então entra o limite de espera e a fila começa muda.
  */
 export function PushNotification() {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [closed, setClosed] = useState(false);
+  const [armed, setArmed] = useState(false);
   const soundedFor = useRef(-1);
 
   useEffect(() => {
-    if (closed || index >= pushNotifications.length) return;
+    let done = false;
+    const start = () => {
+      if (done) return;
+      done = true;
+      clearTimeout(fallback);
+      events.forEach((event) => window.removeEventListener(event, unlock));
+      setArmed(true);
+    };
+
+    const unlock = () => {
+      const ctx = getAudioContext();
+      if (!ctx) {
+        start();
+        return;
+      }
+      // `resume()` só é aceito dentro do gesto; o then/catch apenas espera a
+      // promessa para a fila não começar antes de o áudio estar de pé.
+      void ctx.resume().then(start, start);
+    };
+
+    const events = ['pointerdown', 'touchstart', 'keydown'] as const;
+    events.forEach((event) =>
+      window.addEventListener(event, unlock, { once: true, passive: true }),
+    );
+    const fallback = setTimeout(start, UNLOCK_WAIT_MS);
+
+    return () => {
+      done = true;
+      clearTimeout(fallback);
+      events.forEach((event) => window.removeEventListener(event, unlock));
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!armed || closed || index >= pushNotifications.length) return;
 
     const delay = index === 0 ? FIRST_DELAY_MS : GAP_MS;
     const enter = setTimeout(() => setVisible(true), delay);
@@ -85,7 +141,7 @@ export function PushNotification() {
       clearTimeout(leave);
       clearTimeout(next);
     };
-  }, [index, closed]);
+  }, [armed, index, closed]);
 
   // Um toque por aviso, no momento em que ele entra.
   useEffect(() => {
