@@ -17,9 +17,13 @@
   --color-accent-foreground: #ffffff;
 
   /* Vermelho do logo. O tom `ink` existe porque o da marca rende 4,37:1
-     sobre branco — abaixo dos 4,5:1 exigidos para texto pequeno. */
+     sobre branco — abaixo dos 4,5:1 exigidos para texto pequeno.
+     `on-deep` é o caminho inverso: sobre o navy o vermelho da marca cai para
+     4,13:1, então texto pequeno ali pede um tom mais claro (5,46:1). Mesma
+     lógica dos dois esmeraldas — a marca preenche, o tom claro escreve. */
   --color-red-brand: #ED1D24;
   --color-red-ink: #C41520;
+  --color-red-on-deep: #FF4A4F;
   --color-whatsapp: #00674F;
   --color-whatsapp-hover: #00815F;
 

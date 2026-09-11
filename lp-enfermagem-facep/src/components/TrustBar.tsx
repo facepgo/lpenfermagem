@@ -35,8 +35,8 @@ function TrustCard({ item, delay }: { item: Feature; delay: number }) {
 
 /**
  * Faixa azul-marinho logo abaixo do hero: primeiro os seis diferenciais em
- * duas fileiras de três, depois a trilha de certificações sob um rótulo que
- * as amarra como um conjunto só.
+ * duas fileiras de três, depois a trilha de certificações sob um rótulo
+ * centralizado, no vermelho da marca, que as amarra como um conjunto só.
  */
 export function TrustBar() {
   const { certification } = trustBar;
@@ -52,15 +52,14 @@ export function TrustBar() {
           ))}
         </ul>
 
-        <RevealOnScroll className="mt-10">
-          <h3 className="flex items-center gap-4 text-sm font-black uppercase tracking-wider text-accent">
+        <RevealOnScroll className="mx-auto mt-12 max-w-2xl text-center">
+          <h3 className="text-sm font-black uppercase tracking-wider text-red-on-deep">
             {certification.label}
-            <span aria-hidden="true" className="h-px flex-1 bg-white/15" />
           </h3>
           <p className="mt-2 text-sm text-deep-foreground/75">{certification.note}</p>
         </RevealOnScroll>
 
-        <ul className="mt-5 grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-6">
+        <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-6">
           {certification.items.map((item, index) => (
             <TrustCard key={item.title} item={item} delay={index * 80} />
           ))}
