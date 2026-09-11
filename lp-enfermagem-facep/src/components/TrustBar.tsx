@@ -45,6 +45,12 @@ export function TrustBar() {
           ))}
         </ul>
 
+        <ul className="mt-4 grid grid-cols-2 gap-4 lg:mt-6 lg:grid-cols-4 lg:gap-6">
+          {trustBar.extras.map((item, index) => (
+            <TrustCard key={item.title} item={item} delay={index * 80} />
+          ))}
+        </ul>
+
         <RevealOnScroll className="mt-10">
           <h3 className="flex items-center gap-4 text-sm font-black uppercase tracking-wider text-accent">
             {certification.label}

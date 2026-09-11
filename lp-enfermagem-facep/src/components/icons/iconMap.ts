@@ -1,6 +1,8 @@
 import {
   Award,
   BookOpen,
+  Briefcase,
+  Bus,
   CalendarDays,
   CircleCheck,
   ClipboardList,
@@ -28,6 +30,8 @@ import {
 export const iconMap = {
   award: Award,
   'book-open': BookOpen,
+  briefcase: Briefcase,
+  bus: Bus,
   'calendar-days': CalendarDays,
   'circle-check': CircleCheck,
   'clipboard-list': ClipboardList,

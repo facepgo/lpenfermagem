@@ -128,6 +128,29 @@ export const siteContent = {
         wide: true,
       },
     ] as Feature[],
+    /** Segunda fileira da faixa: vantagens do dia a dia de quem estuda aqui. */
+    extras: [
+      {
+        icon: 'map-pin',
+        title: 'Localização privilegiada',
+        description: 'No centro de Goiânia',
+      },
+      {
+        icon: 'bus',
+        title: 'Passe estudantil',
+        description: 'Sitpass para alunos FACEP',
+      },
+      {
+        icon: 'briefcase',
+        title: 'Preparação para o mercado',
+        description: 'Formação para sua carreira',
+      },
+      {
+        icon: 'timer',
+        title: 'Formação rápida',
+        description: 'Formação a partir de 18 meses',
+      },
+    ] as Feature[],
     /** Grupo separado: o rótulo é o que amarra os três cursos numa trilha só. */
     certification: {
       label: 'Tripla certificação',
