@@ -21,9 +21,9 @@ export function TestimonialsSection() {
           tone="deep"
         />
 
-        <ul className="mt-12 grid gap-6 md:grid-cols-3">
+        <ul className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-2">
           {testimonials.items.map((testimonial, index) => (
-            <li key={testimonial.author} className="h-full">
+            <li key={testimonial.image.src} className="h-full">
               <TestimonialCard testimonial={testimonial} delay={index * 120} />
             </li>
           ))}

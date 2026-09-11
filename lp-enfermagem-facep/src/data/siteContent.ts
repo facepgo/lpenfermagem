@@ -39,13 +39,16 @@ export type PushNotification = {
   description: string;
 };
 
-/** Depoimento público de aluno. `source` escolhe o selo; `rating` só é usado
- *  quando a origem é uma avaliação com estrelas. */
+/**
+ * Depoimento público de aluno, exibido como a captura de tela original — é o
+ * print que prova que o comentário existe; texto redigitado qualquer um faz.
+ *
+ * `alt` carrega a transcrição completa: sem ela o depoimento simplesmente não
+ * existe para quem usa leitor de tela, e para o Google, que não lê imagem.
+ */
 export type Testimonial = {
-  quote: string;
-  author: string;
-  source: 'instagram' | 'google';
-  rating?: number;
+  image: ImageAsset;
+  caption: string;
 };
 
 export type ImageAsset = {
@@ -313,42 +316,59 @@ export const siteContent = {
   },
 
   /**
-   * Depoimentos reais, copiados de comentários públicos no Instagram da FACEP
-   * e de avaliação no Google da unidade. Transcritos como foram escritos —
-   * só o espaço solto antes da pontuação e os emojis do fim saíram.
+   * Depoimentos reais, exibidos como a captura de tela original em vez de
+   * texto redigitado: o print é o que prova que o comentário existe.
    *
    * Falam da FACEP como instituição, não do curso de Enfermagem: nenhum dos
-   * autores diz qual curso fez. Por isso o título da seção é sobre a escola, e
-   * não "alunos de Enfermagem" — o que eles afirmam é o que está escrito aqui.
+   * autores diz qual curso fez, e a de @patriciacamarg diz que o dela é o de
+   * Necropsia e Tanatopraxia. Por isso o título da seção é sobre a escola, e
+   * não "alunos de Enfermagem" — no print a pessoa lê o curso e o contexto,
+   * que é justamente o que a transcrição solta esconderia.
    *
-   * Ficou de fora um quarto comentário (@patriciacamarg) que elogia a FACEP
-   * mas diz explicitamente que o curso é o de Necropsia e Tanatopraxia. Numa
-   * página de Técnico em Enfermagem, ele seria lido como sendo sobre este
-   * curso: verdadeiro na origem, enganoso no lugar.
+   * O `alt` de cada um carrega a transcrição: sem ele o depoimento não existe
+   * para leitor de tela nem para o Google, que não leem imagem.
    */
   testimonials: {
     id: 'depoimentos',
     eyebrow: 'Depoimentos',
     title: 'Quem passou pela FACEP',
-    description: 'Comentários públicos no Instagram e no Google da FACEP.',
+    description: 'Comentários públicos no Instagram e no Google da FACEP, como foram publicados.',
     items: [
       {
-        quote:
-          'Nunca me arrependi de ter escolhido a Facep como faculdade para depositar meus sonhos.',
-        author: '@lidiane.inverizzi.brossi',
-        source: 'instagram',
+        image: {
+          src: asset('depoimento-lidiane.png'),
+          alt: 'Comentário de @lidiane.inverizzi.brossi no Instagram da FACEP: “Nunca me arrependi de ter escolhido a Facep como faculdade para depositar meus sonhos.”',
+          width: 499,
+          height: 62,
+        },
+        caption: 'Instagram · comentário no perfil da FACEP',
       },
       {
-        quote:
-          'Minha Filha estudou no Facep e realizou o sonho de estar concursada. Obrigada a toda equipe pela dedicação com seus alunos e por realizar sonhos!',
-        author: 'Joceilma Martins',
-        source: 'google',
-        rating: 5,
+        image: {
+          src: asset('depoimento-gil.png'),
+          alt: 'Comentário de @gilaraujosilva123 no Instagram da FACEP: “Orgulho dessa professora e amigos de sala e administração da FACEP.”',
+          width: 442,
+          height: 62,
+        },
+        caption: 'Instagram · comentário no perfil da FACEP',
       },
       {
-        quote: 'Orgulho dessa professora e amigos de sala e administração da FACEP.',
-        author: '@gilaraujosilva123',
-        source: 'instagram',
+        image: {
+          src: asset('depoimento-patricia.png'),
+          alt: 'Comentário de @patriciacamarg no Instagram da FACEP: “Gostaria de registrar que iniciei agora em agosto meu curso de técnico em necro e tanato! Um sonho que carrego desde 2017! Estou feliz demais e sei que vai dar tudo certo!”',
+          width: 459,
+          height: 127,
+        },
+        caption: 'Instagram · comentário no perfil da FACEP',
+      },
+      {
+        image: {
+          src: asset('depoimento-joceilma.png'),
+          alt: 'Avaliação de cinco estrelas de Joceilma Martins no Google: “Minha Filha estudou no Facep e realizou o sonho de estar concursada. Obrigada a toda equipe pela dedicação com seus alunos e por realizar sonhos!”',
+          width: 675,
+          height: 153,
+        },
+        caption: 'Google · avaliação da unidade, 5 estrelas',
       },
     ] as Testimonial[],
   },
