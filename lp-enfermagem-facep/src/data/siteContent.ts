@@ -367,7 +367,7 @@ export const siteContent = {
     {
       icon: 'hospital',
       title: '400 horas de estágio',
-      description: 'Em unidades reais do SUS, em Goiânia',
+      description: 'Em unidades reais do SUS de Goiânia',
     },
     {
       icon: 'award',
