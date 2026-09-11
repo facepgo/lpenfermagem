@@ -28,8 +28,8 @@ export function HeroSection() {
 
       <div className="container-page relative grid items-center gap-10 py-12 md:py-20 lg:grid-cols-2 lg:gap-14 lg:py-28">
         <RevealOnScroll>
-          <span className="inline-flex items-center gap-2 rounded-full border border-red-brand/35 bg-red-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-red-ink">
-            <Flame className="h-4 w-4" aria-hidden="true" />
+          <span className="badge-live inline-flex items-center gap-2 rounded-full border border-red-brand/35 bg-red-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-red-ink">
+            <Flame className="badge-flame h-4 w-4" aria-hidden="true" />
             {hero.badge}
           </span>
 
