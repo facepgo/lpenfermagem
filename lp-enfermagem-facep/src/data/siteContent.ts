@@ -450,7 +450,7 @@ export const siteContent = {
     id: 'contato',
     headline: ['Sua carreira na saúde', 'começa aqui'],
     subtitle: 'Matrículas abertas para a próxima turma',
-    ctaLabel: '👇 FALAR COM A FACEP',
+    ctaLabel: 'FALAR COM A FACEP',
   },
 
   footer: {
