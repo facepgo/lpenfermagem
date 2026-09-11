@@ -377,9 +377,20 @@ export const siteContent = {
     eyebrow: 'Investimento',
     title: 'Investimento acessível para mudar sua vida',
     badge: '🏷️ Matrículas abertas',
+    /**
+     * Os dois números saem da lista e sobem para o topo do card. Preço perdido
+     * entre seis itens de peso igual não é lido; é a informação que a pessoa
+     * veio buscar nesta seção.
+     *
+     * Sem "de R$ X por R$ 0" riscado como na referência: a FACEP não informou
+     * valor anterior de matrícula, e riscar um número que ninguém cobrou seria
+     * inventar desconto.
+     */
+    highlights: [
+      { label: 'Matrícula', value: 'GRÁTIS', tone: 'free' },
+      { label: 'Mensalidade a partir de', value: 'R$ 279,90', tone: 'price' },
+    ],
     benefits: [
-      'Matrícula grátis',
-      'Mensalidade a partir de R$ 279,90',
       'Descontos de pontualidade',
       'Desconto de até 30% para pagamento à vista',
       'Matrícula 100% online, em poucos minutos e sem burocracia',

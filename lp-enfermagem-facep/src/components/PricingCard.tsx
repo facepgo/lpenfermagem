@@ -15,6 +15,25 @@ export function PricingCard() {
       </p>
 
       <div className="p-7 sm:p-10">
+        {/* Bloco de valores: o que a pessoa veio ver nesta seção. Divide-se ao
+            meio no desktop e empilha no celular, com a régua virando na hora. */}
+        <dl className="mb-8 grid gap-5 border-b border-border pb-8 sm:grid-cols-2 sm:gap-6 sm:divide-x sm:divide-border">
+          {pricing.highlights.map((highlight, index) => (
+            <div key={highlight.label} className={index > 0 ? 'sm:pl-6' : undefined}>
+              <dt className="text-sm font-semibold text-muted-foreground">{highlight.label}</dt>
+              <dd
+                className={
+                  highlight.tone === 'free'
+                    ? 'mt-1 text-4xl font-black leading-none text-accent-strong sm:text-[2.75rem]'
+                    : 'mt-1 text-3xl font-black leading-none text-foreground sm:text-4xl'
+                }
+              >
+                {highlight.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
         <ul className="space-y-4 text-base sm:text-lg">
           {pricing.benefits.map((benefit) => (
             <li key={benefit} className="flex items-start gap-3">
