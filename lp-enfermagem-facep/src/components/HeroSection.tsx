@@ -59,7 +59,7 @@ export function HeroSection() {
 
             {/* Cada selo vira uma pastilha, para separarem-se entre si em vez de
                 lerem como uma linha corrida. */}
-            <ul className="mt-8 flex flex-wrap items-center gap-2.5 text-xs font-bold uppercase tracking-wider">
+            <ul className="mt-8 flex flex-wrap items-center justify-center gap-2.5 text-xs font-bold uppercase tracking-wider">
               {hero.seals.map((seal) => (
                 <li
                   key={seal}
