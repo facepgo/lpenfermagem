@@ -27,47 +27,55 @@ export function HeroSection() {
         style={{ background: GLOW }}
       />
 
-      <div className="container-page relative grid items-center gap-10 py-12 md:py-20 lg:grid-cols-2 lg:gap-14 lg:py-28">
-        <RevealOnScroll>
+      <div className="container-page relative">
+        {/* Fora da coluna de texto: o selo abre a dobra logo abaixo do menu,
+            centralizado na largura da página em vez de preso ao título. */}
+        <RevealOnScroll className="flex justify-center pt-10 md:pt-14">
           <span className="badge-live inline-flex items-center gap-2 rounded-full border border-red-brand/35 bg-red-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-red-ink">
             <Flame className="badge-flame h-4 w-4" aria-hidden="true" />
             {hero.badge}
           </span>
-
-          <h1 className="h1-hero mt-5 max-w-[550px] font-black text-foreground">
-            {hero.headline.before}
-            <span className="text-accent-strong">{hero.headline.highlight}</span>
-            {hero.headline.after}
-          </h1>
-
-          <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">{hero.subtitle}</p>
-
-          <div className="mt-8 flex flex-col items-stretch gap-3 sm:items-start">
-            <WhatsAppLink className="w-full text-base sm:w-auto sm:text-lg">
-              <WhatsAppIcon className="h-6 w-6" />
-              {hero.ctaLabel}
-            </WhatsAppLink>
-            <FastReplyBadge className="self-center sm:self-start" />
-          </div>
-
-          {/* Cada selo vira uma pastilha, para separarem-se entre si em vez de
-              lerem como uma linha corrida. */}
-          <ul className="mt-8 flex flex-wrap items-center gap-2.5 text-xs font-bold uppercase tracking-wider">
-            {hero.seals.map((seal) => (
-              <li
-                key={seal}
-                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-3 py-1.5 text-foreground"
-              >
-                <CircleCheck className="h-4 w-4 shrink-0 text-accent-strong" aria-hidden="true" />
-                {seal}
-              </li>
-            ))}
-          </ul>
         </RevealOnScroll>
 
-        <RevealOnScroll delay={120}>
-          <HeroImageCard />
-        </RevealOnScroll>
+        <div className="grid items-center gap-10 pb-12 pt-8 md:pb-20 md:pt-10 lg:grid-cols-2 lg:gap-14 lg:pb-28 lg:pt-14">
+          <RevealOnScroll>
+            <h1 className="h1-hero max-w-[550px] font-black text-foreground">
+              {hero.headline.before}
+              <span className="text-accent-strong">{hero.headline.highlight}</span>
+              {hero.headline.after}
+            </h1>
+
+            <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
+              {hero.subtitle}
+            </p>
+
+            <div className="mt-8 flex flex-col items-stretch gap-3 sm:items-start">
+              <WhatsAppLink className="w-full text-base sm:w-auto sm:text-lg">
+                <WhatsAppIcon className="h-6 w-6" />
+                {hero.ctaLabel}
+              </WhatsAppLink>
+              <FastReplyBadge className="self-center sm:self-start" />
+            </div>
+
+            {/* Cada selo vira uma pastilha, para separarem-se entre si em vez de
+                lerem como uma linha corrida. */}
+            <ul className="mt-8 flex flex-wrap items-center gap-2.5 text-xs font-bold uppercase tracking-wider">
+              {hero.seals.map((seal) => (
+                <li
+                  key={seal}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-3 py-1.5 text-foreground"
+                >
+                  <CircleCheck className="h-4 w-4 shrink-0 text-accent-strong" aria-hidden="true" />
+                  {seal}
+                </li>
+              ))}
+            </ul>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={120}>
+            <HeroImageCard />
+          </RevealOnScroll>
+        </div>
       </div>
     </section>
   );
