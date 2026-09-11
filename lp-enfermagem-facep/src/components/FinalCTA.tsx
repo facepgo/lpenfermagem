@@ -7,25 +7,35 @@ import { WhatsAppLink } from './WhatsAppLink';
 
 const { finalCta } = siteContent;
 
+/**
+ * Brilho fraco, na mesma dosagem do hero. Sobre fundo claro o gradiente que
+ * funcionava no navy (55% / 18%) vira mancha suja — aqui ele só precisa tirar
+ * o branco de chapa.
+ */
 const GLOW =
-  'radial-gradient(700px 380px at 50% 0%, color-mix(in oklab, var(--color-brand) 55%, transparent), transparent 65%),' +
-  'radial-gradient(600px 340px at 50% 100%, color-mix(in oklab, var(--color-accent) 18%, transparent), transparent 65%)';
+  'radial-gradient(700px 380px at 50% 0%, color-mix(in oklab, var(--color-brand) 8%, transparent), transparent 65%),' +
+  'radial-gradient(600px 340px at 50% 100%, color-mix(in oklab, var(--color-accent) 12%, transparent), transparent 65%)';
 
-/** Fechamento azul-marinho com profundidade radial e o CTA final. */
+/**
+ * Fechamento em fundo claro, como o hero: a página abre e fecha no mesmo tom.
+ *
+ * O esmeralda aqui é o `accent-strong`, não o `accent`: o tom claro rende
+ * 2,5:1 sobre branco e sumiria. Mesma troca já feita no hero.
+ */
 export function FinalCTA() {
   return (
     <section
       id={finalCta.id}
-      className="relative isolate overflow-hidden bg-deep py-24 text-deep-foreground sm:py-32"
+      className="relative isolate overflow-hidden bg-background py-24 text-foreground sm:py-32"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-70"
+        className="pointer-events-none absolute inset-0"
         style={{ background: GLOW }}
       />
 
       <div className="container-page relative text-center">
-        <RevealOnScroll as="h2" className="h2-cta font-black text-white">
+        <RevealOnScroll as="h2" className="h2-cta font-black text-foreground">
           {finalCta.headline.map((line, index) => (
             <Fragment key={line}>
               {index > 0 ? <br /> : null}
@@ -34,7 +44,7 @@ export function FinalCTA() {
           ))}
         </RevealOnScroll>
 
-        <RevealOnScroll as="p" className="mt-5 text-lg font-semibold text-accent sm:text-xl">
+        <RevealOnScroll as="p" className="mt-5 text-lg font-semibold text-accent-strong sm:text-xl">
           {finalCta.subtitle}
         </RevealOnScroll>
 
@@ -43,8 +53,8 @@ export function FinalCTA() {
             <WhatsAppIcon className="h-6 w-6" />
             {finalCta.ctaLabel}
           </WhatsAppLink>
-          <p className="inline-flex items-center gap-1.5 text-xs text-deep-foreground/70">
-            <Zap className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+          <p className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+            <Zap className="h-3.5 w-3.5 text-accent-strong" aria-hidden="true" />
             {finalCta.ctaHelper}
           </p>
         </RevealOnScroll>
