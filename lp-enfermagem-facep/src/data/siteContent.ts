@@ -30,6 +30,15 @@ export type Feature = {
   flag?: boolean;
 };
 
+/** Aviso central no formato de push: `source` é a linha de cima, como o nome
+ *  do app numa notificação de celular. */
+export type PushNotification = {
+  icon: IconName;
+  source: string;
+  title: string;
+  description: string;
+};
+
 export type ImageAsset = {
   src: string;
   alt: string;
@@ -344,6 +353,33 @@ export const siteContent = {
   floatingWhatsApp: {
     ariaLabel: 'Abrir WhatsApp',
   },
+
+  /**
+   * Avisos centrais, no formato de notificação push de celular.
+   *
+   * ⚠️ O NÚMERO TEM PRAZO DE VALIDADE — reveja toda segunda-feira.
+   *
+   * As duas frases afirmam fato sobre matrícula e vaga, e foram confirmadas
+   * pelo responsável como dado real da secretaria em 10/09/2026. Mas "essa
+   * semana" caduca: deixado parado, o mesmo número vira afirmação falsa na
+   * semana seguinte, que é exatamente o que a página evita em todo o resto do
+   * conteúdo. Ou a secretaria atualiza o número toda semana, ou estas duas
+   * entradas saem e voltam as de `notifications`, que não dependem de data.
+   */
+  pushNotifications: [
+    {
+      icon: 'graduation-cap',
+      source: 'FACEP',
+      title: '87 alunos já se matricularam essa semana',
+      description: 'Turma de Técnico em Enfermagem',
+    },
+    {
+      icon: 'flame',
+      source: 'FACEP',
+      title: 'Restam poucas vagas para a próxima turma',
+      description: 'Fale com a secretaria e garanta a sua',
+    },
+  ] as PushNotification[],
 
   /**
    * Avisos que entram um a um no canto inferior esquerdo, no formato das
