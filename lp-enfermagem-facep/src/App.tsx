@@ -7,6 +7,7 @@ import { HeroSection } from './components/HeroSection';
 import { PricingSection } from './components/PricingSection';
 import { PushNotification } from './components/PushNotification';
 import { ScheduleSection } from './components/ScheduleSection';
+import { TestimonialsSection } from './components/TestimonialsSection';
 import { TrustBar } from './components/TrustBar';
 import { UnitsSection } from './components/UnitsSection';
 import { WhatsAppButton } from './components/WhatsAppButton';
@@ -33,6 +34,7 @@ export default function App() {
         <AudienceSection />
         <ScheduleSection />
         <GallerySection />
+        <TestimonialsSection />
         <PricingSection />
         <UnitsSection />
         <FinalCTA />

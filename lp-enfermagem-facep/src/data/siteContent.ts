@@ -39,6 +39,15 @@ export type PushNotification = {
   description: string;
 };
 
+/** Depoimento público de aluno. `source` escolhe o selo; `rating` só é usado
+ *  quando a origem é uma avaliação com estrelas. */
+export type Testimonial = {
+  quote: string;
+  author: string;
+  source: 'instagram' | 'google';
+  rating?: number;
+};
+
 export type ImageAsset = {
   src: string;
   alt: string;
@@ -301,6 +310,47 @@ export const siteContent = {
         height: 900,
       },
     ] as GalleryImage[],
+  },
+
+  /**
+   * Depoimentos reais, copiados de comentários públicos no Instagram da FACEP
+   * e de avaliação no Google da unidade. Transcritos como foram escritos —
+   * só o espaço solto antes da pontuação e os emojis do fim saíram.
+   *
+   * Falam da FACEP como instituição, não do curso de Enfermagem: nenhum dos
+   * autores diz qual curso fez. Por isso o título da seção é sobre a escola, e
+   * não "alunos de Enfermagem" — o que eles afirmam é o que está escrito aqui.
+   *
+   * Ficou de fora um quarto comentário (@patriciacamarg) que elogia a FACEP
+   * mas diz explicitamente que o curso é o de Necropsia e Tanatopraxia. Numa
+   * página de Técnico em Enfermagem, ele seria lido como sendo sobre este
+   * curso: verdadeiro na origem, enganoso no lugar.
+   */
+  testimonials: {
+    id: 'depoimentos',
+    eyebrow: 'Depoimentos',
+    title: 'Quem passou pela FACEP',
+    description: 'Comentários públicos no Instagram e no Google da FACEP.',
+    items: [
+      {
+        quote:
+          'Nunca me arrependi de ter escolhido a Facep como faculdade para depositar meus sonhos.',
+        author: '@lidiane.inverizzi.brossi',
+        source: 'instagram',
+      },
+      {
+        quote:
+          'Minha Filha estudou no Facep e realizou o sonho de estar concursada. Obrigada a toda equipe pela dedicação com seus alunos e por realizar sonhos!',
+        author: 'Joceilma Martins',
+        source: 'google',
+        rating: 5,
+      },
+      {
+        quote: 'Orgulho dessa professora e amigos de sala e administração da FACEP.',
+        author: '@gilaraujosilva123',
+        source: 'instagram',
+      },
+    ] as Testimonial[],
   },
 
   pricing: {
