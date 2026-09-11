@@ -344,6 +344,47 @@ export const siteContent = {
   floatingWhatsApp: {
     ariaLabel: 'Abrir WhatsApp',
   },
+
+  /**
+   * Avisos que entram um a um no canto inferior esquerdo, no formato das
+   * notificações de página de pagamento da Hotmart.
+   *
+   * Lá o texto é "X pessoas interessadas nas últimas 24h", e funciona porque o
+   * número sai do banco de vendas da própria Hotmart — tanto que existe um
+   * mínimo configurável para esconder o aviso enquanto o número é baixo. Esta
+   * landing não mede nada: o contato acontece no WhatsApp, fora da página, e
+   * não há GTM instalado. Sem fonte, qualquer contagem aqui seria inventada.
+   *
+   * Então o formato é o da Hotmart e o conteúdo é fato verificável — tudo
+   * abaixo já está publicado no facep.com.br e no resto desta página.
+   */
+  notifications: [
+    {
+      icon: 'circle-check',
+      title: 'Matrículas abertas',
+      description: 'Turma presencial com início imediato',
+    },
+    {
+      icon: 'hospital',
+      title: '400 horas de estágio',
+      description: 'Em unidades reais do SUS, em Goiânia',
+    },
+    {
+      icon: 'award',
+      title: 'Tripla certificação',
+      description: 'Cuidador de Idosos, Auxiliar e Técnico',
+    },
+    {
+      icon: 'graduation-cap',
+      title: 'Diploma reconhecido pelo MEC',
+      description: 'Válido em todo o território nacional',
+    },
+    {
+      icon: 'calendar-days',
+      title: 'Semana ou fim de semana',
+      description: '18 ou 24 meses, 100% presencial',
+    },
+  ] as Feature[],
 };
 
 export type SiteContent = typeof siteContent;

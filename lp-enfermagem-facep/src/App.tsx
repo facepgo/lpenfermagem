@@ -6,6 +6,7 @@ import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { PricingSection } from './components/PricingSection';
 import { ScheduleSection } from './components/ScheduleSection';
+import { SiteNotifications } from './components/SiteNotifications';
 import { TrustBar } from './components/TrustBar';
 import { UnitsSection } from './components/UnitsSection';
 import { WhatsAppButton } from './components/WhatsAppButton';
@@ -39,6 +40,7 @@ export default function App() {
 
       <Footer />
       <WhatsAppButton />
+      <SiteNotifications />
     </div>
   );
 }
