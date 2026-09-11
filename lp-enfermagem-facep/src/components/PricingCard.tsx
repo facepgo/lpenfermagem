@@ -30,6 +30,11 @@ export function PricingCard() {
               >
                 {highlight.value}
               </dd>
+              {highlight.strikePrice ? (
+                <p className="mt-1.5 text-sm text-muted-foreground">
+                  (de <s>{highlight.strikePrice}</s> por {highlight.finalPrice})
+                </p>
+              ) : null}
             </div>
           ))}
         </dl>

@@ -382,12 +382,20 @@ export const siteContent = {
      * entre seis itens de peso igual não é lido; é a informação que a pessoa
      * veio buscar nesta seção.
      *
-     * Sem "de R$ X por R$ 0" riscado como na referência: a FACEP não informou
-     * valor anterior de matrícula, e riscar um número que ninguém cobrou seria
-     * inventar desconto.
+     * O R$ 99,00 riscado é o valor de tabela da matrícula da FACEP, confirmado
+     * pelo responsável em 10/09/2026. Preço riscado é a afirmação mais
+     * fiscalizada de uma página de oferta — o Decreto 5.903/2006 exige que o
+     * "de" tenha sido praticado de verdade. Não trocar por número maior para
+     * engordar o desconto.
      */
     highlights: [
-      { label: 'Matrícula', value: 'GRÁTIS', tone: 'free' },
+      {
+        label: 'Matrícula',
+        value: 'GRÁTIS',
+        tone: 'free',
+        strikePrice: 'R$ 99,00',
+        finalPrice: 'R$ 0',
+      },
       { label: 'Mensalidade a partir de', value: 'R$ 279,90', tone: 'price' },
     ],
     benefits: [
