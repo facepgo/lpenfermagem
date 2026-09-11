@@ -261,7 +261,6 @@ export const siteContent = {
     eyebrow: 'Estrutura',
     title: 'Conheça nossa estrutura',
     description: 'Laboratório próprio, aulas práticas e estágio em ambientes reais de assistência à saúde.',
-    location: 'Rua 03, Quadra 61, Lote 125, nº 170\nSetor Central, Goiânia - GO',
     images: [
       {
         src: asset('estrutura-01-unidade.webp'),
