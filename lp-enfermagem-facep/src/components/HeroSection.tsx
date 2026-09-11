@@ -1,5 +1,6 @@
-import { CircleCheck, Flame, Zap } from 'lucide-react';
+import { CircleCheck, Flame } from 'lucide-react';
 import { siteContent } from '../data/siteContent';
+import { FastReplyBadge } from './FastReplyBadge';
 import { HeroImageCard } from './HeroImageCard';
 import { RevealOnScroll } from './RevealOnScroll';
 import { WhatsAppIcon } from './icons/WhatsAppIcon';
@@ -46,10 +47,7 @@ export function HeroSection() {
               <WhatsAppIcon className="h-6 w-6" />
               {hero.ctaLabel}
             </WhatsAppLink>
-            <p className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground sm:justify-start sm:pl-1">
-              <Zap className="h-3.5 w-3.5 text-accent-strong" aria-hidden="true" />
-              {hero.ctaHelper}
-            </p>
+            <FastReplyBadge className="self-center sm:self-start" />
           </div>
 
           {/* Cada selo vira uma pastilha, para separarem-se entre si em vez de

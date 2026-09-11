@@ -76,6 +76,14 @@ export type Unit = {
 };
 
 export const siteContent = {
+  /**
+   * Selo embaixo dos CTAs. Afirmação vaga de propósito, sem prometer prazo:
+   * a referência anuncia "respondemos em até 5 minutos", que é promessa
+   * mensurável — e falha sozinha toda vez que alguém escreve de madrugada,
+   * porque a secretaria atende em horário comercial.
+   */
+  fastReply: 'Essa empresa responde muito rápido as mensagens',
+
   contact: {
     whatsappNumber: WHATSAPP_NUMBER,
     whatsappMessage: WHATSAPP_MESSAGE,
@@ -118,7 +126,6 @@ export const siteContent = {
     },
     subtitle: 'Aulas práticas desde o 1º Módulo',
     ctaLabel: 'QUERO GARANTIR MINHA VAGA',
-    ctaHelper: 'Fale agora com a secretaria acadêmica',
     seals: ['MEC', 'COREN', 'SISTEC'],
     image: {
       src: asset('hero-aluna.webp'),
@@ -444,7 +451,6 @@ export const siteContent = {
     headline: ['Sua carreira na saúde', 'começa aqui'],
     subtitle: 'Matrículas abertas para a próxima turma',
     ctaLabel: '👇 FALAR COM A FACEP',
-    ctaHelper: 'Fale agora com a secretaria acadêmica',
   },
 
   footer: {

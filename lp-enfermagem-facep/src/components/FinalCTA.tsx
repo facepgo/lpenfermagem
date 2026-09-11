@@ -1,6 +1,6 @@
-import { Zap } from 'lucide-react';
 import { Fragment } from 'react';
 import { siteContent } from '../data/siteContent';
+import { FastReplyBadge } from './FastReplyBadge';
 import { RevealOnScroll } from './RevealOnScroll';
 import { WhatsAppIcon } from './icons/WhatsAppIcon';
 import { WhatsAppLink } from './WhatsAppLink';
@@ -53,10 +53,7 @@ export function FinalCTA() {
             <WhatsAppIcon className="h-6 w-6" />
             {finalCta.ctaLabel}
           </WhatsAppLink>
-          <p className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-            <Zap className="h-3.5 w-3.5 text-accent-strong" aria-hidden="true" />
-            {finalCta.ctaHelper}
-          </p>
+          <FastReplyBadge />
         </RevealOnScroll>
       </div>
     </section>
