@@ -67,24 +67,18 @@ export function TrustBar() {
             {certification.label}
           </p>
 
-          <div className="p-7 sm:p-9">
+          <div className="px-7 py-6 sm:px-9 sm:py-7">
             <p className="text-sm leading-relaxed text-muted-foreground">{certification.note}</p>
-
-            {/* Empilhadas, uma etapa por linha: a trilha é sequência, e em
-                coluna única a ordem 1ª → 2ª → 3ª se lê de cima para baixo. Em
-                três colunas lado a lado a progressão some. */}
-            <dl className="mt-6 divide-y divide-border">
-              {certification.items.map((item) => (
-                <div key={item.title} className="py-4 first:pt-0 last:pb-0">
-                  <dt className="text-sm font-semibold text-muted-foreground">
-                    {item.description}
-                  </dt>
-                  <dd className="mt-1 text-xl font-black leading-tight text-deep">{item.title}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
         </RevealOnScroll>
+
+        {/* As três etapas seguem no mesmo card escuro dos seis diferenciais
+            acima — o card branco só abre a trilha, não a contém. */}
+        <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-6">
+          {certification.items.map((item, index) => (
+            <TrustCard key={item.title} item={item} delay={index * 80} />
+          ))}
+        </ul>
       </div>
     </section>
   );
