@@ -375,7 +375,7 @@ export const siteContent = {
 
   pricing: {
     eyebrow: 'Investimento',
-    title: 'Condições especiais para matrículas antecipadas',
+    title: 'Investimento acessível para mudar sua vida',
     badge: '🏷️ Matrículas abertas',
     benefits: [
       'Matrícula grátis',
