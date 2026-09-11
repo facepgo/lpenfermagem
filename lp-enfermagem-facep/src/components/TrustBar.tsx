@@ -1,6 +1,7 @@
 import type { Feature } from '../data/siteContent';
 import { siteContent } from '../data/siteContent';
 import { cx } from '../lib/cx';
+import { AnimatedCounter } from './AnimatedCounter';
 import { BrazilFlagIcon } from './icons/BrazilFlagIcon';
 import { getIcon } from './icons/iconMap';
 import { RevealOnScroll } from './RevealOnScroll';
@@ -52,11 +53,23 @@ export function TrustBar() {
           ))}
         </ul>
 
-        <RevealOnScroll className="mx-auto mt-12 max-w-2xl text-center">
-          <h3 className="text-sm font-black uppercase tracking-wider text-red-on-deep">
-            {certification.label}
-          </h3>
-          <p className="mt-2 text-sm text-deep-foreground/75">{certification.note}</p>
+        {/* Mesmo shell dos cards de "Para você": card branco, ícone em quadrado
+            esmeralda, título e apoio. Sobre o navy ele salta, que é o ponto. */}
+        <RevealOnScroll
+          as="article"
+          className="group mx-auto mt-12 max-w-2xl rounded-card border-2 border-brand/15 bg-card p-6 text-card-foreground transition duration-200 hover:-translate-y-1 hover:border-brand hover:shadow-elegant sm:p-7"
+        >
+          <span className="grid h-14 w-14 place-items-center rounded-2xl bg-accent-strong text-accent-foreground transition duration-200 group-hover:scale-110">
+            <AnimatedCounter
+              value={3}
+              from={1}
+              ease="linear"
+              duration={1800}
+              className="text-2xl font-black tabular-nums"
+            />
+          </span>
+          <h3 className="mt-5 text-xl font-bold text-red-ink">{certification.label}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{certification.note}</p>
         </RevealOnScroll>
 
         <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-6">
