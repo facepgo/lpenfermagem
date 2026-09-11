@@ -6,8 +6,8 @@ import { getIcon } from './icons/iconMap';
 
 const { notifications } = siteContent;
 
-/** Respiro depois de passar do hero, para o aviso não entrar junto do scroll. */
-const FIRST_DELAY_MS = 1500;
+/** Tempo de a pessoa pousar o olho no hero antes do primeiro aviso entrar. */
+const FIRST_DELAY_MS = 2500;
 /** Quanto cada aviso fica na tela. */
 const VISIBLE_MS = 6000;
 /** Silêncio entre um aviso e o próximo. */
@@ -20,12 +20,14 @@ const EXIT_MS = 500;
  * pagamento da Hotmart. O conteúdo está em `siteContent.notifications`, com a
  * explicação de por que são fatos e não contagem de visitante.
  *
- * Canto **esquerdo** porque o direito é do botão flutuante do WhatsApp.
+ * Começa já no hero, poucos segundos depois de a pessoa entrar, como no
+ * checkout da Hotmart.
  *
- * Só começa depois que a pessoa rola para além do hero. Em tela de notebook o
- * canto inferior esquerdo é exatamente onde cai o botão "Quero garantir minha
- * vaga": aviso entrando ali por cima tira do caminho justamente o clique que
- * a página existe para provocar. Passado o hero, o canto está livre.
+ * Fica na **direita, acima do botão do WhatsApp**. A esquerda parece o lugar
+ * óbvio, mas em tela de notebook (1366x768 ainda é comum) o canto inferior
+ * esquerdo é exatamente onde cai o botão "Quero garantir minha vaga" — e
+ * aviso por cima do CTA tira do caminho justo o clique que a página existe
+ * para provocar. Na direita o que há embaixo é a foto do hero.
  *
  * A fila roda uma vez e para. Movimento que não termina no campo de visão
  * disputa atenção com o CTA sem entregar informação nova, e o visitante já viu
@@ -38,22 +40,9 @@ export function SiteNotifications() {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [closed, setClosed] = useState(false);
-  const [armed, setArmed] = useState(false);
 
   useEffect(() => {
-    if (armed || closed) return;
-
-    const onScroll = () => {
-      if (window.scrollY > window.innerHeight * 0.6) setArmed(true);
-    };
-
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [armed, closed]);
-
-  useEffect(() => {
-    if (!armed || closed || index >= notifications.length) return;
+    if (closed || index >= notifications.length) return;
 
     const delay = index === 0 ? FIRST_DELAY_MS : GAP_MS;
     const enter = setTimeout(() => setVisible(true), delay);
@@ -67,10 +56,10 @@ export function SiteNotifications() {
       clearTimeout(leave);
       clearTimeout(next);
     };
-  }, [armed, index, closed]);
+  }, [index, closed]);
 
   const item = notifications[index];
-  if (!armed || closed || !item) return null;
+  if (closed || !item) return null;
 
   const Icon = getIcon(item.icon);
 
@@ -79,10 +68,11 @@ export function SiteNotifications() {
       role="status"
       aria-live="polite"
       className={cx(
-        'fixed bottom-5 left-5 z-40 flex max-w-[min(22rem,calc(100vw-7rem))] items-start gap-3',
+        // bottom-24 deixa o botão flutuante do WhatsApp (bottom-5, 64px) livre.
+        'fixed bottom-24 right-5 z-40 flex max-w-[min(22rem,calc(100vw-2.5rem))] items-start gap-3',
         'rounded-2xl border border-border bg-card p-3.5 pr-10 shadow-elegant',
         'transition-all duration-500 ease-out',
-        visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0',
+        visible ? 'translate-x-0 opacity-100' : 'pointer-events-none translate-x-4 opacity-0',
       )}
     >
       <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent-strong text-accent-foreground">
