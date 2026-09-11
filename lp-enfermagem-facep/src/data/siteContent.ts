@@ -414,11 +414,25 @@ export const siteContent = {
   units: {
     id: 'unidades',
     eyebrow: 'Unidade',
-    title: 'Onde você vai estudar',
+    title: 'Onde estamos',
+    /** Mesma fachada que abre a galeria — é a foto que identifica a unidade. */
+    image: {
+      src: asset('estrutura-01-unidade.webp'),
+      alt: 'Fachada da unidade da FACEP no Setor Central, em Goiânia',
+      width: 1200,
+      height: 900,
+    },
     items: [
       {
         name: 'Goiânia — GO',
-        addressLines: ['Rua 03, Quadra 61, Lote 125, nº 170', 'Setor Central', 'CEP 74030-071'],
+        /* O endereço veio duplicado do Google Maps ("... Setor Central,
+           Goiânia CEP 74030-071 - St. Central, Goiânia - GO, 74030-071").
+           Aqui fica a versão sem repetição — é o mesmo endereço. */
+        addressLines: [
+          'Rua 03, Quadra 61, Lote 125, nº 170',
+          'Setor Central, Goiânia - GO',
+          'CEP 74030-071',
+        ],
         phoneLabel: '(62) 98287-1553',
         phoneHref: 'tel:+5562982871553',
       },
