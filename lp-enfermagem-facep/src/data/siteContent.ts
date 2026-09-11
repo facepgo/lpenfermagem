@@ -25,6 +25,9 @@ export type Feature = {
   /** Ocupa as duas colunas no mobile. Use no 3º card de um grupo de três:
    *  em 2 colunas ele sobraria sozinho na última fileira. */
   wide?: boolean;
+  /** Fecha a descrição com a bandeira do Brasil. Fica aqui, e não no texto,
+   *  para este arquivo continuar livre de JSX. */
+  flag?: boolean;
 };
 
 export type ImageAsset = {
@@ -113,8 +116,9 @@ export const siteContent = {
     items: [
       {
         icon: 'graduation-cap',
-        title: 'Diploma reconhecido',
-        description: 'MEC — válido em todo o território nacional',
+        title: 'Diploma reconhecido pelo MEC',
+        description: 'Válido em todo o território nacional',
+        flag: true,
       },
       {
         icon: 'hospital',

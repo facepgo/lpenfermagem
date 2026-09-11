@@ -1,6 +1,7 @@
 import type { Feature } from '../data/siteContent';
 import { siteContent } from '../data/siteContent';
 import { cx } from '../lib/cx';
+import { BrazilFlagIcon } from './icons/BrazilFlagIcon';
 import { getIcon } from './icons/iconMap';
 import { RevealOnScroll } from './RevealOnScroll';
 
@@ -22,7 +23,12 @@ function TrustCard({ item, delay }: { item: Feature; delay: number }) {
         <Icon className="h-6 w-6" aria-hidden="true" />
       </span>
       <h3 className="mt-4 text-base font-bold sm:text-lg">{item.title}</h3>
-      <p className="mt-1 text-sm text-deep-foreground/75">{item.description}</p>
+      <p className="mt-1 text-sm text-deep-foreground/75">
+        {item.description}
+        {item.flag && (
+          <BrazilFlagIcon className="ml-1.5 inline-block h-3 w-[1.05rem] translate-y-[0.1em] align-baseline" />
+        )}
+      </p>
     </RevealOnScroll>
   );
 }
