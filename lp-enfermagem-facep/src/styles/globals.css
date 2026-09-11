@@ -16,21 +16,22 @@
   --color-accent-strong: #00674F;
   --color-accent-foreground: #ffffff;
 
-  /* Vermelho do logo. O tom `ink` existe porque o da marca rende 4,37:1
-     sobre branco — abaixo dos 4,5:1 exigidos para texto pequeno.
-     `on-deep` é o caminho inverso: sobre o navy o vermelho da marca cai para
-     4,13:1, então texto pequeno ali pede um tom mais claro (5,46:1). Mesma
-     lógica dos dois esmeraldas — a marca preenche, o tom claro escreve.
-     Hoje sem uso: o rótulo que o usava foi para dentro de um card branco.
-     Fica porque a conta de contraste vale para qualquer vermelho sobre o
-     navy, e refazê-la depois é trabalho repetido. */
+  /* Trio do vermelho do logo. `brand` é a cor exata da marca; `ink` existe
+     porque ela rende 4,37:1 sobre branco, abaixo dos 4,5:1 de texto pequeno;
+     `on-deep` é o caminho inverso, porque sobre o navy ela cai para 4,13:1 e
+     ali o texto pede um tom mais claro (5,46:1).
+
+     Os três estão sem uso: o vermelho da página inteira passou para o `promo`
+     abaixo. Ficam porque são a paleta da marca com a conta de contraste já
+     feita — refazê-la na próxima vez seria trabalho repetido. */
   --color-red-brand: #ED1D24;
   --color-red-ink: #C41520;
   --color-red-on-deep: #FF4A4F;
 
-  /* Bordô dos avisos de push. Fica longe do vermelho da marca de propósito:
-     o `red-brand` é identidade, este é oferta, e os dois lado a lado só
-     confundem de qual FACEP é a cor. Rende 8,96:1 com o ícone branco. */
+  /* Bordô dos avisos: ícone do push central e selo de matrículas do hero.
+     Fica longe do vermelho do logo de propósito — aquele é identidade, este é
+     oferta, e os dois na mesma tela confundem de qual FACEP é a cor.
+     Rende 8,96:1 em branco sobre ele, e o mesmo sobre branco. */
   --color-promo: #8E1B2E;
   --color-whatsapp: #00674F;
   --color-whatsapp-hover: #00815F;
@@ -202,17 +203,17 @@
 }
 
 /* Anel que se abre a partir da borda do selo e some, como indicador de "ao
-   vivo". Fica no vermelho da marca para pertencer ao mesmo selo. Anima só
+   vivo". Usa o `promo`, o mesmo bordô do selo e do push. Anima só
    box-shadow: não entra no layout, então não empurra o título abaixo. */
 @keyframes badgePulse {
   0% {
-    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-red-brand) 32%, transparent);
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-promo) 32%, transparent);
   }
   70% {
-    box-shadow: 0 0 0 12px color-mix(in oklab, var(--color-red-brand) 0%, transparent);
+    box-shadow: 0 0 0 12px color-mix(in oklab, var(--color-promo) 0%, transparent);
   }
   100% {
-    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-red-brand) 0%, transparent);
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-promo) 0%, transparent);
   }
 }
 

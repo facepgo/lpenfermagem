@@ -31,7 +31,7 @@ export function HeroSection() {
         {/* Fora da coluna de texto: o selo abre a dobra logo abaixo do menu,
             centralizado na largura da página em vez de preso ao título. */}
         <RevealOnScroll className="flex justify-center pt-10 md:pt-14">
-          <span className="badge-live inline-flex items-center gap-2 rounded-full border border-red-brand/35 bg-red-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-red-ink">
+          <span className="badge-live inline-flex items-center gap-2 rounded-full border border-promo/35 bg-promo/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-promo">
             <Flame className="badge-flame h-4 w-4" aria-hidden="true" />
             {hero.badge}
           </span>
