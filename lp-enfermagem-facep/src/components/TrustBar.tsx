@@ -70,18 +70,16 @@ export function TrustBar() {
           <div className="p-7 sm:p-9">
             <p className="text-sm leading-relaxed text-muted-foreground">{certification.note}</p>
 
-            <dl className="mt-6 grid gap-6 sm:grid-cols-3 sm:gap-5 sm:divide-x sm:divide-border">
-              {certification.items.map((item, index) => (
-                <div key={item.title} className={index > 0 ? 'sm:pl-5' : undefined}>
-                  {/* Caixa baixa e sem tracking, como no card de investimento:
-                      em versalete "2ª certificação — em 12 meses" não cabe na
-                      coluna, quebra em duas linhas e desalinha os três nomes. */}
-                  <dt className="text-xs font-semibold text-muted-foreground">
+            {/* Empilhadas, uma etapa por linha: a trilha é sequência, e em
+                coluna única a ordem 1ª → 2ª → 3ª se lê de cima para baixo. Em
+                três colunas lado a lado a progressão some. */}
+            <dl className="mt-6 divide-y divide-border">
+              {certification.items.map((item) => (
+                <div key={item.title} className="py-4 first:pt-0 last:pb-0">
+                  <dt className="text-sm font-semibold text-muted-foreground">
                     {item.description}
                   </dt>
-                  <dd className="mt-1.5 text-lg font-black leading-tight text-deep">
-                    {item.title}
-                  </dd>
+                  <dd className="mt-1 text-xl font-black leading-tight text-deep">{item.title}</dd>
                 </div>
               ))}
             </dl>
