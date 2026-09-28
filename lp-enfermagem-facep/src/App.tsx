@@ -11,6 +11,7 @@ import { TestimonialsSection } from './components/TestimonialsSection';
 import { TrustBar } from './components/TrustBar';
 import { UnitsSection } from './components/UnitsSection';
 import { WhatsAppButton } from './components/WhatsAppButton';
+import { WhatsAppGateProvider } from './components/WhatsAppGate';
 
 /**
  * `overflow-x: clip` no wrapper corta o transbordo horizontal sem criar um
@@ -18,31 +19,33 @@ import { WhatsAppButton } from './components/WhatsAppButton';
  */
 export default function App() {
   return (
-    <div className="overflow-x-clip bg-background text-foreground">
-      <a
-        href="#conteudo"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-brand focus:px-5 focus:py-3 focus:text-sm focus:font-bold focus:text-white"
-      >
-        Pular para o conteúdo
-      </a>
+    <WhatsAppGateProvider>
+      <div className="overflow-x-clip bg-background text-foreground">
+        <a
+          href="#conteudo"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-brand focus:px-5 focus:py-3 focus:text-sm focus:font-bold focus:text-white"
+        >
+          Pular para o conteúdo
+        </a>
 
-      <Header />
+        <Header />
 
-      <main id="conteudo">
-        <HeroSection />
-        <TrustBar />
-        <AudienceSection />
-        <ScheduleSection />
-        <GallerySection />
-        <TestimonialsSection />
-        <PricingSection />
-        <UnitsSection />
-        <FinalCTA />
-      </main>
+        <main id="conteudo">
+          <HeroSection />
+          <TrustBar />
+          <AudienceSection />
+          <ScheduleSection />
+          <GallerySection />
+          <TestimonialsSection />
+          <PricingSection />
+          <UnitsSection />
+          <FinalCTA />
+        </main>
 
-      <Footer />
-      <WhatsAppButton />
-      <PushNotification />
-    </div>
+        <Footer />
+        <WhatsAppButton />
+        <PushNotification />
+      </div>
+    </WhatsAppGateProvider>
   );
 }

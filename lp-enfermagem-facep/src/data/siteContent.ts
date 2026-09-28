@@ -84,6 +84,22 @@ export const siteContent = {
    */
   fastReply: 'Essa empresa responde muito rápido as mensagens',
 
+  /**
+   * Aviso que aparece ao clicar em qualquer CTA, antes de abrir o WhatsApp.
+   *
+   * Serve para filtrar contato de quem mora longe: o curso é 100% presencial e
+   * quem não consegue vir às aulas ocupa a secretaria sem poder se matricular.
+   * Custa um clique a mais a todo mundo, inclusive a quem é de Goiânia — foi
+   * decisão do responsável em 28/09/2026, ciente desse custo.
+   */
+  whatsappGate: {
+    title: 'Antes de continuar',
+    body: 'Este curso é exclusivo para quem mora em Goiânia ou em cidades vizinhas: as aulas são 100% presenciais, na unidade do Setor Central.',
+    question: 'Você consegue vir às aulas presenciais?',
+    confirmLabel: 'Sim, consigo vir às aulas',
+    cancelLabel: 'Voltar',
+  },
+
   contact: {
     whatsappNumber: WHATSAPP_NUMBER,
     whatsappMessage: WHATSAPP_MESSAGE,
