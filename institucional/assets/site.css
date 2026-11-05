@@ -413,3 +413,9 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 :root[data-tema="b"] .flow .n{border-color:#fff;color:#fff}
 :root[data-tema="b"] .flow li:not(:last-child)::before{background:linear-gradient(#fff,rgba(255,255,255,.1))}
 @media (min-width:960px){:root[data-tema="b"] .flow li:not(:last-child)::before{background:linear-gradient(90deg,#fff,rgba(255,255,255,.1))}}
+/* Versão B: todos os ícones em branco; bordas continuam no vermelho (pedido do cliente, 05/11/2026) */
+:root[data-tema="b"] .ibox,
+:root[data-tema="b"] :is(.acc-btn,.pill,.pc li,.c-list li,.menu-main a,.gal .ph,.crumbs) .ic{color:#fff}
+:root[data-tema="b"] .kind.rec{color:#fff}
+:root[data-tema="b"] .kind::before{background:#fff}
+:root[data-tema="b"] .manifesto .chip.out{color:#fff}
