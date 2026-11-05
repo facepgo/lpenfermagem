@@ -9,6 +9,8 @@
         { "source": "/enfermagem02", "destination": "/enfermagem02.html" },
         { "source": "/enfermagem02/(.*)", "destination": "/enfermagem02.html" },
         { "source": "/tecnicoemenfermagem", "destination": "/tecnicoemenfermagem/index.html" },
-        { "source": "/tecnicoemenfermagem/(.*)", "destination": "/tecnicoemenfermagem/index.html" }
+        { "source": "/tecnicoemenfermagem/(.*)", "destination": "/tecnicoemenfermagem/index.html" },
+        { "source": "/institucional", "destination": "/institucional/index.html" },
+        { "source": "/pos-tecnico-enfermagem", "destination": "/pos-tecnico-enfermagem/index.html" }
     ]
 }
