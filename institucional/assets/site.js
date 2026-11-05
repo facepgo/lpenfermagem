@@ -4,7 +4,7 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
 const $ = id => document.getElementById(id);
 
-/* Teste A/B: a versão vem do endereço (/institucional-a, /institucional-b) ou de ?tema=a|b.
+/* Teste A/B/C: a versão vem do endereço (/institucional-a, -b, -c) ou de ?tema=a|b|c.
    O <head> já marcou <html data-tema>; aqui os links internos passam a manter a versão. */
 const tema = document.documentElement.dataset.tema;
 if(tema){
@@ -12,12 +12,14 @@ if(tema){
     if(a.getAttribute('href').startsWith('/institucional/assets')) return;
     a.setAttribute('href', a.getAttribute('href').replace(/^\/(institucional|pos-tecnico-enfermagem)\/?/, `/$1-${tema}`));
   });
-  const nomes = {a:'Versão A · cores da LP de Enfermagem', b:'Versão B · vermelho e azul'};
-  const outro = tema === 'a' ? 'b' : 'a';
-  const base = location.pathname.replace(/-(a|b)\/?$/, '').replace(/\/$/, '') || '/institucional';
+  const nomes = {a:'Versão A · cores da LP de Enfermagem', b:'Versão B · vermelho e azul', c:'Versão C · azul do site atual'};
+  const base = location.pathname.replace(/-(a|b|c)\/?$/, '').replace(/\/$/, '') || '/institucional';
+  const outros = Object.keys(nomes).filter(k => k !== tema).map(k => `<a href="${base}-${k}">ver ${k.toUpperCase()}</a>`).join(' · ');
   const v = document.createElement('div'); v.className = 'ver';
-  v.innerHTML = `<i></i><span><b>${nomes[tema]}</b> · <a href="${base}-${outro}">ver ${outro.toUpperCase()}</a></span>`;
+  v.innerHTML = `<i></i><span><b>${nomes[tema]}</b> · ${outros}</span>`;
   document.body.appendChild(v);
+  /* Fundo claro na versão C: troca o logo branco pelo logo colorido */
+  if(tema === 'c') document.querySelectorAll('img[src$="logo-facep-h-light.webp"]').forEach(i => { i.src = i.src.replace('logo-facep-h-light', 'logo-facep-h-dark'); });
 }
 
 /* WhatsApp oficial (mesmo número da landing de Técnico em Enfermagem) */
