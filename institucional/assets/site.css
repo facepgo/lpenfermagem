@@ -118,6 +118,11 @@ img{max-width:100%;height:auto;display:block}
 .beam{position:absolute;left:50%;top:-24%;width:130%;height:62%;transform:translateX(-50%);z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(var(--acc-rgb),.38),rgba(var(--acc-rgb),.08) 55%,transparent 75%);filter:blur(30px);animation:beam 7s ease-in-out infinite}
 @keyframes beam{0%,100%{opacity:.8}50%{opacity:1}}
 .coil-box{position:relative;height:clamp(240px,70vw,360px)}
+/* Banner do hero: arte inteira no celular (3:2); no computador recorta só o respiro de cima/baixo */
+.banner{margin:0;overflow:hidden;border-bottom:1px solid var(--line);background:#EEF0F4}
+.banner img{width:100%;aspect-ratio:1411/941;object-fit:cover;object-position:50% 48%;will-change:transform}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.banner + .hero-body{margin-top:0;padding-top:4px}
 #coil{position:absolute;inset:0;width:100%;height:100%}
 .hero-tag{position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;gap:12px}
 .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);display:flex;gap:9px;align-items:center}
@@ -345,6 +350,8 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
   .hero{padding-top:92px}
   .coil-box{height:clamp(380px,40vw,520px)}
   .hero-body{padding:0 48px 48px;margin-top:-140px}
+  .banner img{aspect-ratio:2/1}
+  .banner + .hero-body{margin-top:0;padding-top:8px}
   .hero-bottom{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:end;margin-top:40px}
   .hero-bottom .ctas{justify-content:flex-end;margin-top:0}
   .sec{padding-block:120px}

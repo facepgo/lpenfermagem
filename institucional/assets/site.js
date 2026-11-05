@@ -179,6 +179,12 @@ gsap.utils.toArray('.pc .ibox .ic, .c-list .ic, .portal .ibox .ic, .flow .n .ic'
 });
 /* Galeria: fotos entram em cascata */
 gsap.utils.toArray('.gal figure').forEach((f, i) => gsap.from(f, {y:40, opacity:0, scale:.96, duration:.9, delay:(i % 4) * .08, ease:'power3.out', scrollTrigger:{trigger: f, start:'top 94%', once:true}}));
+/* Banner: entra com leve zoom e acompanha a rolagem com um parallax sutil */
+const bn = document.querySelector('.banner img');
+if(bn){
+  gsap.from(bn, {scale:1.08, opacity:0, duration:1.4, ease:'power3.out'});
+  gsap.to(bn, {yPercent:8, ease:'none', scrollTrigger:{trigger:'.banner', start:'top top', end:'bottom top', scrub:true}});
+}
 if($('coil')){ gsap.from('#coil', {opacity:0, scale:.9, duration:1.8, ease:'power2.out'}); gsap.from('.hero-tag .tag', {y:-8, opacity:0, duration:.7, stagger:.1, delay:.2}); }
 if(mf) gsap.fromTo('#manifesto .mw', {opacity:.14}, {opacity:1, stagger:.1, ease:'none', scrollTrigger:{trigger: mf, start:'top 82%', end:'bottom 50%', scrub:true}});
 gsap.utils.toArray('.step').forEach(s => ScrollTrigger.create({trigger: s, start:'top 70%', onEnter: () => s.classList.add('on'), onLeaveBack: () => s.classList.remove('on')}));
