@@ -1,16 +1,64 @@
 {
     "redirects": [
-        { "source": "/enf", "destination": "/tecnicoemenfermagem", "permanent": true },
-        { "source": "/enf/(.*)", "destination": "/tecnicoemenfermagem/$1", "permanent": true }
+        {
+            "source": "/enf",
+            "destination": "/tecnicoemenfermagem",
+            "permanent": true
+        },
+        {
+            "source": "/enf/(.*)",
+            "destination": "/tecnicoemenfermagem/$1",
+            "permanent": true
+        }
     ],
     "rewrites": [
-        { "source": "/enfermagem", "destination": "/index.html" },
-        { "source": "/enfermagem/(.*)", "destination": "/index.html" },
-        { "source": "/enfermagem02", "destination": "/enfermagem02.html" },
-        { "source": "/enfermagem02/(.*)", "destination": "/enfermagem02.html" },
-        { "source": "/tecnicoemenfermagem", "destination": "/tecnicoemenfermagem/index.html" },
-        { "source": "/tecnicoemenfermagem/(.*)", "destination": "/tecnicoemenfermagem/index.html" },
-        { "source": "/institucional", "destination": "/institucional/index.html" },
-        { "source": "/pos-tecnico-enfermagem", "destination": "/pos-tecnico-enfermagem/index.html" }
+        {
+            "source": "/enfermagem",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/enfermagem/(.*)",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/enfermagem02",
+            "destination": "/enfermagem02.html"
+        },
+        {
+            "source": "/enfermagem02/(.*)",
+            "destination": "/enfermagem02.html"
+        },
+        {
+            "source": "/tecnicoemenfermagem",
+            "destination": "/tecnicoemenfermagem/index.html"
+        },
+        {
+            "source": "/tecnicoemenfermagem/(.*)",
+            "destination": "/tecnicoemenfermagem/index.html"
+        },
+        {
+            "source": "/institucional",
+            "destination": "/institucional/index.html"
+        },
+        {
+            "source": "/pos-tecnico-enfermagem",
+            "destination": "/pos-tecnico-enfermagem/index.html"
+        },
+        {
+            "source": "/institucional-a",
+            "destination": "/institucional/index.html"
+        },
+        {
+            "source": "/pos-tecnico-enfermagem-a",
+            "destination": "/pos-tecnico-enfermagem/index.html"
+        },
+        {
+            "source": "/institucional-b",
+            "destination": "/institucional/index.html"
+        },
+        {
+            "source": "/pos-tecnico-enfermagem-b",
+            "destination": "/pos-tecnico-enfermagem/index.html"
+        }
     ]
 }

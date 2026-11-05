@@ -4,6 +4,22 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
 const $ = id => document.getElementById(id);
 
+/* Teste A/B: a versão vem do endereço (/institucional-a, /institucional-b) ou de ?tema=a|b.
+   O <head> já marcou <html data-tema>; aqui os links internos passam a manter a versão. */
+const tema = document.documentElement.dataset.tema;
+if(tema){
+  document.querySelectorAll('a[href^="/institucional"], a[href^="/pos-tecnico-enfermagem"]').forEach(a => {
+    if(a.getAttribute('href').startsWith('/institucional/assets')) return;
+    a.setAttribute('href', a.getAttribute('href').replace(/^\/(institucional|pos-tecnico-enfermagem)\/?/, `/$1-${tema}`));
+  });
+  const nomes = {a:'Versão A · cores da LP de Enfermagem', b:'Versão B · vermelho e azul'};
+  const outro = tema === 'a' ? 'b' : 'a';
+  const base = location.pathname.replace(/-(a|b)\/?$/, '').replace(/\/$/, '') || '/institucional';
+  const v = document.createElement('div'); v.className = 'ver';
+  v.innerHTML = `<i></i><span><b>${nomes[tema]}</b> · <a href="${base}-${outro}">ver ${outro.toUpperCase()}</a></span>`;
+  document.body.appendChild(v);
+}
+
 /* WhatsApp oficial (mesmo número da landing de Técnico em Enfermagem) */
 const WA = '5562982871553';
 document.querySelectorAll('[data-wa]').forEach(a => {
@@ -82,6 +98,8 @@ if(filters){
   const ctx = cv.getContext('2d');
   let w = 0, h = 0, dpr = 1, mx = 0, my = 0, tx = 0, ty = 0, run = true, raf = 0;
   const N = 280;
+  const [cr, cg, cb] = (getComputedStyle(document.documentElement).getPropertyValue('--coil') || '91,157,255').split(',').map(n => +n);
+  const tint = (c, d) => Math.round(c + (255 - c) * d * .45);
   function size(){ dpr = Math.min(2, devicePixelRatio || 1); const r = cv.getBoundingClientRect(); w = r.width; h = r.height; cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
   function draw(ms){
     const t = ms * .001; mx += (tx - mx) * .04; my += (ty - my) * .04;
@@ -102,7 +120,7 @@ if(filters){
         return [cx + x1 * S * f, cy + y2 * S * f, z2, f];
       });
       const depth = Math.max(0, Math.min(1, ((pts[0][2] + pts[1][2]) / 2 + 1.4) / 2.8));
-      ctx.strokeStyle = `rgba(${Math.round(60 + depth * 100)},${Math.round(120 + depth * 90)},255,${.05 + depth * depth * .75})`;
+      ctx.strokeStyle = `rgba(${tint(cr, depth)},${tint(cg, depth)},${tint(cb, depth)},${.05 + depth * depth * .75})`;
       ctx.lineWidth = (.6 + depth * 1.4) * pts[0][3];
       ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]); ctx.lineTo(pts[1][0], pts[1][1]); ctx.stroke();
     }
