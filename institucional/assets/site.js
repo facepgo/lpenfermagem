@@ -12,8 +12,8 @@ if(tema){
     if(a.getAttribute('href').startsWith('/institucional/assets')) return;
     a.setAttribute('href', a.getAttribute('href').replace(/^\/(institucional|pos-tecnico-enfermagem)\/?/, `/$1-${tema}`));
   });
-  const nomes = {a:'Versão A · cores da LP de Enfermagem', b:'Versão B · vermelho e azul', c:'Versão C · azul do site atual'};
-  const base = location.pathname.replace(/-(a|b|c)\/?$/, '').replace(/\/$/, '') || '/institucional';
+  const nomes = {a:'Versão A · cores da LP de Enfermagem', b:'Versão B · vermelho e azul', c:'Versão C · azul do site atual', d:'Versão D · fundo azul e vermelho'};
+  const base = location.pathname.replace(/-(a|b|c|d)\/?$/, '').replace(/\/$/, '') || '/institucional';
   const outros = Object.keys(nomes).filter(k => k !== tema).map(k => `<a href="${base}-${k}">ver ${k.toUpperCase()}</a>`).join(' · ');
   const v = document.createElement('div'); v.className = 'ver';
   v.innerHTML = `<i></i><span><b>${nomes[tema]}</b> · ${outros}</span>`;
