@@ -13,11 +13,12 @@ if(document.documentElement.hasAttribute('data-variante')){
   document.querySelectorAll('a[href^="/"]').forEach(a => {
     const h = a.getAttribute('href');
     if(h === '/' || h.startsWith('/#')) a.setAttribute('href', casa + h.slice(1));
-    else if(/^\/pos-tecnico-enfermagem\/?(#|$)/.test(h)) a.setAttribute('href', h.replace(/^\/pos-tecnico-enfermagem\/?/, `/pos-tecnico-enfermagem-${tema}`));
+    else if(/^\/(pos-tecnico-enfermagem|tecnico-seguranca-do-trabalho)\/?(#|$)/.test(h)) a.setAttribute('href', h.replace(/^\/(pos-tecnico-enfermagem|tecnico-seguranca-do-trabalho)\/?/, `/$1-${tema}`));
   });
   const nomes = {a:'Versão A · cores da LP de Enfermagem', b:'Versão B · vermelho e azul (oficial)', c:'Versão C · azul do site atual'};
-  const pos = location.pathname.startsWith('/pos-tecnico-enfermagem');
-  const ir = k => k === 'b' ? (pos ? '/pos-tecnico-enfermagem' : '/') : (pos ? '/pos-tecnico-enfermagem-' : '/institucional-') + k;
+  /* Página de curso atual (sem o sufixo da versão) ou a home */
+  const pag = (location.pathname.match(/^\/(pos-tecnico-enfermagem|tecnico-seguranca-do-trabalho)/) || [])[1];
+  const ir = k => k === 'b' ? (pag ? '/' + pag : '/') : (pag ? `/${pag}-` : '/institucional-') + k;
   const outros = Object.keys(nomes).filter(k => k !== tema).map(k => `<a href="${ir(k)}">ver ${k.toUpperCase()}</a>`).join(' · ');
   const v = document.createElement('div'); v.className = 'ver';
   v.innerHTML = `<i></i><span><b>${nomes[tema]}</b> · ${outros}</span>`;
@@ -221,7 +222,7 @@ gsap.utils.toArray('.step').forEach(s => ScrollTrigger.create({trigger: s, start
 gsap.utils.toArray('.flow li').forEach((li, i) => gsap.from(li, {x:-14, opacity:.2, duration:.7, delay: (i % 4) * .08, ease:'power3.out', scrollTrigger:{trigger: li, start:'top 92%', once:true}}));
 document.querySelectorAll('[data-count]').forEach(num => {
   const to = +num.dataset.count; num.textContent = '0';
-  ScrollTrigger.create({trigger: num, start:'top 92%', once:true, onEnter: () => { const o = {v:0}; gsap.to(o, {v: to, duration:1.3, ease:'power3.out', onUpdate: () => num.textContent = Math.round(o.v)}); }});
+  ScrollTrigger.create({trigger: num, start:'top 92%', once:true, onEnter: () => { const o = {v:0}; gsap.to(o, {v: to, duration:1.3, ease:'power3.out', onUpdate: () => num.textContent = Math.round(o.v).toLocaleString('pt-BR')}); }});
 });
 if(document.querySelector('.final')) gsap.from('.final .ring', {scale:.6, opacity:0, duration:1.6, ease:'power3.out', scrollTrigger:{trigger:'.final', start:'top 80%', once:true}});
 addEventListener('load', () => ScrollTrigger.refresh());

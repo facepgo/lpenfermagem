@@ -509,3 +509,7 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 .hero-final .wrap{padding-block:120px 72px}
 .hero-final .marquee{margin-top:0}
 @media (min-width:960px){.hero-final .wrap{padding-block:150px 110px}}
+/* Números das estatísticas cabem nas três colunas do celular (ex.: "1.440") */
+.stats div{padding:16px 10px;min-width:0}
+.stats b{font-size:clamp(24px,6.6vw,56px)}
+@media (min-width:640px){.stats div{padding:18px 14px}}
