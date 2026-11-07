@@ -27,12 +27,50 @@ if(document.documentElement.hasAttribute('data-variante')){
   if(tema === 'c') document.querySelectorAll('img[src$="logo-facep-h-light.webp"]').forEach(i => { i.src = i.src.replace('logo-facep-h-light', 'logo-facep-h-dark'); });
 }
 
-/* WhatsApp oficial (mesmo número da landing de Técnico em Enfermagem) */
+/* WhatsApp: igual à LP /enfermagem. Botão redondo verde fixo e, em qualquer botão de WhatsApp,
+   um pop-up pede Nome, Sobrenome e WhatsApp antes de abrir a conversa. */
 const WA = '5562982871553';
-document.querySelectorAll('[data-wa]').forEach(a => {
-  a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(a.dataset.wa || 'Olá, FACEP! Vim pelo site.');
-  a.target = '_blank'; a.rel = 'noopener';
+const WA_LOGO = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.534 5.845L.054 23.25a.75.75 0 0 0 .917.94l5.562-1.461A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.218-1.444l-.374-.224-3.876 1.018 1.037-3.78-.245-.39A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>';
+const pop = document.createElement('div');
+pop.className = 'wa-popup-overlay'; pop.id = 'waPopup'; pop.hidden = true;
+pop.innerHTML = `<div class="wa-popup" role="dialog" aria-modal="true" aria-labelledby="waPopupTitulo">
+  <button type="button" class="wa-popup-close" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+  <div class="wa-popup-icon">${WA_LOGO}</div>
+  <h3 id="waPopupTitulo">Falar no WhatsApp</h3>
+  <form class="wa-popup-form">
+    <input type="text" name="nome" placeholder="Nome" autocomplete="given-name" required>
+    <input type="text" name="sobrenome" placeholder="Sobrenome" autocomplete="family-name" required>
+    <input type="tel" name="whatsapp" placeholder="(xx) xxxxx-xxxx" autocomplete="tel" required>
+    <button type="submit">Enviar mensagem no WhatsApp</button>
+  </form>
+</div>`;
+document.body.appendChild(pop);
+const popForm = pop.querySelector('form');
+let waAssunto = '', waFoco = null;
+function abrirWa(assunto, origem){
+  waAssunto = assunto || ''; waFoco = origem || null;
+  pop.hidden = false; document.body.classList.add('lock');
+  setTimeout(() => popForm.nome.focus(), 30);
+}
+function fecharWa(){ pop.hidden = true; document.body.classList.remove('lock'); if(waFoco) waFoco.focus({preventScroll:true}); }
+pop.addEventListener('click', e => { if(e.target === pop || e.target.closest('.wa-popup-close')) fecharWa(); });
+addEventListener('keydown', e => { if(e.key === 'Escape' && !pop.hidden) fecharWa(); });
+popForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const f = new FormData(popForm);
+  /* mesma frase da LP antiga; o assunto vem do botão clicado */
+  const assunto = waAssunto.replace(/^Olá,?\s*FACEP!?\s*/i, '') || 'Quero saber mais sobre os cursos da FACEP.';
+  const msg = `Olá! Meu nome é ${f.get('nome')} ${f.get('sobrenome')} (WhatsApp: ${f.get('whatsapp')}). ${assunto}`;
+  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  popForm.reset(); fecharWa();
 });
+document.querySelectorAll('[data-wa]').forEach(a => {
+  a.href = '#';
+  a.addEventListener('click', e => { e.preventDefault(); abrirWa(a.dataset.wa, a); });
+});
+/* Botão flutuante: só o ícone, como na LP antiga */
+const fabEl = document.getElementById('waFab');
+if(fabEl){ fabEl.innerHTML = WA_LOGO; fabEl.setAttribute('aria-label', 'Falar no WhatsApp'); }
 
 /* Formulário "Inicie sua matrícula": monta a mensagem e abre o WhatsApp (nada é gravado no site) */
 const matForm = $('matForm');
@@ -60,7 +98,6 @@ let lastY = scrollY;
 addEventListener('scroll', () => {
   const y = scrollY;
   if(nav && !document.body.classList.contains('lock')) nav.classList.toggle('hide', y > lastY && y > 520);
-  if(fab) fab.classList.toggle('show', y > 420);
   lastY = y;
 }, {passive:true});
 function setMenu(open){

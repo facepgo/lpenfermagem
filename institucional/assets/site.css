@@ -543,3 +543,23 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
   .matricula{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;padding:40px;align-items:center}
 }
 .curso-hero .page-title{font-size:clamp(40px,10vw,64px)}@media (min-width:960px){.curso-hero .page-title{font-size:clamp(56px,5.6vw,84px)}}
+
+/* ===== WhatsApp igual à LP /enfermagem: botão redondo verde + pop-up branco (07/11/2026) ===== */
+.wa-fab{width:56px;height:56px;min-height:0;padding:0;border-radius:50%;justify-content:center;background:#25D366;box-shadow:0 4px 20px rgba(37,211,102,.5);transform:none;transition:transform .2s}
+.wa-fab:hover{transform:scale(1.1)}
+.wa-fab:active{transform:scale(.95)}
+.wa-fab svg{width:28px;height:28px;color:#fff}
+.wa-popup-overlay{position:fixed;inset:0;z-index:200;background:rgba(10,10,10,.6);display:flex;align-items:center;justify-content:center;padding:20px}
+.wa-popup-overlay[hidden]{display:none!important}
+.wa-popup{position:relative;background:#fff;color:#1a1a1a;border-radius:20px;padding:36px 28px 28px;max-width:400px;width:100%;font-family:var(--display);animation:sheetIn .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes sheetIn{from{transform:translateY(24px);opacity:.4}to{transform:none;opacity:1}}
+.wa-popup-close{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;background:rgba(26,26,26,.06);color:#1a1a1a;display:flex;align-items:center;justify-content:center}
+.wa-popup-close svg{width:16px;height:16px}
+.wa-popup-icon{width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.wa-popup-icon svg{width:28px;height:28px}
+.wa-popup h3{margin:0 0 20px;text-align:center;text-transform:uppercase;font-weight:900;font-size:20px;color:#004F92}
+.wa-popup-form{display:flex;flex-direction:column;gap:12px}
+.wa-popup-form input{border-radius:10px;padding:13px 18px;border:1px solid rgba(26,26,26,.15);background:rgba(26,26,26,.04);font:inherit;font-size:16px;width:100%;color:#1a1a1a;outline:none;transition:border-color .2s}
+.wa-popup-form input:focus{border-color:#004F92}
+.wa-popup-form button{margin-top:4px;background:#25D366;color:#fff;border-radius:8px;padding:14px 28px;font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:.05em;transition:opacity .2s}
+.wa-popup-form button:hover{opacity:.9}
