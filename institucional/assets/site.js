@@ -82,6 +82,30 @@ document.querySelectorAll('[data-rail]').forEach(wrap => {
   rail.addEventListener('scroll', upd, {passive:true}); addEventListener('resize', upd); upd();
 });
 
+/* Abas de informações do curso: um painel visível por vez; setas do teclado trocam de aba */
+document.querySelectorAll('[data-tabs]').forEach(box => {
+  const tabs = [...box.querySelectorAll('[role="tab"]')];
+  const show = (t, focus) => {
+    tabs.forEach(x => {
+      const on = x === t;
+      x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+    if(focus) t.focus({preventScroll:true});
+    /* No celular a lista de abas rola na horizontal: traz a aba escolhida para a vista sem mexer na página */
+    const list = t.parentElement;
+    if(list.scrollWidth > list.clientWidth) list.scrollTo({left: t.offsetLeft - 16, behavior: reduce ? 'auto' : 'smooth'});
+    if(window.ScrollTrigger) ScrollTrigger.refresh();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => show(t));
+    t.addEventListener('keydown', e => {
+      const d = {ArrowDown:1, ArrowRight:1, ArrowUp:-1, ArrowLeft:-1}[e.key];
+      if(d){ e.preventDefault(); show(tabs[(i + d + tabs.length) % tabs.length], true); }
+    });
+  });
+});
+
 /* Filtros (Pós-Técnico) */
 const filters = document.querySelector('.filters');
 if(filters){

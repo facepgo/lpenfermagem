@@ -386,6 +386,50 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
   html{scroll-behavior:auto}
 }
 
+
+/* ===== Abas de informações do curso (mesmo formato do bloco do site atual) ===== */
+.course-head .stats{margin-top:24px}
+.tabs{display:grid;gap:14px;margin-top:32px}
+.tab-list{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+.tab-list::-webkit-scrollbar{display:none}
+.tab-list button{flex:none;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;border:1px solid var(--line-2);border-radius:10px;padding:10px 14px;min-height:44px;font-size:14px;font-weight:600;color:var(--fg);background:rgba(255,255,255,.02);transition:background .25s,border-color .25s,color .25s}
+.tab-list button .ic{width:16px;height:16px;stroke-width:2;display:none}
+.tab-list button:hover{border-color:var(--acc)}
+.tab-list button[aria-selected="true"]{background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+.tab-panel{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--ink-2);padding:22px;min-height:320px}
+.tab-panel h3{margin:0 0 14px;font-weight:800;font-stretch:110%;font-size:24px;line-height:1.15}
+.tab-panel h4{margin:22px 0 8px;font-size:15px;font-weight:700}
+.tab-panel p{margin:0 0 12px;color:var(--mute);font-size:15px;max-width:68ch}
+.tab-panel b{color:var(--fg)}
+.tab-panel ul{margin:0 0 12px;padding-left:18px;color:var(--mute);font-size:15px;display:grid;gap:6px}
+.tab-panel li::marker{color:var(--acc)}
+.tab-panel .note{font-size:13.5px}
+.tab-panel table{width:100%;border-collapse:collapse;font-size:15px;margin-top:6px}
+.tab-panel th,.tab-panel td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line)}
+.tab-panel th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.tab-panel td{color:var(--fg)}
+.mods{display:grid;gap:8px;margin-top:6px}
+.mods details{border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.mods summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 14px;font-weight:700;font-size:15px}
+.mods summary::-webkit-details-marker{display:none}
+.mods summary span{font-family:var(--mono);font-size:11.5px;font-weight:500;color:var(--mute);white-space:nowrap}
+.mods summary::after{content:"+";font-weight:400;font-size:20px;line-height:1;color:var(--acc)}
+.mods details[open] summary::after{content:"–"}
+.mods ul{margin:0;padding:0 14px 14px 32px}
+.mods li span{color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap}
+.people{display:grid;gap:10px;margin-top:6px}
+.people div{border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.people b{display:block;font-size:15px}
+.people small{display:block;color:var(--mute);font-size:13.5px;margin-top:2px}
+@media (min-width:960px){
+  .tabs{grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:start}
+  .tab-list{flex-direction:column;overflow:visible;-webkit-mask-image:none;mask-image:none;position:sticky;top:110px}
+  .tab-list button .ic{display:block}
+  .tab-panel{padding:32px 36px}
+  .tab-panel h3{font-size:28px}
+  .people{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
 /* ===== Teste A/B de cores =====
    A — paleta da LP de Técnico em Enfermagem (marinho #060D49, azul #004F92, esmeralda #10B981 / #00674F)
    B — cores passadas pelo cliente em 05/11/2026 (vermelho #F91919, azul #153D77) */
