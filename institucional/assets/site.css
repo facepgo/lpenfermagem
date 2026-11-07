@@ -500,3 +500,12 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 :root[data-tema="c"] .eyebrow::before{box-shadow:none}
 :root[data-tema="c"] .step.on .big-l{text-shadow:none}
 :root[data-tema="c"] .ring{filter:none}
+
+/* Hero no formato do bloco "Seu futuro começa aqui." (07/11/2026) */
+.final h1{font-weight:900;font-stretch:122%;text-transform:uppercase;font-size:clamp(36px,10vw,110px);line-height:.88;letter-spacing:-.02em;margin:0 auto;max-width:13ch;text-wrap:balance}
+.final h1 em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;color:var(--acc);font-stretch:100%;letter-spacing:0}
+:root[data-tema="c"] .final h1{color:#004F92}
+.hero-final{padding:0}
+.hero-final .wrap{padding-block:120px 72px}
+.hero-final .marquee{margin-top:0}
+@media (min-width:960px){.hero-final .wrap{padding-block:150px 110px}}
