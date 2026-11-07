@@ -4,17 +4,21 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
 const $ = id => document.getElementById(id);
 
-/* Teste A/B/C: a versão vem do endereço (/institucional-a, -b, -c) ou de ?tema=a|b|c.
-   O <head> já marcou <html data-tema>; aqui os links internos passam a manter a versão. */
+/* Versões de cor. A versão B é o site oficial (raiz e /pos-tecnico-enfermagem, sem sufixo).
+   A e C continuam em /institucional-a|c e /pos-tecnico-enfermagem-a|c (ou ?tema=), com o selo no canto;
+   nelas, os links internos passam a manter a versão. */
 const tema = document.documentElement.dataset.tema;
-if(tema){
-  document.querySelectorAll('a[href^="/institucional"], a[href^="/pos-tecnico-enfermagem"]').forEach(a => {
-    if(a.getAttribute('href').startsWith('/institucional/assets')) return;
-    a.setAttribute('href', a.getAttribute('href').replace(/^\/(institucional|pos-tecnico-enfermagem)\/?/, `/$1-${tema}`));
+if(document.documentElement.hasAttribute('data-variante')){
+  const casa = `/institucional-${tema}`;
+  document.querySelectorAll('a[href^="/"]').forEach(a => {
+    const h = a.getAttribute('href');
+    if(h === '/' || h.startsWith('/#')) a.setAttribute('href', casa + h.slice(1));
+    else if(/^\/pos-tecnico-enfermagem\/?(#|$)/.test(h)) a.setAttribute('href', h.replace(/^\/pos-tecnico-enfermagem\/?/, `/pos-tecnico-enfermagem-${tema}`));
   });
-  const nomes = {a:'Versão A · cores da LP de Enfermagem', b:'Versão B · vermelho e azul', c:'Versão C · azul do site atual'};
-  const base = location.pathname.replace(/-(a|b|c)\/?$/, '').replace(/\/$/, '') || '/institucional';
-  const outros = Object.keys(nomes).filter(k => k !== tema).map(k => `<a href="${base}-${k}">ver ${k.toUpperCase()}</a>`).join(' · ');
+  const nomes = {a:'Versão A · cores da LP de Enfermagem', b:'Versão B · vermelho e azul (oficial)', c:'Versão C · azul do site atual'};
+  const pos = location.pathname.startsWith('/pos-tecnico-enfermagem');
+  const ir = k => k === 'b' ? (pos ? '/pos-tecnico-enfermagem' : '/') : (pos ? '/pos-tecnico-enfermagem-' : '/institucional-') + k;
+  const outros = Object.keys(nomes).filter(k => k !== tema).map(k => `<a href="${ir(k)}">ver ${k.toUpperCase()}</a>`).join(' · ');
   const v = document.createElement('div'); v.className = 'ver';
   v.innerHTML = `<i></i><span><b>${nomes[tema]}</b> · ${outros}</span>`;
   document.body.appendChild(v);

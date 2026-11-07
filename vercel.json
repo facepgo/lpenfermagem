@@ -9,16 +9,40 @@
             "source": "/enf/(.*)",
             "destination": "/tecnicoemenfermagem/$1",
             "permanent": true
+        },
+        {
+            "source": "/institucional",
+            "destination": "/",
+            "permanent": false
+        },
+        {
+            "source": "/institucional/",
+            "destination": "/",
+            "permanent": false
+        },
+        {
+            "source": "/institucional-b",
+            "destination": "/",
+            "permanent": false
+        },
+        {
+            "source": "/pos-tecnico-enfermagem-b",
+            "destination": "/pos-tecnico-enfermagem",
+            "permanent": false
         }
     ],
     "rewrites": [
         {
+            "source": "/",
+            "destination": "/institucional/index.html"
+        },
+        {
             "source": "/enfermagem",
-            "destination": "/index.html"
+            "destination": "/enfermagem.html"
         },
         {
             "source": "/enfermagem/(.*)",
-            "destination": "/index.html"
+            "destination": "/enfermagem.html"
         },
         {
             "source": "/enfermagem02",
@@ -37,10 +61,6 @@
             "destination": "/tecnicoemenfermagem/index.html"
         },
         {
-            "source": "/institucional",
-            "destination": "/institucional/index.html"
-        },
-        {
             "source": "/pos-tecnico-enfermagem",
             "destination": "/pos-tecnico-enfermagem/index.html"
         },
@@ -50,14 +70,6 @@
         },
         {
             "source": "/pos-tecnico-enfermagem-a",
-            "destination": "/pos-tecnico-enfermagem/index.html"
-        },
-        {
-            "source": "/institucional-b",
-            "destination": "/institucional/index.html"
-        },
-        {
-            "source": "/pos-tecnico-enfermagem-b",
             "destination": "/pos-tecnico-enfermagem/index.html"
         },
         {
