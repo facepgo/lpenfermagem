@@ -580,3 +580,26 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 .wa-gate-voltar{border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700;color:#5f6570;transition:background .2s,color .2s}
 .wa-gate-voltar:hover{background:#f0f2f6;color:#1a1a1a}
 @media (min-width:640px){.wa-gate{padding:32px}}
+
+/* ===== Botão flutuante "Acesso acadêmico" ao lado do WhatsApp (07/11/2026) ===== */
+.acad-fab{position:fixed;right:calc(max(16px,env(safe-area-inset-right,0px)) + 68px);bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:45;display:inline-flex;align-items:center;gap:10px;height:56px;min-width:56px;padding:0 16px;justify-content:center;border-radius:999px;background:var(--ink-3);color:var(--fg);border:1px solid var(--line-2);box-shadow:0 10px 30px -10px rgba(0,0,0,.7);font-weight:700;font-size:14px;transition:background .25s,border-color .25s,transform .2s}
+.acad-fab svg{width:24px;height:24px;flex:none}
+.acad-fab span{display:none}
+.acad-fab:hover,.acad-fab.on{background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+.acad-painel{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 84px);z-index:46;width:min(380px,calc(100vw - 32px));background:var(--ink-2);border:1px solid var(--line-2);border-radius:20px;padding:12px;box-shadow:0 30px 60px -20px rgba(0,0,0,.85);display:grid;gap:8px;animation:sheetIn .3s cubic-bezier(.2,.8,.2,1)}
+.acad-painel[hidden]{display:none}
+.acad-topo{display:flex;justify-content:space-between;align-items:center;padding:4px 4px 4px 8px}
+.acad-topo b{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.acad-x{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:var(--mute)}
+.acad-x:hover{background:rgba(255,255,255,.06);color:var(--fg)}
+.acad-x svg{width:16px;height:16px}
+.acad-painel a{display:grid;grid-template-columns:44px minmax(0,1fr) 34px;gap:12px;align-items:center;padding:12px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(160deg,var(--feat),var(--ink-2) 70%);transition:border-color .25s}
+.acad-painel a:hover,.acad-painel a:focus-visible{border-color:var(--acc)}
+.acad-painel .ibox{width:44px;height:44px;border-radius:12px}
+.acad-painel .ibox svg{width:22px;height:22px}
+.acad-painel a b{display:block;font-weight:800;font-stretch:112%;text-transform:uppercase;font-size:15px;line-height:1.1}
+.acad-painel a small{display:block;color:var(--mute);font-size:12.5px;margin-top:3px}
+.acad-painel .go{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:var(--on-acc)}
+.acad-painel .go svg{width:16px;height:16px}
+:root[data-tema="b"] .acad-painel .ibox{color:#fff}
+@media (min-width:960px){.acad-fab span{display:inline}}

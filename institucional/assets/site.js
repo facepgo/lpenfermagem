@@ -65,6 +65,40 @@ document.querySelectorAll('[data-wa]').forEach(a => {
     e.preventDefault(); abrirWa(a.dataset.wa, a);
   });
 });
+/* Botão flutuante "Acesso acadêmico", ao lado do WhatsApp: abre um painel com
+   Sou aluno, Sou professor e Biblioteca virtual (mesmos links da seção Ambientes acadêmicos). */
+(function acessoAcademico(){
+  const ICO = {
+    cap: '<path d="M2.5 9L12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.5c1.5 1.6 3.4 2.5 5.5 2.5s4-.9 5.5-2.5V11"/><path d="M21.5 9v5"/>',
+    aluno: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 3.8-5.5 7-5.5s5.8 1.9 7 5.5"/>',
+    prof: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20l4-4 4 4"/><path d="M7 8.5h6M7 11.5h4"/>',
+    livro: '<path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/>',
+    seta: '<path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>',
+    x: '<path d="M6 18L18 6M6 6l12 12"/>'
+  };
+  const svg = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[n]}</svg>`;
+  const itens = [
+    ['aluno', 'Sou aluno', 'Portal do Aluno · Gestão Escolar', 'https://facep.gestaoescolar.net.br/aluno'],
+    ['prof', 'Sou professor', 'Gestão Escolar · ambiente do professor', 'https://facep.gestaoescolar.net.br'],
+    ['livro', 'Biblioteca virtual', 'Minha Biblioteca', 'https://www.minhabiblioteca.com.br/']
+  ];
+  const btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'acad-fab'; btn.id = 'acadFab';
+  btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-controls', 'acadPainel');
+  btn.innerHTML = svg('cap') + '<span>Acesso acadêmico</span>';
+  const painel = document.createElement('div');
+  painel.className = 'acad-painel'; painel.id = 'acadPainel'; painel.hidden = true;
+  painel.setAttribute('role', 'dialog'); painel.setAttribute('aria-label', 'Acesso acadêmico');
+  painel.innerHTML = `<div class="acad-topo"><b>Acesso acadêmico</b><button type="button" class="acad-x" aria-label="Fechar">${svg('x')}</button></div>`
+    + itens.map(([ic, t, s, u]) => `<a href="${u}" target="_blank" rel="noopener"><span class="ibox">${svg(ic)}</span><span><b>${t}</b><small>${s}</small></span><span class="go">${svg('seta')}</span></a>`).join('');
+  document.body.append(painel, btn);
+  const abrir = on => { painel.hidden = !on; btn.setAttribute('aria-expanded', String(on)); btn.classList.toggle('on', on); if(on) painel.querySelector('a').focus({preventScroll:true}); };
+  btn.addEventListener('click', () => abrir(painel.hidden));
+  painel.querySelector('.acad-x').addEventListener('click', () => { abrir(false); btn.focus(); });
+  document.addEventListener('click', e => { if(!painel.hidden && !painel.contains(e.target) && !btn.contains(e.target)) abrir(false); });
+  addEventListener('keydown', e => { if(e.key === 'Escape' && !painel.hidden){ abrir(false); btn.focus(); } });
+})();
+
 /* Botão flutuante: só o ícone, como nas LPs */
 const fabEl = document.getElementById('waFab');
 if(fabEl){ fabEl.innerHTML = WA_LOGO; fabEl.setAttribute('aria-label', 'Falar no WhatsApp'); }
