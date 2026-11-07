@@ -34,6 +34,11 @@
             "source": "/tecnico-seguranca-do-trabalho-b",
             "destination": "/tecnico-seguranca-do-trabalho",
             "permanent": false
+        },
+        {
+            "source": "/tecnico-enfermagem-b",
+            "destination": "/tecnico-enfermagem",
+            "permanent": false
         }
     ],
     "rewrites": [
@@ -96,6 +101,18 @@
         {
             "source": "/tecnico-seguranca-do-trabalho-c",
             "destination": "/tecnico-seguranca-do-trabalho/index.html"
+        },
+        {
+            "source": "/tecnico-enfermagem",
+            "destination": "/tecnico-enfermagem/index.html"
+        },
+        {
+            "source": "/tecnico-enfermagem-a",
+            "destination": "/tecnico-enfermagem/index.html"
+        },
+        {
+            "source": "/tecnico-enfermagem-c",
+            "destination": "/tecnico-enfermagem/index.html"
         }
     ]
 }

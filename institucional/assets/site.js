@@ -13,11 +13,11 @@ if(document.documentElement.hasAttribute('data-variante')){
   document.querySelectorAll('a[href^="/"]').forEach(a => {
     const h = a.getAttribute('href');
     if(h === '/' || h.startsWith('/#')) a.setAttribute('href', casa + h.slice(1));
-    else if(/^\/(pos-tecnico-enfermagem|tecnico-seguranca-do-trabalho)\/?(#|$)/.test(h)) a.setAttribute('href', h.replace(/^\/(pos-tecnico-enfermagem|tecnico-seguranca-do-trabalho)\/?/, `/$1-${tema}`));
+    else if(/^\/(pos-tecnico-enfermagem|tecnico-seguranca-do-trabalho|tecnico-enfermagem)\/?(#|$)/.test(h)) a.setAttribute('href', h.replace(/^\/(pos-tecnico-enfermagem|tecnico-seguranca-do-trabalho|tecnico-enfermagem)\/?/, `/$1-${tema}`));
   });
   const nomes = {a:'Versão A · cores da LP de Enfermagem', b:'Versão B · vermelho e azul (oficial)', c:'Versão C · azul do site atual'};
   /* Página de curso atual (sem o sufixo da versão) ou a home */
-  const pag = (location.pathname.match(/^\/(pos-tecnico-enfermagem|tecnico-seguranca-do-trabalho)/) || [])[1];
+  const pag = (location.pathname.match(/^\/(pos-tecnico-enfermagem|tecnico-seguranca-do-trabalho|tecnico-enfermagem)/) || [])[1];
   const ir = k => k === 'b' ? (pag ? '/' + pag : '/') : (pag ? `/${pag}-` : '/institucional-') + k;
   const outros = Object.keys(nomes).filter(k => k !== tema).map(k => `<a href="${ir(k)}">ver ${k.toUpperCase()}</a>`).join(' · ');
   const v = document.createElement('div'); v.className = 'ver';
@@ -32,6 +32,15 @@ const WA = '5562982871553';
 document.querySelectorAll('[data-wa]').forEach(a => {
   a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(a.dataset.wa || 'Olá, FACEP! Vim pelo site.');
   a.target = '_blank'; a.rel = 'noopener';
+});
+
+/* Formulário "Inicie sua matrícula": monta a mensagem e abre o WhatsApp (nada é gravado no site) */
+const matForm = $('matForm');
+if(matForm) matForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const f = new FormData(matForm);
+  const msg = `Olá, FACEP! Meu nome é ${f.get('nome')} ${f.get('sobrenome')} (WhatsApp: ${f.get('whatsapp')}). Quero me matricular no Técnico em Enfermagem, turma: ${f.get('turma')}.`;
+  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
 });
 
 /* Links ainda sem endereço definitivo: avisa em vez de levar a lugar nenhum */
