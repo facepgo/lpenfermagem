@@ -513,3 +513,4 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 .stats div{padding:16px 10px;min-width:0}
 .stats b{font-size:clamp(24px,6.6vw,56px)}
 @media (min-width:640px){.stats div{padding:18px 14px}}
+.foot-brand p a{color:var(--fg);text-decoration:underline;text-underline-offset:2px}
