@@ -563,3 +563,20 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 .wa-popup-form input:focus{border-color:#004F92}
 .wa-popup-form button{margin-top:4px;background:#25D366;color:#fff;border-radius:8px;padding:14px 28px;font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:.05em;transition:opacity .2s}
 .wa-popup-form button:hover{opacity:.9}
+
+/* Aviso antes do WhatsApp, no formato da LP /tecnicoemenfermagem (07/11/2026) */
+.wa-popup-overlay{background:rgba(6,16,31,.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.wa-gate{position:relative;width:100%;max-width:448px;background:#fff;color:#1a1a1a;border:2px solid var(--acc-deep,#153D77);border-radius:24px;padding:28px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);font-family:var(--display);animation:sheetIn .35s cubic-bezier(.2,.8,.2,1)}
+.wa-gate .wa-popup-close{top:12px;right:12px;width:32px;height:32px;background:transparent;color:#5f6570}
+.wa-gate .wa-popup-close:hover{background:#f0f2f6;color:#1a1a1a}
+.wa-gate-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:var(--acc,#F91919);color:#fff}
+.wa-gate-icon svg{width:24px;height:24px}
+.wa-gate h2{margin:20px 0 0;font-size:20px;font-weight:900;color:#0B1F40;line-height:1.2}
+.wa-gate p{margin:8px 0 0;font-size:15px;line-height:1.6;color:#4f5560}
+.wa-gate-acoes{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.wa-gate-ok{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;border-radius:999px;background:#25D366;color:#fff;font-weight:800;font-size:15px;box-shadow:0 10px 24px -10px rgba(37,211,102,.7);transition:filter .2s}
+.wa-gate-ok:hover{filter:brightness(.95)}
+.wa-gate-ok svg{width:20px;height:20px}
+.wa-gate-voltar{border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700;color:#5f6570;transition:background .2s,color .2s}
+.wa-gate-voltar:hover{background:#f0f2f6;color:#1a1a1a}
+@media (min-width:640px){.wa-gate{padding:32px}}

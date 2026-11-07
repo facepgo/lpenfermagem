@@ -27,48 +27,45 @@ if(document.documentElement.hasAttribute('data-variante')){
   if(tema === 'c') document.querySelectorAll('img[src$="logo-facep-h-light.webp"]').forEach(i => { i.src = i.src.replace('logo-facep-h-light', 'logo-facep-h-dark'); });
 }
 
-/* WhatsApp: igual à LP /enfermagem. Botão redondo verde fixo e, em qualquer botão de WhatsApp,
-   um pop-up pede Nome, Sobrenome e WhatsApp antes de abrir a conversa. */
+/* WhatsApp: antes de abrir a conversa, um aviso no formato do da LP /tecnicoemenfermagem.
+   Texto adaptado em 07/11/2026: aulas presenciais no Setor Central e programas semipresenciais
+   sob consulta. O WhatsApp abre dentro do clique em "Falar com o atendimento" (gesto do usuário,
+   não é barrado como pop-up). Ctrl/Cmd/Shift + clique e "abrir em nova aba" vão direto. */
 const WA = '5562982871553';
 const WA_LOGO = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.534 5.845L.054 23.25a.75.75 0 0 0 .917.94l5.562-1.461A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.528-5.218-1.444l-.374-.224-3.876 1.018 1.037-3.78-.245-.39A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>';
+const waUrl = msg => 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg || 'Olá, FACEP! Vim pelo site.');
 const pop = document.createElement('div');
 pop.className = 'wa-popup-overlay'; pop.id = 'waPopup'; pop.hidden = true;
-pop.innerHTML = `<div class="wa-popup" role="dialog" aria-modal="true" aria-labelledby="waPopupTitulo">
-  <button type="button" class="wa-popup-close" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
-  <div class="wa-popup-icon">${WA_LOGO}</div>
-  <h3 id="waPopupTitulo">Falar no WhatsApp</h3>
-  <form class="wa-popup-form">
-    <input type="text" name="nome" placeholder="Nome" autocomplete="given-name" required>
-    <input type="text" name="sobrenome" placeholder="Sobrenome" autocomplete="family-name" required>
-    <input type="tel" name="whatsapp" placeholder="(xx) xxxxx-xxxx" autocomplete="tel" required>
-    <button type="submit">Enviar mensagem no WhatsApp</button>
-  </form>
+pop.innerHTML = `<div class="wa-gate" role="dialog" aria-modal="true" aria-labelledby="waGateTitulo" aria-describedby="waGateTexto">
+  <button type="button" class="wa-popup-close" data-fechar aria-label="Voltar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+  <span class="wa-gate-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span>
+  <h2 id="waGateTitulo">Antes de continuar</h2>
+  <p id="waGateTexto">Nossas aulas são presenciais, na unidade do Setor Central de Goiânia. Também temos programas semipresenciais: consulte a disponibilidade com o nosso atendimento.</p>
+  <div class="wa-gate-acoes">
+    <button type="button" class="wa-gate-ok">${WA_LOGO}Falar com o atendimento</button>
+    <button type="button" class="wa-gate-voltar" data-fechar>Voltar</button>
+  </div>
 </div>`;
 document.body.appendChild(pop);
-const popForm = pop.querySelector('form');
-let waAssunto = '', waFoco = null;
-function abrirWa(assunto, origem){
-  waAssunto = assunto || ''; waFoco = origem || null;
+const waOk = pop.querySelector('.wa-gate-ok');
+let waMsg = '', waFoco = null;
+function abrirWa(msg, origem){
+  waMsg = msg; waFoco = origem || null;
   pop.hidden = false; document.body.classList.add('lock');
-  setTimeout(() => popForm.nome.focus(), 30);
+  setTimeout(() => waOk.focus(), 30);
 }
 function fecharWa(){ pop.hidden = true; document.body.classList.remove('lock'); if(waFoco) waFoco.focus({preventScroll:true}); }
-pop.addEventListener('click', e => { if(e.target === pop || e.target.closest('.wa-popup-close')) fecharWa(); });
+pop.addEventListener('click', e => { if(e.target === pop || e.target.closest('[data-fechar]')) fecharWa(); });
 addEventListener('keydown', e => { if(e.key === 'Escape' && !pop.hidden) fecharWa(); });
-popForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const f = new FormData(popForm);
-  /* mesma frase da LP antiga; o assunto vem do botão clicado */
-  const assunto = waAssunto.replace(/^Olá,?\s*FACEP!?\s*/i, '') || 'Quero saber mais sobre os cursos da FACEP.';
-  const msg = `Olá! Meu nome é ${f.get('nome')} ${f.get('sobrenome')} (WhatsApp: ${f.get('whatsapp')}). ${assunto}`;
-  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
-  popForm.reset(); fecharWa();
-});
+waOk.addEventListener('click', () => { window.open(waUrl(waMsg), '_blank', 'noopener,noreferrer'); fecharWa(); });
 document.querySelectorAll('[data-wa]').forEach(a => {
-  a.href = '#';
-  a.addEventListener('click', e => { e.preventDefault(); abrirWa(a.dataset.wa, a); });
+  a.href = waUrl(a.dataset.wa); a.target = '_blank'; a.rel = 'noopener';
+  a.addEventListener('click', e => {
+    if(e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;
+    e.preventDefault(); abrirWa(a.dataset.wa, a);
+  });
 });
-/* Botão flutuante: só o ícone, como na LP antiga */
+/* Botão flutuante: só o ícone, como nas LPs */
 const fabEl = document.getElementById('waFab');
 if(fabEl){ fabEl.innerHTML = WA_LOGO; fabEl.setAttribute('aria-label', 'Falar no WhatsApp'); }
 
