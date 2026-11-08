@@ -604,3 +604,5 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 :root[data-tema="b"] .acad-painel .ibox{color:#fff}
 @media (min-width:960px){.acad-fab span{display:inline}}
 @media (min-width:960px){#historia .flow{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}}
+/* Menu do celular: começa abaixo da barra de acesso + menu fixo, sem encostar no logo (08/11/2026) */
+.menu{padding-top:calc(env(safe-area-inset-top,0px) + 150px)}
