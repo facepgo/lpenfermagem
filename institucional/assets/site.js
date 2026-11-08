@@ -153,14 +153,52 @@ if(!reduce && fine){
   });
 }
 
-/* Trilho de cursos */
+/* Trilhos de cards (Nossos cursos, Nossa identidade): controle com setas e barra arrastável,
+   acima e abaixo dos cards. A barra mostra a parte visível; arrastar ou clicar nela rola os cards. */
 document.querySelectorAll('[data-rail]').forEach(wrap => {
-  const rail = wrap.querySelector('.rail'), bar = wrap.querySelector('.rail-bar i');
+  const rail = wrap.querySelector('.rail');
   if(!rail) return;
+  const seta = d => `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="${d ? 'M5 12h14M13 6l6 6-6 6' : 'M19 12H5M11 6l-6 6 6 6'}"/></svg>`;
   const step = () => { const c = rail.querySelector('.pc'); return c ? c.getBoundingClientRect().width + 12 : 300; };
-  wrap.querySelector('.prev')?.addEventListener('click', () => rail.scrollBy({left:-step(), behavior: reduce ? 'auto' : 'smooth'}));
-  wrap.querySelector('.next')?.addEventListener('click', () => rail.scrollBy({left: step(), behavior: reduce ? 'auto' : 'smooth'}));
-  const upd = () => { if(!bar) return; const max = rail.scrollWidth - rail.clientWidth; const vis = rail.clientWidth / rail.scrollWidth; bar.style.width = (vis * 100) + '%'; bar.style.transform = `translateX(${max > 0 ? (rail.scrollLeft / max) * ((1 - vis) / vis) * 100 : 0}%)`; };
+  const ir = dx => rail.scrollBy({left: dx, behavior: reduce ? 'auto' : 'smooth'});
+  const fazer = () => {
+    const c = document.createElement('div'); c.className = 'wrap rail-ctrl';
+    c.innerHTML = `<button type="button" class="rc-prev" aria-label="Cards anteriores">${seta(0)}</button>
+      <div class="rc-track" role="scrollbar" aria-orientation="horizontal" aria-label="Deslizar os cards" tabindex="0"><i></i></div>
+      <button type="button" class="rc-next" aria-label="Próximos cards">${seta(1)}</button>`;
+    c.querySelector('.rc-prev').addEventListener('click', () => ir(-step()));
+    c.querySelector('.rc-next').addEventListener('click', () => ir(step()));
+    const track = c.querySelector('.rc-track');
+    track.addEventListener('keydown', e => { if(e.key === 'ArrowRight'){ e.preventDefault(); ir(step()); } if(e.key === 'ArrowLeft'){ e.preventDefault(); ir(-step()); } });
+    /* arrastar/clicar na barra */
+    let arr = false;
+    const posicao = x => {
+      const r = track.getBoundingClientRect(), vis = rail.clientWidth / rail.scrollWidth;
+      const f = Math.min(1, Math.max(0, (x - r.left - r.width * vis / 2) / (r.width * (1 - vis) || 1)));
+      rail.scrollLeft = f * (rail.scrollWidth - rail.clientWidth);
+    };
+    track.addEventListener('pointerdown', e => { arr = true; track.setPointerCapture(e.pointerId); track.classList.add('arr'); posicao(e.clientX); });
+    track.addEventListener('pointermove', e => { if(arr) posicao(e.clientX); });
+    const solta = () => { arr = false; track.classList.remove('arr'); };
+    track.addEventListener('pointerup', solta); track.addEventListener('pointercancel', solta);
+    return c;
+  };
+  const cima = fazer(), baixo = fazer();
+  rail.before(cima); rail.after(baixo);
+  const ctrls = [cima, baixo];
+  const upd = () => {
+    const max = rail.scrollWidth - rail.clientWidth, vis = Math.min(1, rail.clientWidth / rail.scrollWidth);
+    const pos = max > 0 ? rail.scrollLeft / max : 0;
+    ctrls.forEach(c => {
+      c.hidden = max <= 2;
+      const i = c.querySelector('.rc-track i');
+      i.style.width = (vis * 100) + '%';
+      i.style.left = (pos * (1 - vis) * 100) + '%';
+      c.querySelector('.rc-prev').disabled = rail.scrollLeft <= 2;
+      c.querySelector('.rc-next').disabled = rail.scrollLeft >= max - 2;
+      c.querySelector('.rc-track').setAttribute('aria-valuenow', String(Math.round(pos * 100)));
+    });
+  };
   rail.addEventListener('scroll', upd, {passive:true}); addEventListener('resize', upd); upd();
 });
 

@@ -606,3 +606,21 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 @media (min-width:960px){#historia .flow{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}}
 /* Menu do celular: começa abaixo da barra de acesso + menu fixo, sem encostar no logo (08/11/2026) */
 .menu{padding-top:calc(env(safe-area-inset-top,0px) + 150px)}
+
+/* ===== Controle dos trilhos de cards: setas + barra arrastável, acima e abaixo (08/11/2026) ===== */
+[data-rail] .rail-nav,[data-rail] .rail-foot{display:none!important}
+.rail-ctrl{display:flex;align-items:center;gap:12px;margin-top:22px}
+.rail-ctrl + .rail{margin-top:16px}
+.rail + .rail-ctrl{margin-top:16px}
+.rail-ctrl[hidden]{display:none}
+.rail-ctrl button{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line-2);background:rgba(255,255,255,.04);color:var(--fg);transition:background .25s,border-color .25s,opacity .25s}
+.rail-ctrl button .ic{width:20px;height:20px;stroke-width:2}
+.rail-ctrl button:hover:not(:disabled){background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+.rail-ctrl button:disabled{opacity:.3;cursor:default}
+.rc-track{position:relative;flex:1;height:10px;border-radius:99px;background:rgba(255,255,255,.1);cursor:grab;touch-action:none}
+.rc-track::before{content:"";position:absolute;inset:-12px 0}
+.rc-track i{position:absolute;top:0;bottom:0;border-radius:99px;background:var(--acc);box-shadow:0 0 14px rgba(var(--acc-rgb),.55);transition:left .15s}
+.rc-track.arr{cursor:grabbing}
+.rc-track.arr i{transition:none}
+.rc-track:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+:root[data-tema="c"] .rc-track{background:rgba(0,48,80,.12)}
