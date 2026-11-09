@@ -633,3 +633,8 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 .topo-btn:hover{border-color:var(--acc)}
 .topo-btn:hover .dot{transform:translateY(-3px)}
 @media (max-width:639px){.foot-bottom{flex-direction:column;align-items:flex-start}.topo-btn{align-self:stretch;justify-content:space-between}}
+
+/* Cards de cursos: só o botão é link, e ele fica destacado (08/11/2026) */
+.card-cta{flex:none;position:relative;z-index:2;box-shadow:0 8px 24px -10px rgba(var(--acc-rgb),.75)}
+#cursos .pc-foot{gap:12px;flex-wrap:wrap}
+@media (max-width:420px){#cursos .pc-foot .card-cta{width:100%}}
