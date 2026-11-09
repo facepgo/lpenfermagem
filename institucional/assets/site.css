@@ -187,7 +187,7 @@ img{max-width:100%;height:auto;display:block}
 /* Estrutura física (galeria) */
 .gal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:32px}
 .gal figure{margin:0;position:relative;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line);background:var(--ink-2);aspect-ratio:1}
-.gal figure.wide{grid-column:span 2;aspect-ratio:16/10}
+.gal figure.wide{grid-column:1/-1;aspect-ratio:16/10}
 .gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
 .gal figure:hover img{transform:scale(1.05)}
 .gal figcaption{position:absolute;left:10px;right:10px;bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:700;font-size:13.5px;text-shadow:0 1px 10px rgba(0,0,0,.7)}
@@ -364,8 +364,8 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
   .flow{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
   .flow li{grid-template-columns:1fr;gap:12px;padding-bottom:0}
   .flow li:not(:last-child)::before{left:52px;right:-14px;top:21px;bottom:auto;width:auto;height:1.5px;background:linear-gradient(90deg,var(--acc),rgba(var(--acc-rgb),.1))}
-  .gal{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-  .gal figure.tall{grid-row:span 2;aspect-ratio:auto}
+  .gal{gap:14px}
+  .gal figure.wide{aspect-ratio:21/9}
   .grid3{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
   .grid4{grid-template-columns:repeat(4,minmax(0,1fr))}
   .rail-nav{display:flex}
@@ -639,3 +639,28 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 #cursos .pc-foot{gap:12px;flex-wrap:wrap}
 @media (max-width:420px){#cursos .pc-foot .card-cta{width:100%}}
 .curso-banner-h{max-width:560px}
+
+/* Estrutura física: cards de álbum abrem pop-up com carrossel (08/11/2026) */
+.gal .alb button{all:unset;display:block;position:absolute;inset:0;cursor:pointer}
+.gal .alb button:focus-visible{outline:2px solid var(--acc);outline-offset:-4px;border-radius:var(--r-md)}
+.gal .alb-n{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:11.5px;font-weight:600;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.25);border-radius:99px;padding:4px 9px;text-shadow:none;color:#fff}
+.gal .alb-n .ic{width:14px;height:14px}
+.gal .alb:hover .alb-n{background:var(--acc);border-color:var(--acc)}
+.lb{position:fixed;inset:0;z-index:210;background:rgba(6,8,14,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));color:#fff;animation:sheetIn .3s cubic-bezier(.2,.8,.2,1)}
+.lb[hidden]{display:none!important}
+.lb-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 4px 12px}
+.lb-top b{font-size:17px}
+.lb-cont{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.7);margin-left:10px;font-weight:400}
+.lb-x,.lb-seta{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;transition:background .2s}
+.lb-x:hover,.lb-seta:hover{background:var(--acc);border-color:var(--acc)}
+.lb-x svg,.lb-seta svg{width:20px;height:20px}
+.lb-palco{position:relative;display:grid;place-items:center;min-height:0;touch-action:pan-y}
+.lb-palco img{position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:12px;user-select:none;-webkit-user-drag:none;transition:opacity .25s}
+.lb-seta{position:absolute;top:50%;transform:translateY(-50%);z-index:1;background:rgba(0,0,0,.6);border-color:rgba(255,255,255,.35)}
+.lb-seta[hidden]{display:none}
+.lb-ant{left:4px}.lb-prox{right:4px}
+.lb-leg{text-align:center;font-size:14px;color:rgba(255,255,255,.8);padding:12px 8px 4px;min-height:1.4em;margin:0}
+.lb-pontos{display:flex;justify-content:center;gap:6px;padding-top:8px}
+.lb-pontos button{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);border:0;padding:0;cursor:pointer;transition:width .2s}
+.lb-pontos button[aria-current="true"]{background:var(--acc);width:22px;border-radius:99px}
+@media (min-width:900px){.lb{padding:24px 40px}.lb-ant{left:12px}.lb-prox{right:12px}}

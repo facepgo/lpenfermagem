@@ -58,6 +58,71 @@ function fecharWa(){ pop.hidden = true; document.body.classList.remove('lock'); 
 pop.addEventListener('click', e => { if(e.target === pop || e.target.closest('[data-fechar]')) fecharWa(); });
 addEventListener('keydown', e => { if(e.key === 'Escape' && !pop.hidden) fecharWa(); });
 waOk.addEventListener('click', () => { window.open(waUrl(waMsg), '_blank', 'noopener,noreferrer'); fecharWa(); });
+/* Estrutura física: pop-up com carrossel de fotos por álbum (08/11/2026).
+   Cada card [data-album] traz "src::legenda||src::legenda". Setas, pontos, teclado (← → Esc), arrastar no celular. */
+(function albuns(){
+  const cards = document.querySelectorAll('[data-album]');
+  if(!cards.length) return;
+  const sv = d => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + d + '"/></svg>';
+  const lb = document.createElement('div');
+  lb.className = 'lb'; lb.hidden = true;
+  lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-labelledby', 'lbTit');
+  lb.innerHTML = '<div class="lb-top"><b id="lbTit"></b><button type="button" class="lb-x" aria-label="Fechar">' + sv('M6 18L18 6M6 6l12 12') + '</button></div>'
+    + '<div class="lb-palco"><button type="button" class="lb-seta lb-ant" aria-label="Foto anterior">' + sv('M15 18l-6-6 6-6') + '</button><img alt=""><button type="button" class="lb-seta lb-prox" aria-label="Próxima foto">' + sv('M9 18l6-6-6-6') + '</button></div>'
+    + '<div><p class="lb-leg" aria-live="polite"></p><div class="lb-pontos"></div></div>';
+  document.body.appendChild(lb);
+  const tit = lb.querySelector('#lbTit'), img = lb.querySelector('.lb-palco img'), leg = lb.querySelector('.lb-leg'), pontos = lb.querySelector('.lb-pontos');
+  const ant = lb.querySelector('.lb-ant'), prox = lb.querySelector('.lb-prox'), x = lb.querySelector('.lb-x'), palco = lb.querySelector('.lb-palco');
+  let fotos = [], i = 0, nome = '', origem = null, pedido = 0;
+  function mostra(n){
+    i = (n + fotos.length) % fotos.length;
+    const [src, alt] = fotos[i], este = ++pedido;
+    img.style.opacity = 0;
+    const pre = new Image();
+    pre.onload = pre.onerror = () => { if(este !== pedido) return; img.src = src; img.alt = alt; img.style.opacity = 1; };
+    pre.src = src;
+    tit.innerHTML = '';
+    tit.append(nome);
+    const cont = document.createElement('span'); cont.className = 'lb-cont'; cont.textContent = (i + 1) + ' / ' + fotos.length; tit.append(cont);
+    leg.textContent = alt;
+    pontos.querySelectorAll('button').forEach((p, k) => p.setAttribute('aria-current', k === i ? 'true' : 'false'));
+    const um = fotos.length < 2; ant.hidden = um; prox.hidden = um; pontos.hidden = um;
+    if(!um) new Image().src = fotos[(i + 1) % fotos.length][0];
+  }
+  function abre(btn){
+    origem = btn; nome = btn.dataset.albumNome;
+    fotos = btn.dataset.album.split('||').map(f => f.split('::'));
+    pontos.innerHTML = fotos.map((f, k) => '<button type="button" aria-label="Foto ' + (k + 1) + '"></button>').join('');
+    pontos.querySelectorAll('button').forEach((p, k) => p.addEventListener('click', () => mostra(k)));
+    lb.hidden = false; document.body.classList.add('lock');
+    mostra(0); setTimeout(() => x.focus(), 30);
+  }
+  function fecha(){ lb.hidden = true; document.body.classList.remove('lock'); if(origem) origem.focus({preventScroll:true}); }
+  cards.forEach(b => b.addEventListener('click', () => abre(b)));
+  ant.addEventListener('click', () => mostra(i - 1));
+  prox.addEventListener('click', () => mostra(i + 1));
+  x.addEventListener('click', fecha);
+  lb.addEventListener('click', e => { if(e.target === lb || e.target === palco) fecha(); });
+  addEventListener('keydown', e => {
+    if(lb.hidden) return;
+    if(e.key === 'Escape') fecha();
+    else if(e.key === 'ArrowLeft') mostra(i - 1);
+    else if(e.key === 'ArrowRight') mostra(i + 1);
+    else if(e.key === 'Tab'){
+      const f = [...lb.querySelectorAll('button')].filter(el => el.offsetParent);
+      const a = f[0], z = f[f.length - 1];
+      if(e.shiftKey && document.activeElement === a){ e.preventDefault(); z.focus(); }
+      else if(!e.shiftKey && document.activeElement === z){ e.preventDefault(); a.focus(); }
+    }
+  });
+  let x0 = null, y0 = 0;
+  palco.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, {passive:true});
+  palco.addEventListener('touchend', e => {
+    if(x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+    if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) mostra(i + (dx < 0 ? 1 : -1));
+  }, {passive:true});
+})();
 document.querySelectorAll('[data-wa]').forEach(a => {
   a.href = waUrl(a.dataset.wa); a.target = '_blank'; a.rel = 'noopener';
   a.addEventListener('click', e => {
