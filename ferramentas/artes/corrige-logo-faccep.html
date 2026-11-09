@@ -1,0 +1,45 @@
+<!doctype html><html><body><script>
+// Troca a palavra "FACCEP" (erro de grafia) pela palavra "FACEP" recortada do logo oficial.
+// 1) acha a faixa de letras brancas da palavra (linha de cima, à direita do brasão);
+// 2) cobre essa faixa com a cor média do fundo ao redor, com borda suave;
+// 3) cola "FACEP" do logo oficial com a mesma altura de letra, alinhado à esquerda.
+const capas = ['capa-enfermagem', 'capa-seguranca', 'capa-pos-tecnico'];
+const load = src => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = src; });
+function caixaBranca(ctx, x0, y0, x1, y1, lim){
+  const d = ctx.getImageData(x0, y0, x1 - x0, y1 - y0).data, w = x1 - x0, h = y1 - y0;
+  const rows = new Array(h).fill(0), cols = new Array(w).fill(0);
+  for(let y = 0; y < h; y++) for(let x = 0; x < w; x++){ const k = (y * w + x) * 4; if(d[k] > lim && d[k+1] > lim && d[k+2] > lim){ rows[y]++; cols[x]++; } }
+  // primeira faixa contínua de linhas com pixels brancos = palavra principal
+  let a = rows.findIndex(v => v > 2), b = a; while(b < h && rows[b] > 0) b++;
+  const d2 = ctx.getImageData(x0, y0 + a, w, b - a).data; let L = w, Rr = 0;
+  for(let y = 0; y < b - a; y++) for(let x = 0; x < w; x++){ const k = (y * w + x) * 4; if(d2[k] > lim && d2[k+1] > lim && d2[k+2] > lim){ if(x < L) L = x; if(x > Rr) Rr = x; } }
+  return {x: x0 + L, y: y0 + a, w: Rr - L + 1, h: b - a};
+}
+(async () => {
+  const logo = await load('logo.webp');
+  const lc = document.createElement('canvas'); lc.width = logo.naturalWidth; lc.height = logo.naturalHeight;
+  const lx = lc.getContext('2d'); lx.drawImage(logo, 0, 0);
+  // palavra FACEP no logo oficial: à direita do brasão (x>380), parte de cima
+  const pal = caixaBranca(lx, 380, 0, logo.naturalWidth, logo.naturalHeight, 200);
+  const out = {}; out.logo = pal;
+  for(const n of capas){
+    const img = await load(n + '.webp');
+    const c = document.createElement('canvas'); c.width = img.naturalWidth; c.height = img.naturalHeight;
+    const x = c.getContext('2d'); x.drawImage(img, 0, 0);
+    // palavra FACCEP: região à direita do brasão, faixa de cima
+    const box = caixaBranca(x, 320, 130, 720, 330, 215);
+    // cor do fundo: média de uma faixa logo acima da palavra
+    const s = x.getImageData(box.x, Math.max(0, box.y - 26), box.w, 14).data; let r = 0, g = 0, b = 0, q = 0;
+    for(let k = 0; k < s.length; k += 4){ r += s[k]; g += s[k+1]; b += s[k+2]; q++; }
+    const cor = `rgb(${r/q|0},${g/q|0},${b/q|0})`;
+    x.save(); x.filter = 'blur(6px)'; x.fillStyle = cor; x.fillRect(box.x - 10, box.y - 8, box.w + 20, box.h + 16); x.restore();
+    x.fillStyle = cor; x.fillRect(box.x - 4, box.y - 3, box.w + 8, box.h + 6);
+    // FACEP oficial com a mesma altura de letra
+    // mesma largura do FACCEP (que acompanha a linha de baixo, como no logo oficial), centrado na altura
+    const novoW = box.w, novoH = pal.h * (box.w / pal.w), y0 = box.y + (box.h - novoH) / 2;
+    x.drawImage(lc, pal.x, pal.y, pal.w, pal.h, box.x, y0, novoW, novoH);
+    out[n] = {box, cor, novoW: Math.round(novoW), url: c.toDataURL('image/webp', 0.9)};
+  }
+  const pre = document.createElement('pre'); pre.id = 'out'; pre.textContent = JSON.stringify(out); document.body.appendChild(pre);
+})();
+</script></body></html>
