@@ -339,8 +339,8 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
   .portal a{position:relative}
 }
 @media (min-width:960px){
-  .access-in{display:flex;justify-content:flex-end;align-items:center;gap:8px}
-  .acc-label{display:block;margin-right:auto;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+  .access-in{display:flex;justify-content:center;align-items:center;gap:8px;position:relative}
+  .acc-label{display:block;position:absolute;left:var(--gut-l);top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
   .acc-btn{min-height:38px;padding:6px 16px;border-radius:999px}
   .nav-links{display:flex;gap:2px;font-size:14px;color:var(--mute)}
   .nav-links a{padding:10px 14px;border-radius:999px;transition:color .25s,background .25s}
