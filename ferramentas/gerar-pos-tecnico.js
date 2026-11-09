@@ -71,27 +71,44 @@ const items = [
   {t: 'Programa e Metodologia', h: `<p>As Especializações Técnicas de Nível Médio em Enfermagem ampliam a atuação do Técnico em Enfermagem em áreas específicas da assistência, com formação técnica, ética e humanizada.</p>
           <p>Modalidade <b>EAD com encontros presenciais obrigatórios</b>: carga horária total de <b>360 horas</b>, sendo 288 h teóricas no Ambiente Virtual de Aprendizagem da FACEP e 72 h (20%) de estágio e práticas supervisionadas presenciais.</p>
           <p>É possível cursar uma ou mais especializações, ao mesmo tempo ou em sequência.</p>
+          <p>Eixo tecnológico <b>Ambiente e Saúde</b>. Oferta baseada na Resolução CEE/Pleno nº 04/2015 (EAD com até 20% presencial), na Resolução CNE/CEB nº 6/2012 e na Resolução COFEN nº 609/2019.</p>
           <h4>Metodologia</h4>
-          <ul><li>Aulas expositivas dialogadas e interativas, no ambiente virtual e presencial.</li><li>Estudo de casos clínicos e situações-problema.</li><li>Fóruns de discussão e atividades colaborativas.</li><li>Práticas presenciais nos laboratórios da FACEP ou em instituições parceiras credenciadas.</li></ul>`},
+          <ul><li>Aulas expositivas dialogadas e interativas, no ambiente virtual e presencial.</li><li>Estudo de casos clínicos e situações-problema.</li><li>Fóruns de discussão e atividades colaborativas.</li><li>Simulações realísticas e práticas supervisionadas presenciais, nos laboratórios da FACEP ou em instituições parceiras credenciadas.</li><li>Relatórios, portfólios e projetos integradores.</li></ul>
+          <h4>Recursos de ensino</h4>
+          <p>Videoaulas, textos de apoio, artigos científicos, laboratórios virtuais e físicos, equipamentos simuladores e manuais técnicos, no Ambiente Virtual de Aprendizagem (AVA-FACEP).</p>
+          <h4>Como você é avaliado</h4>
+          <ul><li>No ambiente virtual: fóruns, estudos dirigidos, questionários, análise de casos clínicos, provas e portfólios.</li><li>Presencialmente: provas práticas e simuladas em laboratório, avaliação de desempenho técnico e avaliação do estágio.</li><li>Aprovação com média mínima de 60 pontos em cada componente e frequência mínima de 75%. Quem não atingir a média pode fazer atividades de recuperação, conforme o Regimento Acadêmico.</li></ul>
+          <h4>Acessibilidade e inclusão</h4>
+          <p>Adaptação de recursos didáticos, prazos, atividades e avaliações, com acompanhamento individual quando necessário, conforme a Lei Brasileira de Inclusão (Lei nº 13.146/2015). O ambiente virtual permite ajustar fonte, contraste e formato de leitura.</p>`},
   {t: 'Grade Curricular', h: grade},
   {t: 'Estágio e Parcerias', h: `<p>As <b>72 horas</b> presenciais de cada especialização são feitas em encontros ao longo do curso ou em estágio supervisionado ao final.</p>
           <h4>Prefeitura de Goiânia</h4>
-          <p>Convênio com a Secretaria Municipal de Saúde (Contrato nº 008/2025, vigência de 5 anos), com unidades como as UPAs Novo Mundo e Jardim América e Centros de Saúde da Família.</p>
+          <p>Convênio com a Secretaria Municipal de Saúde de Goiânia (Contrato nº 008/2025, publicado no Diário Oficial do Município nº 8471, de 04/02/2025, com vigência de 5 anos), que permite usar as unidades públicas de saúde como campo de prática e estágio supervisionado:</p>
+          <ul><li>UPA Novo Mundo e UPA Jardim América.</li><li>Centros de Saúde da Família do Setor Coimbra, Jardim Guanabara, Bairro Goiá, Setor Leste Universitário, Jardim Curitiba e Pedro Ludovico.</li><li>UBS Parque Amazônia.</li><li>UAIS Vila Mutirão.</li></ul>
           <h4>Instituições privadas</h4>
-          <ul><li>Clínica e Hospital Coração de Jesus (ACLIMA): Urgência e Emergência, Terapia Intensiva e Saúde do Trabalhador.</li><li>Casa de Eurípedes e Instituto Metamorfose: Saúde Mental.</li><li>Instituto Casa de Idosos Amar Mais.</li></ul>`},
+          <ul><li>Clínica e Hospital Coração de Jesus (ACLIMA): Urgência e Emergência, Terapia Intensiva e Saúde do Trabalhador.</li><li>Casa de Eurípedes (Obras Sociais Eurípedes Barsanulfo): Saúde Mental.</li><li>Instituto Metamorfose de Reabilitação e Cuidados Integrativos: Saúde Mental.</li><li>Instituto Casa de Idosos Amar Mais: assistência humanizada ao idoso.</li></ul>
+          <h4>Supervisão</h4>
+          <p>Estágio em instituições conveniadas, supervisionado por enfermeiros habilitados e acompanhado pela Coordenação de Estágios da FACEP.</p>
+          <h4>Dispensa do estágio</h4>
+          <p>Quem comprova pelo menos <b>6 meses de atuação profissional</b> na área da especialização pode pedir a dispensa, com análise dos documentos pelas coordenações de estágio e de cursos, conforme a Resolução COFEN nº 609/2019.</p>
+          <h4>Documentos do estágio</h4>
+          <ul><li>Termo de Compromisso de Estágio.</li><li>Ficha de Acompanhamento de Estágio.</li><li>Ficha de Avaliação de Desempenho, preenchida pelo enfermeiro supervisor.</li><li>Relatório Final de Estágio.</li></ul>`},
   {t: 'Corpo Docente', h: `<div class="people">
             <div><b>Carlos Magno Rodrigues Alves</b><small>Especialista em Enfermagem do Trabalho e Docência Universitária · Direção Geral</small></div>
             <div><b>Meillyne Alves dos Reis</b><small>Doutora em Enfermagem · Coordenação Acadêmica</small></div>
             <div><b>Lucas Vinícius Dias Pereira</b><small>Especialista em UTI Adulto e Fisiologia Humana · Coordenação de Cursos</small></div>
+            <div><b>Carla Muriely Rodrigues Alves</b><small>Graduada em Pedagogia · Secretaria Acadêmica</small></div>
           </div>`},
   {t: 'Local e Horário', h: `<p>Teoria no <b>Ambiente Virtual de Aprendizagem</b>, com atividades no seu ritmo.</p>
           <p>Encontros presenciais em períodos programados, na sede da FACEP (<b>Rua 03, nº 170, Setor Central, Goiânia - GO</b>) ou em instituições parceiras. Consulte a equipe de matrículas sobre as datas.</p>`},
   {t: 'Perfil do Aluno', h: `<p>Para quem é <b>Técnico em Enfermagem</b> e quer se especializar em uma área da assistência, ampliando as possibilidades no mercado de trabalho.</p>`},
   {t: 'Objetivos e Qualificações', h: `<p>Formação técnica continuada para Técnicos em Enfermagem, com base em princípios éticos, científicos e humanísticos, fortalecendo a prática assistencial e ampliando as possibilidades de atuação profissional.</p>
           <h4>Ao concluir, você estará apto a</h4>
-          <ul><li>Aplicar os conhecimentos técnico-científicos em situações da sua área de especialização.</li><li>Executar procedimentos e protocolos de enfermagem com segurança, ética e eficiência.</li><li>Trabalhar em equipe multiprofissional, com foco na segurança do paciente e na qualidade do cuidado.</li><li>Atuar conforme as normativas e protocolos vigentes do COFEN e do SUS.</li></ul>
+          <ul><li>Aplicar os conhecimentos técnico-científicos em situações da sua área de especialização.</li><li>Executar procedimentos e protocolos de enfermagem com segurança, ética e eficiência.</li><li>Trabalhar em equipe multiprofissional, com foco na segurança do paciente e na qualidade do cuidado.</li><li>Atuar conforme as normativas e protocolos vigentes do COFEN e do SUS.</li><li>Adotar condutas baseadas em evidências e nas boas práticas de cuidado.</li><li>Atuar de forma humanizada, empática e ética.</li><li>Promover educação em saúde para paciente, família e comunidade.</li><li>Usar ferramentas digitais e registros eletrônicos em saúde.</li></ul>
           <h4>Certificado</h4>
-          <p>Certificado de Conclusão da Especialização Técnica em Enfermagem, com histórico escolar, validade nacional e <b>registro no COREN</b>, conforme a Resolução COFEN nº 609/2019.</p>`},
+          <p>Certificado de Conclusão da Especialização Técnica em Enfermagem, com histórico escolar (disciplinas, carga horária, notas, frequência e ato autorizativo), validade nacional e <b>registro no COREN</b>, conforme a Resolução COFEN nº 609/2019.</p>
+          <h4>Para receber o certificado</h4>
+          <ul><li>Cumprir as 360 horas.</li><li>Média mínima de 60 pontos em cada componente e frequência mínima de 75%.</li><li>Entregar todas as atividades obrigatórias.</li><li>Cumprir o estágio supervisionado ou ter a dispensa aprovada.</li><li>Estar em dia com a documentação e a parte financeira na Secretaria Acadêmica.</li></ul>`},
   {t: 'Valor do Curso', h: `<p>Fale com a equipe de matrículas para consultar valores e condições de pagamento.</p>
           <a class="btn btn-acc btn-sm" data-wa="Olá, FACEP! Quero saber valores do Pós-Técnico em Enfermagem.">Consultar no WhatsApp<span class="dot"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path pathLength="1" d="M9 10h6M9 13h4"/></svg></span></a>`},
   {t: 'Processo Seletivo', h: `<p>Requisitos: <b>diploma de Técnico em Enfermagem</b> (ou declaração de conclusão) e <b>18 anos ou mais</b>.</p>
@@ -105,6 +122,8 @@ const items = [
             <details><summary>Qual a carga horária?</summary><ul><li>360 horas em cada especialização.</li></ul></details>
             <details><summary>Posso fazer mais de uma especialização?</summary><ul><li>Sim. É possível cursar uma ou mais, ao mesmo tempo ou em sequência.</li></ul></details>
             <details><summary>O certificado vale para o COREN?</summary><ul><li>Sim. O certificado tem validade nacional e permite o registro da especialização no COREN, conforme a Resolução COFEN nº 609/2019.</li></ul></details>
+            <details><summary>Já trabalho na área. Preciso fazer o estágio?</summary><ul><li>Quem comprova pelo menos 6 meses de atuação profissional na área da especialização pode pedir a dispensa do estágio, com análise dos documentos pela FACEP.</li></ul></details>
+            <details><summary>Posso aproveitar estudos que já fiz?</summary><ul><li>Sim, se você comprovar formação equivalente. A FACEP analisa ementas, carga horária e conteúdos.</li></ul></details>
             <details><summary>Como sou aprovado?</summary><ul><li>Com média mínima de 60 pontos e frequência mínima de 75% em cada componente.</li></ul></details>
           </div>
           <a class="btn btn-acc btn-sm" data-wa="Olá, FACEP! Tenho uma dúvida sobre o Pós-Técnico em Enfermagem.">Falar com o time da FACEP<span class="dot"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path pathLength="1" d="M9 10h6M9 13h4"/></svg></span></a>`}
