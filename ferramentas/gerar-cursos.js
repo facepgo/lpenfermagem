@@ -94,7 +94,7 @@ function pagina(c) {
     <p>Consulte as vagas e saiba como se matricular.</p>
     <div class="ctas">
       <a class="btn btn-acc magnetic" data-wa="${wa}">Falar no WhatsApp<span class="dot">${SV(ICO.seta)}</span></a>
-      <a class="btn btn-ghost magnetic" href="/#cursos">Ver todos os cursos<span class="dot">${SV(ICO.seta)}</span></a>
+      <a class="btn btn-ghost magnetic" href="/#cursos" data-abre-menu>Ver todos os cursos<span class="dot">${SV(ICO.seta)}</span></a>
     </div>
   </div>
 </section>

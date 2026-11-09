@@ -210,6 +210,11 @@ if(menuBtn){
   menuBtn.addEventListener('click', () => setMenu(menu.hidden));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
   addEventListener('keydown', e => { if(e.key === 'Escape' && !menu.hidden) setMenu(false); });
+  /* "Ver todos os cursos": no celular abre o mesmo menu do topo; no desktop (sem botão de menu) segue o link */
+  document.querySelectorAll('[data-abre-menu]').forEach(a => a.addEventListener('click', e => {
+    if(menuBtn.offsetParent === null) return;
+    e.preventDefault(); setMenu(true);
+  }));
 }
 
 /* Spotlight nos cards e botões magnéticos */

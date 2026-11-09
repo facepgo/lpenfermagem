@@ -227,7 +227,7 @@ const main = `<main id="topo">
     <p>Especialize-se e amplie suas possibilidades na enfermagem.</p>
     <div class="ctas">
       <a class="btn btn-acc magnetic" data-wa="Olá, FACEP! Quero saber sobre o Pós-Técnico em Enfermagem.">Falar no WhatsApp<span class="dot">${arrow}</span></a>
-      <a class="btn btn-ghost magnetic" href="/#cursos">Ver todos os cursos<span class="dot">${arrow}</span></a>
+      <a class="btn btn-ghost magnetic" href="/#cursos" data-abre-menu>Ver todos os cursos<span class="dot">${arrow}</span></a>
     </div>
   </div>
 </section>
