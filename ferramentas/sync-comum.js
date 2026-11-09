@@ -19,8 +19,10 @@ for (const pg of ['tecnico-enfermagem', 'tecnico-seguranca-do-trabalho', 'pos-te
   h = h.replace(/<footer>[\s\S]*?<\/footer>/, footer);
   // galeria própria do curso sai (a galeria é a da Estrutura física, comum a todas)
   h = h.replace(/<!-- Galeria: [\s\S]*?<section class="sec" id="galeria">[\s\S]*?<\/section>\s*/, '');
-  // Estrutura física: substitui a cópia anterior ou entra antes da chamada final
-  if (h.includes('<!-- comum:estrutura')) h = h.replace(/<!-- comum:estrutura[\s\S]*?<!-- \/comum:estrutura -->/, estrutura);
+  // Estrutura física: só nas páginas da lista COM_ESTRUTURA (08/11/2026: saiu de Técnico em Enfermagem)
+  const COM_ESTRUTURA = ['tecnico-seguranca-do-trabalho', 'pos-tecnico-enfermagem'];
+  if (!COM_ESTRUTURA.includes(pg)) h = h.replace(/<!-- comum:estrutura[\s\S]*?<!-- \/comum:estrutura -->\s*/, '');
+  else if (h.includes('<!-- comum:estrutura')) h = h.replace(/<!-- comum:estrutura[\s\S]*?<!-- \/comum:estrutura -->/, estrutura);
   else h = h.replace('<section class="final">', estrutura + '\n\n<section class="final">');
   fs.writeFileSync(p, h);
   console.log(pg, '| estrutura:', (h.match(/id="estrutura"/g) || []).length, '| galeria antiga:', h.includes('id="galeria"'), '| rodapé = home:', h.includes(footer));
