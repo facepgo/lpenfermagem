@@ -4,7 +4,7 @@
 // "Nossa identidade" (cards de texto no estilo das especializações) e chamada final.
 // Cabeçalho e rodapé vêm da home; depois rode o sync-comum.js.
 // Regra: nada de número, preço ou afirmação sem fonte. O que a FACEP ainda não mandou fica
-// com o selo amarelo "A solicitar à FACEP".
+// como convite "Consulte ... com o time FACEP" (antes era o selo "A solicitar à FACEP"; trocado para a visita do CEE).
 const fs = require('fs');
 const tabs = require('./tabs-lib.js');
 const root = process.argv[2];
@@ -23,7 +23,7 @@ const ICO = {
   frasco: '<path pathLength="1" d="M9 3h6M10 3v6l-5.5 9.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3"/><path pathLength="1" d="M7.5 15h9"/>',
   sobe: '<path pathLength="1" d="M3 17l6-6 4 4 8-8"/><path pathLength="1" d="M15 7h6v6"/>'
 };
-const draft = t => `<span class="draft">A solicitar à FACEP: ${t}</span>`;
+const draft = t => `<span class="consulte">Consulte ${t} com o time FACEP. <a class="consulte-link" data-wa="Olá, FACEP! Vim pelo site e quero consultar datas e condições.">Falar com o time FACEP</a></span>`;
 const waBtn = (txt, msg) => `<a class="btn btn-acc btn-sm" data-wa="${msg}">${txt}<span class="dot">${SV(ICO.zap)}</span></a>`;
 const lista = itens => `<ul>${itens.map(i => `<li>${SV(ICO.check)}${i}</li>`).join('')}</ul>`;
 
@@ -110,7 +110,10 @@ function pagina(c) {
 const segAtual = fs.readFileSync(root + '/tecnico-seguranca-do-trabalho/index.html', 'utf8');
 const t0 = segAtual.indexOf('<div class="tabs"');
 const t1 = segAtual.indexOf('</section>', t0);
-const segAbas = segAtual.slice(t0, segAtual.lastIndexOf('</div>', segAtual.lastIndexOf('</div>', t1) - 1)).trim();
+// Bloco das abas: do <div class="tabs"> até antes do </div> que fecha o .wrap da seção.
+// Fecha os <div> que faltarem (antes, cada execução perdia um </div> e o bloco ficava aberto).
+let segAbas = segAtual.slice(t0, segAtual.lastIndexOf('</div>', t1)).trim();
+for (let falta = (segAbas.match(/<div[ >]/g) || []).length - (segAbas.match(/<\/div>/g) || []).length; falta > 0; falta--) segAbas += '\n</div>';
 pagina({
   slug: 'tecnico-seguranca-do-trabalho', id: 'seg', nome: 'Técnico em Segurança do Trabalho',
   titulo: 'Técnico em <em>Segurança do Trabalho</em>', selo: 'Curso técnico · aulas presenciais',

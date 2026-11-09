@@ -666,3 +666,33 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 .lb-pontos button{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);border:0;padding:0;cursor:pointer;transition:width .2s}
 .lb-pontos button[aria-current="true"]{background:var(--acc);width:22px;border-radius:99px}
 @media (min-width:900px){.lb{padding:24px 40px}.lb-ant{left:12px}.lb-prox{right:12px}}
+
+/* Convite "Consulte ... com o time FACEP" no lugar das pendências (visita do CEE, 08/11/2026) */
+.consulte{display:block;border-left:3px solid var(--acc);background:rgba(var(--acc-rgb),.08);border-radius:0 10px 10px 0;padding:12px 16px;color:var(--fg,inherit);font-size:15px;line-height:1.5}
+.consulte-link{display:inline-block;margin-left:4px;font-weight:700;color:var(--acc);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.consulte-link:hover{text-decoration-thickness:2px}
+
+/* Política de Privacidade (08/11/2026) */
+.legal-data{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-top:14px}
+.legal{display:grid;gap:28px}
+.legal-indice{border:1px solid var(--line);border-radius:var(--r-md);background:var(--ink-2);padding:18px 20px;align-self:start}
+.legal-indice b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.legal-indice ol{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14px}
+.legal-indice a:hover{color:var(--acc)}
+.legal-corpo{max-width:760px}
+.legal-sec{padding:6px 0 26px;border-bottom:1px solid var(--line);margin-bottom:26px;scroll-margin-top:110px}
+.legal-sec:last-child{border-bottom:0}
+.legal-sec h2{display:flex;gap:14px;align-items:baseline;font-size:clamp(20px,2.4vw,26px);line-height:1.2;margin:0 0 14px}
+.legal-sec h2 span{font-family:var(--mono);font-size:12px;color:var(--acc);letter-spacing:.1em}
+.legal-sec p,.legal-sec li{color:var(--mute);font-size:15.5px;line-height:1.65}
+.legal-sec p{margin:0 0 12px}
+.legal-sec b{color:var(--fg)}
+.legal-sec ul{margin:0 0 12px;padding-left:20px;display:grid;gap:6px}
+.legal-sec a{color:var(--acc);text-decoration:underline;text-underline-offset:3px}
+@media (min-width:960px){.legal{grid-template-columns:280px minmax(0,1fr);gap:48px}.legal-indice{position:sticky;top:110px}}
+/* 404 */
+.erro404{min-height:70vh;display:flex;align-items:center}
+.erro-num{font-weight:900;font-stretch:122%;font-size:clamp(90px,18vw,200px);line-height:.85;margin:0;color:transparent;-webkit-text-stroke:2px var(--acc)}
+.erro-links{list-style:none;padding:0;margin:32px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.erro-links a{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:8px 14px;font-size:14px}
+.erro-links a:hover{border-color:var(--acc);color:var(--acc)}

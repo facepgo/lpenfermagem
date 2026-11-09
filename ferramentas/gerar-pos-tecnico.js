@@ -59,7 +59,7 @@ const cards = E.map(([ic, name, area, grp, foco, mods], i) => `
         <div><span class="area">${area}</span><h3>Especialização Técnica em ${name}</h3></div>
         <p>${foco}</p>
         <ul><li>${chk}360 h: 288 h EAD + 72 h presenciais</li><li>${chk}${mods.length} módulos + estágio supervisionado</li></ul>
-        <div class="pc-foot"><span class="status">Autorização: a confirmar</span><a class="pc-go" data-wa="Olá, FACEP! Quero saber sobre a Especialização Técnica em ${name}.">Saber mais${arrow}</a></div>
+        <div class="pc-foot"><span class="status">Autorização: consulte o time FACEP</span><a class="pc-go" data-wa="Olá, FACEP! Quero saber sobre a Especialização Técnica em ${name}.">Saber mais${arrow}</a></div>
       </article>`).join('');
 
 const grade = `<p>Todas as especializações têm <b>360 horas</b>: 288 h de módulos teóricos no Ambiente Virtual e 72 h de estágio e práticas supervisionadas presenciais.</p>
@@ -115,7 +115,7 @@ const items = [
           <p>Documentos: CPF, RG, comprovante de endereço, comprovante de escolaridade de nível médio e, para homens, certificado de reservista. Processo seletivo simplificado, pela Secretaria da FACEP.</p>`},
   // O plano não traz duração em meses, datas nem horários dos encontros: fica marcado para pedir à FACEP.
   {t: 'Cronograma de Aulas', h: `<p>Cada especialização tem <b>360 horas</b>: 288 h de módulos teóricos no Ambiente Virtual, no seu ritmo, e 72 h de práticas presenciais em períodos programados.</p>
-          <p><span class="draft">A solicitar à FACEP: duração em meses, datas das turmas e horários dos encontros presenciais</span></p>`},
+          <p><span class="consulte">Consulte duração, datas das turmas, horários dos encontros presenciais e condições com o time FACEP. <a class="consulte-link" data-wa="Olá, FACEP! Vim pelo site e quero consultar datas e condições.">Falar com o time FACEP</a></span></p>`},
   {t: 'Perguntas frequentes', h: `<div class="mods">
             <details><summary>Quem pode fazer o Pós-Técnico?</summary><ul><li>Quem tem diploma de Técnico em Enfermagem (ou declaração de conclusão) e 18 anos ou mais.</li></ul></details>
             <details><summary>O curso é EAD ou presencial?</summary><ul><li>EAD, com 288 h no Ambiente Virtual, e 72 h (20%) de práticas presenciais obrigatórias.</li></ul></details>
@@ -178,7 +178,7 @@ const main = `<main id="topo">
   <div class="wrap">
     <div class="head-split">
       <div><span class="eyebrow">As 10 especializações</span><h2 class="h2" data-split>Escolha a sua <em>área</em></h2></div>
-      <p class="lead" data-rv>A situação de autorização de cada curso aparece no card. <span class="draft">Aguardando situação oficial de cada curso</span></p>
+      <p class="lead" data-rv>Consulte a situação de autorização de cada especialização, as datas e as condições com o time FACEP.</p>
     </div>
     <div class="filters" role="group" aria-label="Filtrar especializações">
       <button type="button" data-f="all" aria-pressed="true">Todas <b>10</b></button>

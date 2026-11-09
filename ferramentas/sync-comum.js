@@ -12,7 +12,8 @@ const e1 = home.indexOf('</section>', home.indexOf('id="estrutura"')) + '</secti
 if (e0 < 0) throw new Error('Estrutura física não encontrada na home');
 const estrutura = '<!-- comum:estrutura (cópia da home, gerada por sync-comum.js) -->\n' + home.slice(e0, e1).replace('<!-- Estrutura física -->\n', '') + '\n<!-- /comum:estrutura -->';
 
-for (const pg of ['tecnico-enfermagem', 'tecnico-seguranca-do-trabalho', 'tecnico-necropsia', 'pos-tecnico-enfermagem']) {
+// politica-de-privacidade e 404.html: rodapé copiado por gerar-institucionais.js (rode-o também quando o rodapé mudar)
+for (const pg of ['tecnico-enfermagem', 'tecnico-seguranca-do-trabalho', 'tecnico-necropsia', 'pos-tecnico-enfermagem', 'politica-de-privacidade']) {
   const p = `${root}/${pg}/index.html`;
   let h = fs.readFileSync(p, 'utf8');
   // rodapé igual ao da home
