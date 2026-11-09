@@ -6,7 +6,7 @@ const root = process.argv[2];
 const home = fs.readFileSync(root + '/institucional/index.html', 'utf8');
 
 const footer = home.match(/<footer>[\s\S]*?<\/footer>/)[0]
-  .replace(/href="#([a-z-]+)"/g, 'href="/#$1"'); // nas outras páginas, âncoras apontam para a home
+  .replace(/href="#(?!topo")([a-z-]+)"/g, 'href="/#$1"'); // nas outras páginas, âncoras apontam para a home
 const e0 = home.indexOf('<!-- Estrutura física -->');
 const e1 = home.indexOf('</section>', home.indexOf('id="estrutura"')) + '</section>'.length;
 if (e0 < 0) throw new Error('Estrutura física não encontrada na home');

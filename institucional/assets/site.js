@@ -123,6 +123,9 @@ document.addEventListener('click', e => {
   toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('show'), 3200);
 });
 
+/* Rodapé: "Voltar ao topo" sobe até o início da página (inclusive a barra de acesso) */
+document.querySelectorAll('[data-topo]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); }));
+
 /* Nav e menu */
 const nav = $('nav'), menu = $('menu'), menuBtn = $('menuBtn'), fab = $('waFab');
 let lastY = scrollY;

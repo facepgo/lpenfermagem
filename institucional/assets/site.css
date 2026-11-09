@@ -624,3 +624,12 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 .rc-track.arr i{transition:none}
 .rc-track:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
 :root[data-tema="c"] .rc-track{background:rgba(0,48,80,.12)}
+
+/* Rodapé: botão "Voltar ao topo" (08/11/2026) */
+.foot-bottom{align-items:center}
+.topo-btn{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:4px 4px 4px 16px;border-radius:999px;border:1px solid var(--line-2);color:var(--fg);font-weight:600;font-size:14px;transition:border-color .25s,background .25s,color .25s}
+.topo-btn .dot{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:var(--on-acc);transition:transform .3s}
+.topo-btn .dot .ic{width:18px;height:18px;stroke-width:2}
+.topo-btn:hover{border-color:var(--acc)}
+.topo-btn:hover .dot{transform:translateY(-3px)}
+@media (max-width:639px){.foot-bottom{flex-direction:column;align-items:flex-start}.topo-btn{align-self:stretch;justify-content:space-between}}
