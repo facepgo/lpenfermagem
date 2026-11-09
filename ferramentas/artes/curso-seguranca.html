@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&display=swap" rel="stylesheet">
+<style>
+/* Arte do card "Técnico em Segurança do Trabalho" no padrão dos pôsteres de Enfermagem e Necropsia.
+   1122×1402. Só materiais reais da FACEP: foto da sede, logo e dados do plano do curso. */
+*{box-sizing:border-box;margin:0}
+html,body{width:1122px;height:1402px;overflow:hidden;background:#06122b}
+.p{position:relative;width:1122px;height:1402px;overflow:hidden;font-family:Archivo,Arial Black,sans-serif;color:#fff}
+.ceu{position:absolute;inset:0;background:
+  radial-gradient(60% 40% at 72% 18%,rgba(255,255,255,.28),transparent 60%),
+  conic-gradient(from 200deg at 72% 16%,transparent 0 20deg,rgba(249,25,25,.35) 26deg,transparent 34deg,rgba(91,157,255,.35) 46deg,transparent 56deg,rgba(249,25,25,.25) 70deg,transparent 80deg,rgba(91,157,255,.3) 300deg,transparent 320deg),
+  linear-gradient(180deg,#0a2a6b 0%,#123f9a 38%,#0c2a63 62%,#06122b 100%)}
+.sede{position:absolute;left:0;right:0;bottom:0;height:760px;background:url(sede.webp) center 62%/cover no-repeat;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%);mask-image:linear-gradient(180deg,transparent 0,#000 22%)}
+.sede::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,18,43,.15),rgba(6,18,43,.35) 70%,rgba(6,18,43,.85))}
+.logo{position:absolute;top:58px;left:50%;transform:translateX(-50%);width:430px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5))}
+/* selo do título, como o de Enfermagem: escudo com a cruz + barras azul e vermelha */
+.titulo{position:absolute;left:58px;top:250px;display:flex;align-items:center}
+.escudo{position:relative;z-index:2;width:190px;height:220px;flex:none;filter:drop-shadow(0 14px 24px rgba(0,0,0,.55))}
+.barras{margin-left:-46px;display:flex;flex-direction:column;gap:0}
+.b1{background:linear-gradient(90deg,#1b4fb8,#123d8f);padding:16px 40px 16px 70px;font-weight:800;font-stretch:108%;font-size:58px;line-height:1;letter-spacing:.01em;clip-path:polygon(0 0,100% 0,97% 100%,0 100%);box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.b2{background:linear-gradient(90deg,#e81717,#b30f0f);padding:18px 40px 20px 70px;font-weight:900;font-stretch:112%;font-size:74px;line-height:.95;letter-spacing:-.005em;clip-path:polygon(0 0,98% 0,95% 100%,0 100%);box-shadow:0 14px 30px rgba(0,0,0,.45);text-shadow:0 3px 0 rgba(0,0,0,.25)}
+.b2 small{display:block;font-size:74px}
+/* destaques do curso (dados do plano) */
+.dados{position:absolute;left:66px;top:600px;display:grid;gap:16px}
+.d{display:flex;align-items:center;gap:18px;font-weight:800;font-stretch:105%;font-size:34px;text-transform:uppercase;letter-spacing:.02em;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.d i{width:58px;height:58px;border-radius:50%;border:3px solid #ff3b3b;display:grid;place-items:center;flex:none;background:rgba(6,18,43,.55);box-shadow:0 0 18px rgba(249,25,25,.55)}
+.d svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.d b{color:#ff5050}
+.d span{background:rgba(6,18,43,.78);padding:8px 18px;border-radius:12px;backdrop-filter:blur(4px)}
+</style></head><body>
+<div class="p">
+  <div class="ceu"></div>
+  <div class="sede"></div>
+  <img class="logo" src="logo.webp" alt="">
+  <div class="titulo">
+    <svg class="escudo" viewBox="0 0 190 220">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3030"/><stop offset="1" stop-color="#a80c0c"/></linearGradient></defs>
+      <path d="M95 6l82 30v66c0 58-36 98-82 112C49 200 13 160 13 102V36z" fill="url(#g)" stroke="#fff" stroke-opacity=".35" stroke-width="4"/>
+      <path d="M95 22l66 24v56c0 48-29 82-66 94-37-12-66-46-66-94V46z" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="3"/>
+      <path d="M78 58h34v34h34v34h-34v34H78v-34H44V92h34z" fill="#fff"/>
+    </svg>
+    <div class="barras">
+      <div class="b1">TÉCNICO EM</div>
+      <div class="b2">SEGURANÇA<small>DO TRABALHO</small></div>
+    </div>
+  </div>
+  <div class="dados">
+    <div class="d"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></i><span><b>1.440 horas</b> de formação</span></div>
+    <div class="d"><i><svg viewBox="0 0 24 24"><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M14 6a6 6 0 0 1 6 6v3"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><rect x="2" y="15" width="20" height="4" rx="1"/></svg></i><span><b>240 horas</b> de estágio</span></div>
+    <div class="d"><i><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9.5C7.5 20.5 4 17 4 12V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i><span>Aulas <b>presenciais</b> em Goiânia</span></div>
+  </div>
+</div>
+</body></html>
