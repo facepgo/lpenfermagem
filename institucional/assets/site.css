@@ -638,3 +638,4 @@ footer{border-top:1px solid var(--line);padding-block:44px 110px}
 .card-cta{flex:none;position:relative;z-index:2;box-shadow:0 8px 24px -10px rgba(var(--acc-rgb),.75)}
 #cursos .pc-foot{gap:12px;flex-wrap:wrap}
 @media (max-width:420px){#cursos .pc-foot .card-cta{width:100%}}
+.curso-banner-h{max-width:560px}

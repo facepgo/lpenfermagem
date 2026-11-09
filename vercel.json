@@ -39,6 +39,11 @@
             "source": "/tecnico-enfermagem-b",
             "destination": "/tecnico-enfermagem",
             "permanent": false
+        },
+        {
+            "source": "/tecnico-necropsia-b",
+            "destination": "/tecnico-necropsia",
+            "permanent": false
         }
     ],
     "rewrites": [
@@ -113,6 +118,18 @@
         {
             "source": "/tecnico-enfermagem-c",
             "destination": "/tecnico-enfermagem/index.html"
+        },
+        {
+            "source": "/tecnico-necropsia",
+            "destination": "/tecnico-necropsia/index.html"
+        },
+        {
+            "source": "/tecnico-necropsia-a",
+            "destination": "/tecnico-necropsia/index.html"
+        },
+        {
+            "source": "/tecnico-necropsia-c",
+            "destination": "/tecnico-necropsia/index.html"
         }
     ]
 }

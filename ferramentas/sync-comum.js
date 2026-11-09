@@ -12,7 +12,7 @@ const e1 = home.indexOf('</section>', home.indexOf('id="estrutura"')) + '</secti
 if (e0 < 0) throw new Error('Estrutura física não encontrada na home');
 const estrutura = '<!-- comum:estrutura (cópia da home, gerada por sync-comum.js) -->\n' + home.slice(e0, e1).replace('<!-- Estrutura física -->\n', '') + '\n<!-- /comum:estrutura -->';
 
-for (const pg of ['tecnico-enfermagem', 'tecnico-seguranca-do-trabalho', 'pos-tecnico-enfermagem']) {
+for (const pg of ['tecnico-enfermagem', 'tecnico-seguranca-do-trabalho', 'tecnico-necropsia', 'pos-tecnico-enfermagem']) {
   const p = `${root}/${pg}/index.html`;
   let h = fs.readFileSync(p, 'utf8');
   // rodapé igual ao da home
@@ -20,7 +20,7 @@ for (const pg of ['tecnico-enfermagem', 'tecnico-seguranca-do-trabalho', 'pos-te
   // galeria própria do curso sai (a galeria é a da Estrutura física, comum a todas)
   h = h.replace(/<!-- Galeria: [\s\S]*?<section class="sec" id="galeria">[\s\S]*?<\/section>\s*/, '');
   // Estrutura física: só nas páginas da lista COM_ESTRUTURA (08/11/2026: saiu de Técnico em Enfermagem)
-  const COM_ESTRUTURA = ['tecnico-seguranca-do-trabalho', 'pos-tecnico-enfermagem'];
+  const COM_ESTRUTURA = []; // padrão das páginas de curso (08/11/2026): sem Estrutura física
   if (!COM_ESTRUTURA.includes(pg)) h = h.replace(/<!-- comum:estrutura[\s\S]*?<!-- \/comum:estrutura -->\s*/, '');
   else if (h.includes('<!-- comum:estrutura')) h = h.replace(/<!-- comum:estrutura[\s\S]*?<!-- \/comum:estrutura -->/, estrutura);
   else h = h.replace('<section class="final">', estrutura + '\n\n<section class="final">');

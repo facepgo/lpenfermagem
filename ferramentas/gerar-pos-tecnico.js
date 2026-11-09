@@ -110,9 +110,32 @@ const items = [
           <a class="btn btn-acc btn-sm" data-wa="Olá, FACEP! Tenho uma dúvida sobre o Pós-Técnico em Enfermagem.">Falar com o time da FACEP<span class="dot"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path pathLength="1" d="M9 10h6M9 13h4"/></svg></span></a>`}
 ];
 
+
+const ticker = ['10 especializações técnicas', '360 horas cada', '288 h EAD + 72 h presenciais', 'Registro no COREN', 'Para técnicos em enfermagem'].map(t => t + ' <i>✦</i>').join(' ');
+const icP = {pessoa: '<circle pathLength="1" cx="12" cy="8" r="3.5"/><path pathLength="1" d="M5 20c1.2-3.6 3.8-5.5 7-5.5s5.8 1.9 7 5.5"/>', livro: '<path pathLength="1" d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path pathLength="1" d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/>', pulso: '<path pathLength="1" d="M3 12h4l2-4 3 8 2-4h7"/>', estrela: '<path pathLength="1" d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1-4.5-4.2 6.1-.8z"/>', frasco: '<path pathLength="1" d="M9 3h6M10 3v6l-5.5 9.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3"/><path pathLength="1" d="M7.5 15h9"/>', sobe: '<path pathLength="1" d="M3 17l6-6 4 4 8-8"/><path pathLength="1" d="M15 7h6v6"/>'};
+const svgP = k => '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">' + icP[k] + '</svg>';
+const listaP = itens => '<ul>' + itens.map(i => '<li>' + chk + i + '</li>').join('') + '</ul>';
+const pilaresHtml = [
+  ['pessoa', 'Para quem é esse curso?', '<p>Para quem já é <b>Técnico em Enfermagem</b> e quer se especializar em uma área da assistência, ampliando as possibilidades de atuação profissional.</p>'],
+  ['livro', 'O que você vai aprender', listaP(['Competências técnicas e científicas na área escolhida.', 'Uso adequado de tecnologias em saúde e práticas seguras de assistência.', 'Normativas e protocolos vigentes do COFEN e do SUS.'])],
+  ['pulso', 'O que você será capaz de fazer', listaP(['Executar procedimentos e protocolos de enfermagem com segurança, ética e eficiência.', 'Trabalhar em equipe multiprofissional.', 'Atuar com foco na segurança do paciente e na qualidade do cuidado.'])]
+].map(([ic, t, c]) => '\n      <article class="pc" data-rv><span class="ibox">' + svgP(ic) + '</span><h3>' + t + '</h3>' + c + '</article>').join('');
+const identP = [
+  ['Seu Sonho', 'Especialize-se na área que você escolher', 'São 10 especializações técnicas, da Terapia Intensiva à Oncologia.'],
+  ['Seu Sonho', 'Estude no seu ritmo', '288 horas de teoria no Ambiente Virtual de Aprendizagem, com atividades assíncronas.'],
+  ['Seu Sonho', 'Registro no COREN', 'Certificado com validade nacional para registro da especialização, conforme a Resolução COFEN nº 609/2019.'],
+  ['Ação', '72 horas de prática presencial', 'Encontros e estágio supervisionado presenciais em cada especialização.'],
+  ['Ação', 'Laboratórios e instituições parceiras', 'Práticas nos laboratórios da FACEP ou em instituições parceiras credenciadas.'],
+  ['Ação', 'Estágio na rede de saúde', 'Convênio com a Secretaria Municipal de Saúde de Goiânia e parcerias com instituições privadas.'],
+  ['Nova Carreira', 'Mais possibilidades de atuação', 'Formação continuada que fortalece a prática assistencial do técnico em enfermagem.'],
+  ['Nova Carreira', 'Uma ou mais especializações', 'Você pode cursar mais de uma especialização, ao mesmo tempo ou em sequência.'],
+  ['Nova Carreira', 'Atualizado com COFEN e SUS', 'Conteúdo alinhado às normativas e protocolos vigentes da enfermagem.']
+].map(([g, t, x], i, arr) => '\n      <article class="pc esp"><div class="pc-top"><span class="ibox">' + svgP({'Seu Sonho': 'estrela', 'Ação': 'frasco', 'Nova Carreira': 'sobe'}[g]) + '</span><span class="num">' + String(i + 1).padStart(2, '0') + '/' + String(arr.length).padStart(2, '0') + '</span></div><div><span class="area">' + g + '</span><h3>' + t + '</h3></div><p>' + x + '</p></article>').join('');
+
 const main = `<main id="topo">
 <section class="page-hero">
-  <div class="wrap">
+  <div class="wrap curso-hero">
+    <div>
     <nav class="crumbs" aria-label="Você está em"><a href="/">Início</a><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M9 6l6 6-6 6"/></svg><a href="/#cursos">Cursos</a><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M9 6l6 6-6 6"/></svg><span>Pós-Técnico em Enfermagem</span></nav>
     <p style="margin:22px 0 0"><span class="kind rec">Especializações Técnicas de Nível Médio</span></p>
     <h1 class="page-title" data-split>Pós-Técnico em <em>Enfermagem</em></h1>
@@ -126,7 +149,10 @@ const main = `<main id="topo">
       <a class="btn btn-acc magnetic" data-wa="Olá, FACEP! Quero saber sobre o Pós-Técnico em Enfermagem.">Falar com a FACEP<span class="dot">${arrow}</span></a>
       <a class="btn btn-ghost magnetic" href="#especializacoes">Ver especializações<span class="dot">${arrow}</span></a>
     </div>
+    </div>
+    <figure class="curso-banner curso-banner-h" data-rv><img src="/institucional/assets/capa-pos-tecnico.webp" alt="Pós-Técnico em Enfermagem na FACEP" width="1200" height="990" fetchpriority="high"></figure>
   </div>
+  <div class="marquee" aria-label="Destaques do curso"><div class="mq-track"><span>${ticker}</span><span aria-hidden="true">${ticker}</span></div></div>
 </section>
 
 <section class="sec" id="especializacoes" style="padding-top:48px">
@@ -153,6 +179,24 @@ const main = `<main id="topo">
       <p class="lead" data-rv>Programa, grade curricular, estágio, corpo docente, valores, processo seletivo e perguntas frequentes.</p>
     </div>
     ${tabs('pos', items, 'Informações do Pós-Técnico em Enfermagem')}
+  </div>
+</section>
+
+<section class="sec tight" id="pilares">
+  <div class="wrap">
+    <div class="head-split">
+      <div><span class="eyebrow">O curso</span><h2 class="h2" data-split>Para quem é e o que <em>você aprende</em></h2></div>
+    </div>
+    <div class="grid3">${pilaresHtml}
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="identidade" data-rail>
+  <div class="wrap rail-head">
+    <div><span class="eyebrow">Nossa identidade</span><h2 class="h2" data-split>A fórmula FACEP para <em>a sua carreira</em></h2></div>
+  </div>
+  <div class="rail">${identP}
   </div>
 </section>
 
